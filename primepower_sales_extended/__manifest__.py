@@ -21,7 +21,7 @@ Add extra fields needed when capturing a sale.
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale','stock'],
+    'depends': ['sale','product'],
 
     # always loaded
     'data': [
