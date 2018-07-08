@@ -7,8 +7,7 @@
 
     'description': """
         Sale product detail
-=================
-Add extra fields needed when capturing a sale.
+        Add extra fields needed when capturing a sale.
     """,
 
     'author': "Suriel",
