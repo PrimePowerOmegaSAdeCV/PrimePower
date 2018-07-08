@@ -12,7 +12,7 @@ class SaleOrderLine(models.Model):
         vals = super(SaleOrderLine,self).product_id_change()
         if self.product_id:
             list_vals = []
-            record['product_values_ids'] = [(6,0,list_vals)]
+            self.product_values_ids = [(6,0,list_vals)]
             if record.product_id.categ_id.sale_template_id:
                 for template_value_id in record.product_id.categ_id.sale_template_id.values_ids:
                   values = {'name':template_value_id.name, 'field_type' : template_value_id.field_type}
