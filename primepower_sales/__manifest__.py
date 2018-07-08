@@ -12,7 +12,6 @@ Add extra fields needed when capturing a sale.
     """,
     'website': '',
     'category': 'Sale',
-    'sequence': 32,
     'demo': [
     
     ],
