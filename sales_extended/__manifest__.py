@@ -22,4 +22,6 @@ Add extra fields needed when capturing a sale.
     'qweb': [
        
     ],
+    'installable': True,
+    'auto_install': False,
 }
