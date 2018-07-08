@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import api, fields, models, tools, SUPERUSER_ID, _
 
 class SalesProductTemplate(models.Model):
     
