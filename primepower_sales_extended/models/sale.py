@@ -4,7 +4,7 @@ class SaleOrderLine(models.Model):
     
     _inherit = 'sale.order.line'
     
-    product_values_ids = fields.One2many('returned.values','sale_line_id', string="Valores del producto" copy=False)
+    product_values_ids = fields.One2many('returned.values','sale_line_id', string="Valores del producto", copy=False)
     
     @api.onchange('product_id')
     def onchange_product_id(self):
