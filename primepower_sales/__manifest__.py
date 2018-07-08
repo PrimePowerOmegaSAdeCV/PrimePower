@@ -3,6 +3,7 @@
 
 {
     'name': 'Sale extend for Prime Power',
+    'summary' : 'Adds extra fields in sales orders',
     'depends': ['sale'],
     'description': """
 Sale product detail
@@ -10,17 +11,8 @@ Sale product detail
 Add extra fields needed when capturing a sale.
 
     """,
-    'website': '',
+    'author' : 'Suriel',
+    'website': 'www.odoo.com',
+    'version' : '0.0.1',
     'category': 'Sale',
-    'demo': [
-    
-    ],
-    'data': [
-       
-    ],
-    'qweb': [
-       
-    ],  
-    'installable': True,
-    'auto_install': True,
 }
