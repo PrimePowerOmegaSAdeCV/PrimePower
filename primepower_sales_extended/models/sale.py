@@ -13,10 +13,11 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             list_vals = []
             self.product_values_ids = [(6,0,list_vals)]
-            if record.product_id.categ_id.sale_template_id:
-                for template_value_id in record.product_id.categ_id.sale_template_id.values_ids:
-                  values = {'name':template_value_id.name, 'field_type' : template_value_id.field_type}
-                  list_vals.append((6,0,values))
-                self.product_values_ids = [list_vals]
+            if self.product_id.categ_id.sale_template_id:
+                for template_value_id in self.product_id.categ_id.sale_template_id.values_ids:
+                  values = {'name':template_value_id.name, 'field_type' : template_value_id.field_type, 'values_ids' : [(6,0,template_value_id.selection_values.ids)]}
+                  
+                  list_vals.append((0,0,values))
+                self.update({'product_values_ids' : list_vals})
         return vals
 
