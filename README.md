@@ -1,1 +1,1 @@
-# PrimePower
+# PrimePower extended
