@@ -44,7 +44,7 @@ class ReturnedValues(models.Model):
             elif line.field_type == 'seleccion':
                 line.valor= line.selection.name
     
-    name = fields.Char(string='Dato', required=True, copy=False,)
+    name = fields.Char(string='Dato', required=True, copy=False)
     valor = fields.Text(string='Valor', compute='_get_value', readonly=True, store=True)
     selection = fields.Many2one('sales.template.selection.values', string="Valor", required=False, copy=False)
     text = fields.Text(string="Valor", required=False, copy=False)
@@ -55,8 +55,8 @@ class ReturnedValues(models.Model):
             ('linea_texto','Linea de texto'),
             ('seleccion','Seleccion')
         ],
-        required=True, string='Tipo de campo', copy=False, default='linea_texto'
+        required=True, string='Tipo de campo', copy=False, default='linea_texto', related='template_line_id.field_type'
     )
-    sale_line_id = fields.Many2one('sale.order.line', string='Linea de pedido de venta', required=True, copy=False, readonly=True)
+    sale_line_id = fields.Many2one('sale.order.line', string='Linea de pedido de venta', required=True, copy=False, readonly=True, ondelete='cascade')
     template_line_id = fields.Many2one('sales.product.template.values', string="Linea de plantilla")
     values_ids = fields.Many2many('sales.template.selection.values', 'returned_values_selection_rel', 'returned_value_id', 'selection_value_id',related='template_line_id.selection_values', string="Values selection", store=True)
