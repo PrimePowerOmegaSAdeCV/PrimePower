@@ -15,13 +15,15 @@
                         <field name="valor" string="Valor" modifiers="{}"/>
                       </tree>
                       <form string="Valores ventas">
+                          <group>
                           <field name="name" />
-                          <field name="field_type" invisible="1"/>
                           <field name="selection" options="{'no_create': True}" attrs="{'invisible' : [('field_type','!=','seleccion')]}" domain="[('id','in',values_ids)]"/>
                           <field name="text" attrs="{'invisible' : [('field_type','!=','parrafo')]}"/>
                           <field name="char" attrs="{'invisible' : [('field_type','!=','linea_texto')]}" />
+                          </group>
                           <field name="template_line_id" invisible="1"/>
                           <field name="values_ids" invisible="1"/>
+                          <field name="field_type" invisible="1"/>
                         </form>
                     </field>
                   </xpath>

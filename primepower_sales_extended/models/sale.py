@@ -15,7 +15,8 @@ class SaleOrderLine(models.Model):
             self.product_values_ids = [(6,0,list_vals)]
             if self.product_id.categ_id.sale_template_id:
                 for template_value_id in self.product_id.categ_id.sale_template_id.values_ids:
-                  values = {'name':template_value_id.name, 'field_type' : template_value_id.field_type, 'values_ids' : [(6,0,template_value_id.selection_values.ids)]}
+                  #values = {'name':template_value_id.name, 'field_type' : template_value_id.field_type, 'values_ids' : [(6,0,template_value_id.selection_values.ids)]}
+                  values = {'template_line_id':template_value_id.id, 'name':template_value_id.name}
                   
                   list_vals.append((0,0,values))
                 self.update({'product_values_ids' : list_vals})
