@@ -20,6 +20,7 @@
                           <field name="selection" options="{'no_create': True}" attrs="{'invisible' : [('field_type','!=','seleccion')]}" domain="[('id','in',values_ids)]"/>
                           <field name="text" attrs="{'invisible' : [('field_type','!=','parrafo')]}"/>
                           <field name="char" attrs="{'invisible' : [('field_type','!=','linea_texto')]}" />
+                          <field name="boolean" attrs="{'invisible' : [('field_type','!=','boleano')]}" />
                           </group>
                           <field name="template_line_id" invisible="1"/>
                           <field name="values_ids" invisible="1"/>
