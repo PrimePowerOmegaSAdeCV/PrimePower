@@ -23,7 +23,8 @@ class SalesProductTemplateValues(models.Model):
         [
             ('parrafo','Parrafo'),
             ('linea_texto','Linea de texto'),
-            ('seleccion','Seleccion')
+            ('seleccion','Seleccion'),
+            ('boleano','Casilla de verificacion')
         ],
         required=True, string='Tipo de campo', copy=False, default='linea_texto'
     )
@@ -37,23 +38,29 @@ class ReturnedValues(models.Model):
     @api.depends('text','char','selection')
     def _get_value(self):
         for line in self:
+            print(line.valor,line.field_type)
             if line.field_type == 'parrafo':
                 line.valor = line.text
             elif line.field_type == 'linea_texto':
                 line.valor = line.char
             elif line.field_type == 'seleccion':
                 line.valor= line.selection.name
+            elif line.field_type == 'boleano':
+                line.valor = (line.boolean == False and "Falso") or (line.boolean == None and "") or (line.boolean and "Verdadero")
+            
     
     name = fields.Char(string='Dato', required=True, copy=False)
     valor = fields.Text(string='Valor', compute='_get_value', readonly=True, store=True)
     selection = fields.Many2one('sales.template.selection.values', string="Valor", required=False, copy=False)
     text = fields.Text(string="Valor", required=False, copy=False)
     char = fields.Char(string="Valor" , required=False, copy=False)
+    boolean = fields.Boolean(string="Valor", required=False, copy=False)
     field_type = fields.Selection(
         [
             ('parrafo','Parrafo'),
             ('linea_texto','Linea de texto'),
-            ('seleccion','Seleccion')
+            ('seleccion','Seleccion'),
+            ('boleano','Casilla de verificacion')
         ],
         required=True, string='Tipo de campo', copy=False, default='linea_texto', related='template_line_id.field_type'
     )

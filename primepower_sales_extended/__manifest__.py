@@ -29,6 +29,7 @@
         'views/templates.xml',
         'views/sales_template_view.xml',
         'views/product_category_view.xml',
+        'views/product_view.xml',
         'views/sale_view.xml'
     ],
     # only loaded in demonstration mode

@@ -13,8 +13,9 @@ class SaleOrderLine(models.Model):
         if self.product_id:
             list_vals = []
             self.product_values_ids = [(6,0,list_vals)]
-            if self.product_id.categ_id.sale_template_id:
-                for template_value_id in self.product_id.categ_id.sale_template_id.values_ids:
+            template_id = (self.product_id.sale_template_id and self.product_id.sale_template_id) or (self.product_id.categ_id.sale_template_id and self.product_id.categ_id.sale_template_id) or False
+            if template_id:
+                for template_value_id in template_id.values_ids:
                   #values = {'name':template_value_id.name, 'field_type' : template_value_id.field_type, 'values_ids' : [(6,0,template_value_id.selection_values.ids)]}
                   values = {'template_line_id':template_value_id.id, 'name':template_value_id.name}
                   
