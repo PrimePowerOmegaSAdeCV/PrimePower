@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_l10n_mx_custom_invocie_form_inherit" model="ir.ui.view">
+            <field name="name">l10n_mx_custom.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="state" position="before">
+                    <button name="action_get_journal_entries" states="open,paid" string="Get linked journal Entries"/>
+                </field>
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Journal Entries">
+                      <group >
+                        <separator string="Payment Journal Entries" colspan="4"/>
+                        <field name="payment_entry_ids" nolabel="1" colspan="4">
+                          <tree decoration-info="state == 'draft'" string="Journal Entries">
+                            <field name="date" on_change="1" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;posted&quot;]]], &quot;required&quot;: true}"/>
+                            <field name="name" modifiers="{&quot;required&quot;: true}"/>
+                            <field name="partner_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                            <field name="ref" modifiers="{}"/>
+                            <field name="journal_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;posted&quot;]]], &quot;required&quot;: true}"/>
+                            <field name="amount" sum="Importe total" modifiers="{&quot;readonly&quot;: true}"/>
+                            <field name="state" modifiers="{&quot;readonly&quot;: true, &quot;required&quot;: true}"/>
+                            <field name="currency_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;column_invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                          </tree>
+                        </field>
+                        <separator string="Cash Basis Journal Entries" colspan="4"/>
+                        <field name="cash_basis_entry_ids" nolabel="1" colspan="4">
+                          <tree decoration-info="state == 'draft'" string="Journal Entries">
+                            <field name="date" on_change="1" modifiers="{&quot;required&quot;: true, &quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;posted&quot;]]]}"/>
+                            <field name="name" modifiers="{&quot;required&quot;: true}"/>
+                            <field name="partner_id" can_create="true" can_write="true" modifiers="{&quot;readonly&quot;: true}"/>
+                            <field name="ref" modifiers="{}"/>
+                            <field name="journal_id" can_create="true" can_write="true" modifiers="{&quot;required&quot;: true, &quot;readonly&quot;: [[&quot;state&quot;, &quot;in&quot;, [&quot;posted&quot;]]]}"/>
+                            <field name="amount" sum="Importe total" modifiers="{&quot;readonly&quot;: true}"/>
+                            <field name="state" modifiers="{&quot;required&quot;: true, &quot;readonly&quot;: true}"/>
+                            <field name="currency_id" invisible="1" can_create="true" can_write="true" modifiers="{&quot;column_invisible&quot;: true, &quot;readonly&quot;: true}"/>
+                          </tree>
+                        </field>
+                      </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>    

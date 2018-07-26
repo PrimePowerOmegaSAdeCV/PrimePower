@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_invoice_document_mx_custom" inherit_id="l10n_mx_edi.report_invoice_document_mx">
+        <xpath expr="//div[@name='invoice_address']" position="replace">
+            <div name="invoice_address" class="col-xs-5 col-xs-offset-7">
+              <h4>
+                <span>Receiver Info.</span>
+              </h4>
+              <span t-field="o.partner_id.name" /> 
+              <br/>
+              <t if="o.partner.street_name">
+              <span t-field="o.partner_id.street_name" />  <span t-field="o.partner_id.street_number" /></t>
+              <t t-if="o.partner_id.street_number2">Int <span t-field="o.partner_id.street_number2" />
+              <br/>
+              </t>
+              <t t-if="o.partner_id.l10n_mx_edi_colony"><span t-field="o.partner_id.l10n_mx_edi_colony" />  <span t-field="o.partner_id.l10n_mx_edi_locality" />
+              <br/>
+              </t>
+              <t t-if="o.partner_id.city">
+              <span t-field="o.partner_id.city" />,
+              <span t-field="o.partner_id.state_id.name" /> Zip <span t-field="o.partner_id.zip" />
+              <br/>
+              </t>
+              <t t-if="o.partner_id.country_id != o.company_id.partner_id.country_id"><span t-field="o.partner_id.country_id.name"/></t>
+              <t t-esc="o.partner_id.country_id.vat_label or 'RFC'"/> <span t-field="o.partner_id.vat" /><br/>
+              <t t-if="o.l10n_mx_edi_cfdi_customer_rfc != o.partner_id.vat">RFC Extranjero:<span t-field="o.l10n_mx_edi_cfdi_customer_rfc"/></t>
+            </div>
+          </xpath>
+          <xpath expr="//span[4]" position="replace">
+            <span t-if="o.type == 'out_refund'">Credit Note</span>
+          </xpath>
+          <xpath expr="//h2/span[@t-field='o.number']" position="after">
+            <font size="6" face="Arial"/>
+            <table class="table table-sm" style="font-size:80%">
+              <thead >
+                <tr>
+                 <th class="text-center">Issuer Certificate</th> 
+                 <th>Zip Code of issuance</th> 
+                 <th>Fiscal Position</th>
+                 <th>Date and time</th> 
+                 <th>Stamped Date</th> 
+                 <th>Fiscal Reference</th> 
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                 <td>
+                   <span t-esc="xml.get('noCertificado', xml.get('NoCertificado'))"/>
+                 </td>
+                 <td>
+                   <span t-esc="xml.get('LugarExpedicion')"/>
+                 </td>
+                 <td>
+                   <t t-if="xml.get('version', '') == '3.2'"> <span t-esc="xml.Emisor.RegimenFiscal.get('Regimen')"/></t>
+                   <t t-if="xml.get('Version', '') == '3.3'"> <span t-esc="xml.Emisor.get('RegimenFiscal', '')"/></t>
+                 </td>
+                 <td>
+                   <span t-esc="xml.get('fecha', xml.get('Fecha', '')).replace('T', ' ')"/>
+                 </td>
+                 <td>
+                   <span t-esc="tfd.get('FechaTimbrado', '').replace('T', ' ')"/>
+                 </td>
+                 <td>
+                   <span t-esc="tfd.get('UUID')"/>
+                   <t t-if="o.type == 'out_refund'" ><br/><span >CFDI Origin</span><br/>
+                   <span t-field="o.l10n_mx_edi_origin"/>
+                   </t>
+                 </td>
+                </tr>
+              </tbody>
+            </table>
+          </xpath>
+          <xpath expr="//div[@id='complement']" position="replace">
+            <div class="row" id="complement">
+                            <div class="barcode col-xs-3">
+                                <img t-att-src="'/report/barcode/QR/%s' % quote_plus('?') + keep_query(                                 re=o.l10n_mx_edi_cfdi_supplier_rfc, rr=o.l10n_mx_edi_cfdi_customer_rfc,                                 tt=o.l10n_mx_edi_cfdi_amount, id=o.l10n_mx_edi_cfdi_uuid)"/>
+                            </div>
+                            <div class="complement-details col-xs-9">
+                                <div class="digital-stamp">
+                                    <span>Digital stamp of the emitter</span>
+                                </div>
+                                <div class="digital-stamp-content">
+                                    <span t-esc="xml.get('sello', xml.get('Sello', 'No identificado'))"/>
+                                </div>
+                                <div class="digital-stamp">
+                                    <span>Digital stamp SAT</span>
+                                </div>
+                                <div class="digital-stamp-content">
+                                    <span t-esc="tfd.get('selloSAT', tfd.get('SelloSAT', 'No identificado'))"/>
+                                </div>
+                                <div class="digital-stamp">
+                                    <span>Original chain complement of digital certification SAT</span>
+                                </div>
+                                <div class="digital-stamp-content">
+                                    <span class="nowrap" t-esc="tfd_original_string"/>
+                                </div>
+                                <div t-if="xml.Emisor.xpath('cfdi:ExpedidoEn', namespaces=xml.nsmap)" class="digital-stamp">
+                                    <span>Issued from</span>
+                                </div>
+                                <div t-if="xml.Emisor.xpath('cfdi:ExpedidoEn', namespaces=xml.nsmap)" class="digital-stamp-content">
+                                    <span t-esc="' | '.join([ '%s: %s' % (key, value) for key, value in xml.Emisor.ExpedidoEn.items()])"/>
+                                </div>
+                                <div class="digital-stamp">
+                                    <span>Extra Info</span>
+                                </div>
+                                <div class="digital-stamp-content">
+                                    <span>Emitter certificate:</span> <span t-esc="xml.get('noCertificado', xml.get('NoCertificado'))"/>
+            <span> | Zip Code emitted from:</span> <span t-esc="xml.get('LugarExpedicion')"/>
+            <span> | Fiscal Position:</span>
+                <t t-if="xml.get('version', '') == '3.2'"> <span t-esc="xml.Emisor.RegimenFiscal.get('Regimen')"/></t>
+                <t t-if="xml.get('Version', '') == '3.3'"> <span t-esc="xml.Emisor.get('RegimenFiscal', '')"/></t>
+            <span> | Date and time:</span> <span t-esc="xml.get('fecha', xml.get('Fecha', '')).replace('T', ' ')"/>
+            <span> | Certification Date:</span> <span t-esc="tfd.get('FechaTimbrado', '').replace('T', ' ')"/>
+            <span> | Fiscal Reference:</span> <span t-esc="tfd.get('UUID')"/>
+                                </div>
+                                <div class="digital-stamp-content text-center">
+                                    <strong>This document is a printed representation of a CFDI</strong>
+                                </div>
+                            </div>
+                        </div>
+          </xpath>
+          <xpath expr="//table[@name='invoice_line_table']" position="replace">
+            <table class="table table-condensed" name="invoice_line_table">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>SAT Code</th>
+                        <th class="hidden">Source Document</th>
+                        <th class="text-right">Quantity</th>
+                        <th class="text-right" groups="product.group_uom">UdM</th>
+                        <th class="text-right">unit Price</th>
+                        <th t-if="display_discount" class="text-right">Disc.(%)</th>
+                        <th class="text-right">Taxes</th>
+                        <th class="text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="invoice_tbody">
+                    <tr t-foreach="o.invoice_line_ids" t-as="l">
+                        <td>
+                          <span t-field="l.name"/>
+                        </td>
+                        <td><span t-field="l.product_id.l10n_mx_edi_code_sat_id.code"/></td>
+                        <td class="hidden"><span t-field="l.origin"/></td>
+                        <td class="text-right">
+                            <span t-field="l.quantity"/>
+                        </td>
+                        <td class="text-right" groups="product.group_uom">
+                          <span t-field="l.uom_id"/> - 
+                          <span t-field="l.uom_id.l10n_mx_edi_code_sat_id.code"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-field="l.price_unit"/>
+                        </td>
+                        <td t-if="display_discount" class="text-right">
+                            <span t-field="l.discount"/>
+                        </td>
+                        <td class="text-right">
+                            <span t-esc="', '.join(map(lambda x: (x.description+' - '+ x.l10n_mx_cfdi_tax_type or x.name +' - '+ x.l10n_mx_cfdi_tax_type), l.invoice_line_tax_ids))"/>
+                        </td>
+                        <td class="text-right" id="subtotal">
+                            <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                        </td>
+                    </tr>
+                    <tr t-foreach="range(max(7-len(o.invoice_line_ids),0))" t-as="l">
+                        <td>&amp;nbsp;</td>
+                        <td class="hidden"/>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td t-if="display_discount"/>
+                        <td/>
+                        <td/>
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
+    </template>
+</odoo>
