@@ -35,7 +35,7 @@ class ReturnedValues(models.Model):
     _name = 'returned.values'
     
     @api.multi
-    @api.depends('text','char','selection')
+    @api.depends('text','char','selection','boolean')
     def _get_value(self):
         for line in self:
             print(line.valor,line.field_type)
