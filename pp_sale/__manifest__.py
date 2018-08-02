@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'pp: sale',
+    'name': 'PP: Sale',
     'summary': 'Prime Power: Quote/ Sales order',
     'description': """
     * Created a custom pdf quote/sales order
