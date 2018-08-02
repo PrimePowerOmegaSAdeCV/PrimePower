@@ -156,7 +156,7 @@
                                 <tr>
                                     <th>Internal Reference</th>
                                     <!--  Descipcion Para Clientes -->
-                                    <th>Description for Clients</th>
+                                    <th>Description</th>
                                     <!-- Tiempo de Entrega -->
                                     <th>Delivery Time</th>
                                     <!--<th>Description</th>-->
@@ -287,7 +287,7 @@
                                     <tr>
                                         <th>Internal Reference</th>
                                         <!--  Descipcion Para Clientes -->
-                                        <th>Description for Clients</th>
+                                        <th>Description</th>
                                         <!-- Tiempo de Entrega -->
                                         <!--<th>Delivery Time</th>-->
                                         <!--<th>Description</th>-->

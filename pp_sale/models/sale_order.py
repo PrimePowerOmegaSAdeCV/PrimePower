@@ -30,6 +30,11 @@ class SaleOrder(models.Model):
         # print(self.optional_product_line)
 
         optional_product_ids = self.order_line.mapped('product_id.optional_product_ids').mapped('product_variant_ids')
+
+        # filtering out those product that are already in the regular order line
+        regular_product_ids = self.order_line.mapped('product_id')
+        optional_product_ids -= regular_product_ids
+
         # see if there are images to display
         # optional_product_images_exist = any(optional_product_ids.filtered(lambda p: p.product_image_ids))
         optional_product_images = optional_product_ids.mapped('product_image_ids')
