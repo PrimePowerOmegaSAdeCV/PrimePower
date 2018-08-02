@@ -4,7 +4,12 @@
     'summary': 'Prime Power: Quote/ Sales order',
     'description': """
     * Created a custom pdf quote/sales order
-    * Note: in Website settings, enable variances, optional product and multiple images.
+    * Functional Notes: 
+      1. In Website settings, enable variances, optional product and multiple images.
+      2. Company's Text Quote, Relevant Information, Pesos and Dollars accounts, SO Footer image fields are under Settings/Company Setup/Sales.
+      3. Salesperson's custom signature is under Users/<User>/Preferences.
+      4. SO fields (Contact Customer, LAB Prices) and SO Line field (Delivery Time) are on SO form view.
+      5. Product Variance fields (Product Specification) can be found under Product Variances/<Product>/General Information.
     """,
     'license': 'OEEL-1',
     'author': 'Odoo Inc',

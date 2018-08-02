@@ -289,7 +289,7 @@
                                         <!--  Descipcion Para Clientes -->
                                         <th>Description for Clients</th>
                                         <!-- Tiempo de Entrega -->
-                                        <th>Delivery Time</th>
+                                        <!--<th>Delivery Time</th>-->
                                         <!--<th>Description</th>-->
                                         <th class="text-right">Unit Price</th>
                                         <th class="text-right">Quantity</th>
@@ -315,7 +315,7 @@
                                             <tr>
                                                 <td><span t-field="l.product_id.default_code"/></td>
                                                 <td><span t-field="l.product_id.description_sale"/></td>
-                                                <td><span t-field="l.delivery_time_id"/></td>
+                                                <!--<td><span t-field="l.delivery_time_id"/></td>-->
                                                 <!--<td><span t-field="l.name"/></td>-->
                                                 <td class="text-right">
                                                     <span t-field="l.price_unit"/>
