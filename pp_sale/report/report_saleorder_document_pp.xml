@@ -40,14 +40,15 @@
         <div class="footer o_pp_footer">
             <div class="text-center">
                 <div t-if="company.report_footer" t-field="company.report_footer"/>
-                <img t-if="company.report_footer_image" t-att-src="'data:image/png;base64,%s' % to_text(company.report_footer_image)" height="150px"/>
+                <img t-if="company.report_footer_image" t-att-src="'data:image/png;base64,%s' % to_text(company.report_footer_image)"/>
                 <!--<div class="text-center" t-field="company.report_footer_image" t-options="{'widget': 'image', 'style': 'height: 120px'}"/>-->
-                <div class="text-muted">
-                    Page:
-                    <span class="page"/>
-                    of
-                    <span class="topage"/>
-                </div>
+                <!-- todo: ask if they still want page number?-->
+                <!--<div class="text-muted">-->
+                    <!--Page:-->
+                    <!--<span class="page"/>-->
+                    <!--of-->
+                    <!--<span class="topage"/>-->
+                <!--</div>-->
             </div>
         </div>
     </template>
