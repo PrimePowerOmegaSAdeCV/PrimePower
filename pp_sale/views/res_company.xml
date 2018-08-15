@@ -27,23 +27,6 @@
                         </group>
                     </page>
                 </xpath>
-                <!--<xpath expr="//field[@name='report_footer']" position="after">-->
-                    <!--<field name="report_footer_image" widget="image" style="height-max: 50px"/>-->
-                <!--</xpath>-->
-                <!--<xpath expr="//field[@name='report_footer']/.." position="after">-->
-                    <!--<group string="Sales">-->
-                        <!--<field name="text_quote"/>-->
-                        <!--<field name="relevant_information_ids" mode="tree" context="{'default_company_id': id}">-->
-                            <!--<tree>-->
-                                <!--<field name="name"/>-->
-                            <!--</tree>-->
-                        <!--</field>-->
-                    <!--</group>-->
-                <!--</xpath>-->
-                <!--<xpath expr="//field[@name='report_header']" position="after">-->
-                    <!--<field name="account_peso_id"/>-->
-                    <!--<field name="account_dollar_id"/>-->
-                <!--</xpath>-->
             </field>
         </record>
     </data>

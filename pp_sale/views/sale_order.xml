@@ -29,14 +29,14 @@
                     <field name="lab_prices"/>
                 </xpath>
 
-                <!-- Add acive and add_alt fields in form view -->
+                <!-- Add delivery time in form view -->
                 <xpath expr="//field[@name='order_line']/form/group/group[2]" position="after">
                     <group>
                         <field name="delivery_time_id"/>
                     </group>
                 </xpath>
 
-                <!-- Add active and add_alt fields in tree view -->
+                <!-- Add delivery time in tree view -->
                 <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
                     <field name="delivery_time_id"/>
                 </xpath>
@@ -48,7 +48,7 @@
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="website_quote.sale_order_form_quote" />
             <field name="arch" type="xml">
-                <!-- Add active and add_alt fields in tree view -->
+                <!-- Add delivery time in tree view -->
                 <xpath expr="//field[@name='options']/tree/field[@name='name']" position="after">
                     <field name="delivery_time_id"/>
                 </xpath>
