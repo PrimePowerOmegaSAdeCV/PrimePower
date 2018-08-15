@@ -289,14 +289,14 @@
                                         <!--  Descipcion Para Clientes -->
                                         <th>Description</th>
                                         <!-- Tiempo de Entrega -->
-                                        <!--<th>Delivery Time</th>-->
+                                        <th>Delivery Time</th>
                                         <!--<th>Description</th>-->
                                         <th class="text-right">Unit Price</th>
                                         <th class="text-right">Quantity</th>
                                         <th t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">Disc.(%)</th>
                                         <!--<th class="text-right">Taxes</th>-->
                                         <th class="text-right" groups="sale.group_show_price_subtotal">Amount</th>
-                                        <th class="text-right price_tax_included" groups="sale.group_show_price_total">Total Price</th>
+                                        <!--<th class="text-right price_tax_included" groups="sale.group_show_price_total">Total Price</th>-->
                                     </tr>
                                </thead>
                                <tbody class="sale_tbody">
@@ -315,14 +315,14 @@
                                             <tr>
                                                 <td><span t-field="l.product_id.default_code"/></td>
                                                 <td><span t-field="l.product_id.description_sale"/></td>
-                                                <!--<td><span t-field="l.delivery_time_id"/></td>-->
+                                                <td><span t-field="l.delivery_time_id"/></td>
                                                 <!--<td><span t-field="l.name"/></td>-->
                                                 <td class="text-right">
                                                     <span t-field="l.price_unit"/>
                                                 </td>
                                                 <td class="text-right">
-                                                    <span t-field="l.product_uom_qty"/>
-                                                    <span t-field="l.product_uom" groups="product.group_uom"/>
+                                                    <span t-field="l.quantity"/>
+                                                    <span t-field="l.uom_id" groups="product.group_uom"/>
                                                 </td>
 
                                                 <td t-if="display_discount" class="text-right" groups="sale.group_discount_per_so_line">
@@ -332,23 +332,23 @@
                                                     <!--<span t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_id))"/>-->
                                                 <!--</td>-->
                                                 <td class="text-right" groups="sale.group_show_price_subtotal">
-                                                    <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                                    <span t-esc="l.price_unit * l.quantity" t-esc-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
                                                 </td>
-                                                <td class="text-right" groups="sale.group_show_price_total">
-                                                    <span t-field="l.price_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
-                                                </td>
+                                                <!--<td class="text-right" groups="sale.group_show_price_total">-->
+                                                    <!--<span t-field="l.price_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>-->
+                                                <!--</td>-->
                                             </tr>
                                         </t>
 
-                                        <t t-if="(layout_category_size &gt; 1 or page_size &gt; 1) and layout_category['subtotal']" groups="sale.group_sale_layout">
-                                            <tr class="text-right">
-                                                <td colspan="6">
-                                                    <strong>Subtotal: </strong>
-                                                    <t t-set="subtotal" t-value="sum(line.price_subtotal for line in layout_category['optional_product_lines'])"/>
-                                                    <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
-                                                </td>
-                                            </tr>
-                                        </t>
+                                        <!--<t t-if="(layout_category_size &gt; 1 or page_size &gt; 1) and layout_category['subtotal']" groups="sale.group_sale_layout">-->
+                                            <!--<tr class="text-right">-->
+                                                <!--<td colspan="6">-->
+                                                    <!--<strong>Subtotal: </strong>-->
+                                                    <!--<t t-set="subtotal" t-value="sum(line.price_subtotal for line in layout_category['optional_product_lines'])"/>-->
+                                                    <!--<span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>-->
+                                                <!--</td>-->
+                                            <!--</tr>-->
+                                        <!--</t>-->
 
                                     </t>
                                 </tbody>
