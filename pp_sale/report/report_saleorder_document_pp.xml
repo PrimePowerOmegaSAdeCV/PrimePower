@@ -117,7 +117,7 @@
                                 <!--<strong class="col-xs-6">L.A.B Prices:</strong>-->
                                 <!--<span class="col-xs-6" t-field="doc.lab_prices"/>-->
                             <!--</div>-->
-                            <div class="row" t-if="doc.lab_prices">
+                            <div class="row" t-if="doc.incoterm">
                                 <strong class="col-xs-6">Incoterms:</strong>
                                 <span class="col-xs-6" t-field="doc.incoterm"/>
                             </div>
@@ -431,9 +431,9 @@
                                             <strong class="col-xs-6">Account:</strong>
                                             <span t-field="doc.company_id.account_peso_id.acc_number"/>
                                         </div>
-                                        <div t-if="doc.company_id.account_peso_id.bank_id.transfer_code" class="row">
+                                        <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
                                             <strong class="col-xs-6">Transfer Code:</strong>
-                                            <span t-field="doc.company_id.account_peso_id.bank_id.transfer_code"/>
+                                            <span t-field="doc.company_id.account_peso_id.transfer_code"/>
                                         </div>
                                         <div class="row">
                                             <strong class="col-xs-6">Bank:</strong>
@@ -462,9 +462,9 @@
                                             <strong class="col-xs-6">Account:</strong>
                                             <span t-field="doc.company_id.account_dollar_id.acc_number"/>
                                         </div>
-                                        <div t-if="doc.company_id.account_dollar_id.bank_id.transfer_code" class="row">
+                                        <div t-if="doc.company_id.account_dollar_id.transfer_code" class="row">
                                             <strong class="col-xs-6">Transfer Code:</strong>
-                                            <span t-field="doc.company_id.account_dollar_id.bank_id.transfer_code"/>
+                                            <span t-field="doc.company_id.account_dollar_id.transfer_code"/>
                                         </div>
                                         <div class="row">
                                             <strong class="col-xs-6">Bank:</strong>

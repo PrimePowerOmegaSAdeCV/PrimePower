@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
-class ResBank(models.Model):
-    _inherit = 'res.bank'
+class ResPartnerBank(models.Model):
+    _inherit = 'res.partner.bank'
 
     transfer_code = fields.Char('Transfer Code')

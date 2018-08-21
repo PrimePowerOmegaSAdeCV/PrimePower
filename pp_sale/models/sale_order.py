@@ -16,7 +16,7 @@ class SaleOrder(models.Model):
     # filtering order_line to include only regular lines
     # order_line = fields.One2many(domain=[('optional', '=', False)])
 
-    lab_prices = fields.Char('L.A.B Prices')
+    # lab_prices = fields.Char('L.A.B Prices')
 
     @api.multi
     def optional_product_lines_layouted(self):
