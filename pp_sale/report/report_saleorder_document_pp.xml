@@ -17,7 +17,7 @@
                 <div class="text-center">
                     <!--todo modify t-if so that there is no awkward empty space?-->
                     <p id="pp-top-line">
-                        <span t-field="company.name"/>, REF: <span t-field="company.partner_id.vat"/>
+                        <span t-field="company.name"/>, RFC: <span t-field="company.partner_id.vat"/>
                     </p>
                     <p>
                         <span t-field="company.street_name"/><span t-esc="' '"/><span t-field="company.street_number"/>
@@ -113,9 +113,13 @@
                                 <strong class="col-xs-6">Expiration Date:</strong>
                                 <span class="col-xs-6" t-field="doc.validity_date"/>
                             </div>
+                            <!--<div class="row" t-if="doc.lab_prices">-->
+                                <!--<strong class="col-xs-6">L.A.B Prices:</strong>-->
+                                <!--<span class="col-xs-6" t-field="doc.lab_prices"/>-->
+                            <!--</div>-->
                             <div class="row" t-if="doc.lab_prices">
-                                <strong class="col-xs-6">L.A.B Prices:</strong>
-                                <span class="col-xs-6" t-field="doc.lab_prices"/>
+                                <strong class="col-xs-6">Incoterms:</strong>
+                                <span class="col-xs-6" t-field="doc.incoterm"/>
                             </div>
                             <div class="row" t-if="doc.pricelist_id and doc.pricelist_id.currency_id">
                                 <strong class="col-xs-6">Currency:</strong>

@@ -25,9 +25,9 @@
                 <xpath expr="//field[@name='validity_date']" position="before">
                     <field name="contact_partner_id"/>
                 </xpath>
-                <xpath expr="//field[@name='pricelist_id']" position="after">
-                    <field name="lab_prices"/>
-                </xpath>
+                <!--<xpath expr="//field[@name='pricelist_id']" position="after">-->
+                    <!--<field name="lab_prices"/>-->
+                <!--</xpath>-->
 
                 <!-- Add delivery time in form view -->
                 <xpath expr="//field[@name='order_line']/form/group/group[2]" position="after">
