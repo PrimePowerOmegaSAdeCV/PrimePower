@@ -29,7 +29,8 @@ class SaleOrderLine(models.Model):
         vals = super(SaleOrderLine, self).create(values)
         if 'order_id' in values:
             options = self.env['sale.order.option']
-            for product in self.env['product.product'].browse(values['product_id']).optional_product_ids:
+            for product_template in self.env['product.product'].browse(values['product_id']).optional_product_ids:
+                product = product_template.product_variant_id
                 sale_options = options.search([('product_id','=',product.id)])
                 if not sale_options: 
                     product = product.with_context(lang=self.order_id.partner_id.lang)                   
