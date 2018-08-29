@@ -23,7 +23,7 @@
         min-width: 300px;
     }
     img {
-        max-height: 150px;
+        max-height: 120px;
         max-width: 600px;
         margin-right: 16px;
     }
@@ -39,6 +39,7 @@
         line-height: 1.0;
     }
 }
+
 .o_report_layout_pp {
     // This is not a general rule since the id is not used in all the reports,
     // we should make a general structure for report body to use it everywhere
@@ -58,39 +59,34 @@
     > h2 {
         text-transform: uppercase;
     }
-    table {
-        border: 1px solid @gray;
-        thead {
-            tr th {
-                border-bottom: 3px solid @gray !important;
-                text-transform: uppercase;
-            }
+    thead tr th, h2 {
+        color: @gray;
+    }
+    tbody {
+        color: @gray;
+        tr:nth-child(odd) {
+            background-color: rgba(184, 171, 180, 0.2);
         }
-        tbody {
-            color: @gray;
-            tr {
-                td {
-                    border-top: 1px solid @gray;
-                    border-right: 1px solid @gray;
-                }
-            }
+        tr td {
+            border-top: none;
         }
     }
     /*Total table*/
     .row > .col-xs-4 > table {
-        td {
-            border-right: none;
+        tr:nth-child(odd) {
+            background-color: transparent !important;
         }
-        tr:last-child td, tr:first-child td {
+        tr:first-child td {
             /*we could get rid of this rule if .border-black td would be terminated in report.less*/
             border-top: none !important;
         }
-        tr:first-child td {
-            background-color: transparent;
-        }
         tr:last-child td {
-            background-color: @gray;
-            color: #fff;
+            color: @gray;
+        }
+    }
+    #total {
+        table tr:last-child td {
+            border-bottom: 1px solid black;
         }
     }
 }
