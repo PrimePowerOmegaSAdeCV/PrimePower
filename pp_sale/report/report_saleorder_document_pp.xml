@@ -212,7 +212,14 @@
                                             </td>
                                         </tr>
                                     </t>
-
+                                    <tr style="background-color:#dbdbdb;">
+                                        <td>Terms and Conditions</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <p t-field="doc.note"/>
+                                        </td>
+                                    </tr>
                                     <t t-if="(layout_category_size &gt; 1 or page_size &gt; 1) and layout_category['subtotal']" groups="sale.group_sale_layout">
                                         <tr class="text-right">
                                             <td colspan="6">
