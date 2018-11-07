@@ -187,7 +187,7 @@
                                     <t t-foreach="layout_category['lines']" t-as="l">
                                         <tr>
                                             <td><span t-field="l.product_id.default_code"/></td>
-                                            <td><span t-field="l.product_id.description_sale"/></td>
+                                            <td><span t-field="l.name"/></td>
                                             <td><span t-field="l.delivery_time_id"/></td>
                                             <!--<td><span t-field="l.name"/></td>-->
                                             <td class="text-right">
@@ -273,7 +273,18 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="clearfix">
+                        <table class="table table-condensed">
+                            <tr style="background-color:#d3d9de;">
+                                <td>Relevant information</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p t-field="doc.note"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                     <!-- (4) Opcionales -->
                     <t t-if="doc.optional_product_lines_layouted()[0][0]">
                         <div class="row mb8">
