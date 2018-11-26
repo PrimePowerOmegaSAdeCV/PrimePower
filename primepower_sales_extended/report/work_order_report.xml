@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_workorder"
+            string="Work Order"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="primepower_sales_extended.report_workorder_document" 
+            name="primepower_sales_extended.report_workorder_document"
+            print_report_name="'Work Order - %s' % (object.name)"
+        />
+    </data>
+</odoo>
