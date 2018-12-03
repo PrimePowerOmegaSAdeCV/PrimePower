@@ -8,6 +8,16 @@
                 <field name="company_id" position="before">
                     <field name="sale_template_id"/>
                 </field>
+                <notebook position="inside">
+                    <page string="Fabricacion">
+                        <field name="default_template_ids" string="Detalles" nolabel="1">
+                            <tree string="Detalles de produccion" editable="top">
+                                <field name="name" string="Nombre"/>
+                                <field name="values" string="Valores"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
             </field>
         </record>
     </data>

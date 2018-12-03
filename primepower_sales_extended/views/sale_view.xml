@@ -10,9 +10,18 @@
                 </xpath>
                 <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='order_line']/form[1]/group[1]/group[1]/field[@name='product_id']" position="after">
                     <field name="product_values_ids" attrs="{'invisible': [['product_id','=',False]]}">
-                      <tree string="Valores ventas">
+                      <tree string="Valores ventas" default_order="sequence">
+                        <field name="sequence" widget="handle"/>
                         <field name="name" modifiers="{}" string="Campo"/>
                         <field name="valor" string="Valor" modifiers="{}"/>
+                        <field name="template_line_id" invisible="1"/>
+                        <field name="field_type" invisible="1"/>
+                        <field name="char" invisible="1"/>
+                        <field name="selection" invisible="1"/>
+                        <field name="text" invisible="1"/>
+                        <field name="boolean" invisible="1"/>
+                        <field name="multi_selection" invisible="1"/>
+                        <field name="values_ids" invisible="1"/>
                       </tree>
                       <form string="Valores ventas">
                           <group>
@@ -21,6 +30,7 @@
                           <field name="text" attrs="{'invisible' : [('field_type','!=','parrafo')]}"/>
                           <field name="char" attrs="{'invisible' : [('field_type','!=','linea_texto')]}" />
                           <field name="boolean" attrs="{'invisible' : [('field_type','!=','boleano')]}" />
+                          <field name="multi_selection" widget="many2many_tags" options="{'no_create': True}" attrs="{'invisible' : [('field_type','!=','multi-seleccion')]}" domain="[('id','in',values_ids)]"/>
                           </group>
                           <field name="template_line_id" invisible="1"/>
                           <field name="values_ids" invisible="1"/>
