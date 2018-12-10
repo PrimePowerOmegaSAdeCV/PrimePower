@@ -30,6 +30,7 @@
                                     <field name="selection_values" widget="many2many_tags" attrs="{'readonly':[('field_type','not in',['seleccion','multi-seleccion'])]}"/>
                                     <field string="Pred. Seleccion" name="selection_default" options="{'no_quick_create': True,'no_create_edit' : True}" attrs="{'readonly' : [('field_type','!=','seleccion')]}" domain="[('id','in',selection_values)]"/>
                                     <field string="Pred. Multi-Seleccion" name="multi_selection_default" options="{'no_quick_create': True,'no_create_edit' : True}" widget="many2many_tags"  attrs="{'readonly' : [('field_type','!=','multi-seleccion')]}" domain="[('id','in',selection_values)]"/>
+                                    <field name="rpo_default" />
                                 </tree>
                             </field>
                         </group>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_workorder_mrp_document">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <p><strong>HC Work Order</strong></p>
+                    <div class="oe_structure"/>
+                    
+                    <div class="mb32 row" id="wo_information">
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <strong class="col-xs-6">Ord. Manufactura:</strong>
+                                <span class="col-xs-6" t-field="doc.name"/>
+                            </div>
+                            <div class="row">
+                                <strong class="col-xs-6">Producto:</strong>
+                                <span class="col-xs-6" t-field="doc.product_id.display_name"/>
+                            </div>
+                            <div class="row">
+                                <strong class="col-xs-6">Cantidad a producir:</strong>
+                                <span class="col-xs-6" t-field="doc.product_qty"/>
+                            </div>
+                            <div class="row">
+                                <strong class="col-xs-6">Origen:</strong>
+                                <span class="col-xs-6" t-field="doc.origin"/>
+                            </div>
+                            <div class="row">
+                                <strong class="col-xs-6">Tipo de operacion:</strong>
+                                <span class="col-xs-6" t-field="doc.picking_type_id.display_name"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="row">
+                                <strong class="col-xs-6">Vigente desde:</strong>
+                                <span class="col-xs-6" t-field="doc.date_planned_start"/>
+                            </div>
+                            <div class="row">
+                                <strong class="col-xs-6">Responsable:</strong>
+                                <span class="col-xs-6" t-field="doc.user_id.name"/>
+                            </div>
+                        </div>
+                    </div> 
+                    <t t-set="valores_plantilla" t-value="(doc.product_id.sale_template_id and doc.product_id.sale_template_id.values_ids.filtered(lambda val: val.rpo_default != False)) or (doc.product_id.categ_id.sale_template_id and doc.product_id.categ_id.sale_template_id.values_ids.filtered(lambda val: val.rpo_default != False)) or False" />
+                    <t t-if="not valores_plantilla">
+                       <h1>Sin plantilla RPO</h1>
+                    </t>
+                    <t t-if="valores_plantilla">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Dato</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="valores_plantilla" t-as="valores">
+                                        <td><span t-field="valores.name"/></td>
+                                        <td><span t-field="valores.rpo_default"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
+    
