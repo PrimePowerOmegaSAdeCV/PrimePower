@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <record id="group_sales_template_user" model="res.groups">
+            <field name="name">User: Sales template</field>
+            <field name="comment">The user will only have acces to basic features of sales template module.</field>
+        </record>
+        <record id="group_sales_template_manager" model="res.groups">
+            <field name="name">Manager: Sales template</field>
+            <field name="implied_ids" eval="[(4, ref('group_sales_template_user'))]"/>
+            <field name="comment">tThe user will have acces to all the features of sales template module.</field>
+        </record>
+</odoo>

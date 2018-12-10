@@ -1,10 +1,22 @@
 from odoo import api, fields, models, tools, SUPERUSER_ID, _
+from datetime import datetime, timedelta
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
 class SaleOrderLine(models.Model):
 
     _inherit = 'sale.order.line'
 
     product_values_ids = fields.One2many('returned.values','sale_line_id', string="Valores del producto", copy=True)
+    date_planned = fields.Datetime(string='Date planned', invisible=True, compute="_get_date_planned")
+
+    @api.multi
+    @api.depends('customer_lead')
+    def _get_date_planned(self):
+        for line in self:
+            date = line.order_id.confirmation_date or datetime.now()
+            date_planned = datetime.strptime(date, DEFAULT_SERVER_DATETIME_FORMAT)\
+            + timedelta(days=line.customer_lead or 0.0) - timedelta(days=line.order_id.company_id.security_lead)
+            line.date_planned = date_planned          
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -21,10 +33,9 @@ class SaleOrderLine(models.Model):
                   values = {
                     'template_line_id':template_value_id.id, 
                     'name':template_value_id.name, 
-                    'selection' : template_value_id.selection_default and template_value_id.id or False,
+                    'selection' : template_value_id.selection_default and template_value_id.selection_default.id or False,
                     'multi_selection' : template_value_id.multi_selection_default and template_value_id.multi_selection_default.ids or []
                     }
-                  
                   list_vals.append((0,0,values))
                 self.update({'product_values_ids' : list_vals})
         return vals
@@ -59,19 +70,6 @@ class SaleOrderLine(models.Model):
                     option_id = options.create(values)        
         
         return vals
-
-class SaleOrder(models.Model):
-    
-    _inherit = 'sale.order'
-    
-    @api.multi
-    def write(self, values):
-        result = super(SaleOrder, self).write(values)
-        print(values,'-----------------------------')
-        if 'order_line' in values: 
-            for line in values['order_line']:
-                print(line)
-        return result
             
         
         

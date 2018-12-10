@@ -41,6 +41,7 @@ class SalesProductTemplateValues(models.Model):
     sequence = fields.Integer(string="Secuencia", default=10, copy=False, readonly=False)
     selection_default = fields.Many2one('sales.template.selection.values', string="Predeterminado")
     multi_selection_default = fields.Many2many('sales.template.selection.values' , 'template_default_values_selection_rel', 'template_value_id', 'selection_value_id', string="Valor predeterminado", copy=False)
+    rpo_default = fields.Char(string="RPO", required=False, copy=False, readonly=False)
 
 class ReturnedValues(models.Model):
     
