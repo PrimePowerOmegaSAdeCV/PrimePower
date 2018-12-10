@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
         for line in self:
             date = line.order_id.confirmation_date or datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             customer_lead = line.customer_lead or 0.0
-            security_lead = line.order_id and line.order_id.company_id.security_lead or self.env.user.company_id
+            security_lead = line.order_id and line.order_id.company_id.security_lead or self.env.user.company_id.security_lead
             date_planned = datetime.strptime(date, DEFAULT_SERVER_DATETIME_FORMAT) + timedelta(days=customer_lead) - timedelta(days=security_lead)
             line.date_planned = date_planned          
 
