@@ -29,6 +29,7 @@
         'report/work_order_mrp.xml',
         'report/work_order_template.xml',
         'report/work_order_report.xml',
+        'views/partner_view.xml',
         'views/views.xml',
         'views/templates.xml',
         'views/sales_template_view.xml',

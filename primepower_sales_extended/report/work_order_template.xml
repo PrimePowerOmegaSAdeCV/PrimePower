@@ -79,7 +79,7 @@
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th><t t-esc="header"/></th>
+                                        <th><u><t t-esc="header"/></u></th>
                                         <th>Valores</th>
                                         <th>Numero de Serie</th>
                                     </tr>
@@ -95,7 +95,7 @@
                                             <thead>
                                                 <tr>
                                                     <th></th>
-                                                    <th>Pred. del producto</th>
+                                                    <th><u>Pred. del producto</u></th>
                                                     <th>Valores</th>
                                                     <th></th>
                                                 </tr>
@@ -106,6 +106,24 @@
                                           <td class="text-right"><span t-field="prod.name"/></td>
                                           <td class="text-left"><span t-field="prod.values"/></td>
                                           <td style="background-color:#ffffff"/>
+                                        </tr>
+                                    </t>
+                                    <t t-if="line.order_id.partner_id.mrp_values_ids and line.product_id.categ_id.show_partner_values">
+                                        <tr>   
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th><u>Pred. del cliente</u></th>
+                                                    <th>Valores</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                        </tr>
+                                        <tr t-foreach="line.order_id.partner_id.mrp_values_ids" t-as="part_val">
+                                            <td style="background-color:#ffffff"/>
+                                            <td class="text-right"><span t-field="part_val.name"/></td>
+                                            <td class="text-left"><span t-field="part_val.value"/></td>
+                                            <td style="background-color:#ffffff"/>
                                         </tr>
                                     </t>
                                 </tr>

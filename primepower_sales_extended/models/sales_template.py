@@ -51,7 +51,6 @@ class ReturnedValues(models.Model):
     @api.depends('text','char','selection','boolean','multi_selection')
     def _get_value(self):
         for line in self:
-            print(line.valor,line.field_type)
             if line.field_type == 'parrafo':
                 line.valor = line.text
             elif line.field_type == 'linea_texto':
