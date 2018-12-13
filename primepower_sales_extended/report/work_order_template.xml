@@ -47,7 +47,7 @@
                             </div>
                             <div class="row">
                                 <strong class="col-xs-6">Orden de Compra:</strong>
-                                <span class="col-xs-6" t-field="doc.origin"/>
+                                <span class="col-xs-6" t-field="doc.client_order_ref"/>
                             </div>
                             <div class="row">
                                 <strong class="col-xs-6">Almacen:</strong>
@@ -71,14 +71,15 @@
                                 <td><span t-esc="partida"/></td>
                                 <th><span t-field="line.product_id.display_name"/></th>
                                 <td><span t-field="line.product_uom_qty"/></td>
-                                <td><span t-field="line.customer_lead"/></td>
+                                <td><span t-field="line.date_planned"/></td>
                             </tr>
                             <t t-if="line.product_values_ids">
+                                <t t-set="header" t-value="line.product_id.sale_template_id and line.product_id.sale_template_id.name or line.product_id.categ_id.sale_template_id.name"/>
                                 <tr>
                                     <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Plantilla Baterias</th>
+                                        <th><u><t t-esc="header"/></u></th>
                                         <th>Valores</th>
                                         <th>Numero de Serie</th>
                                     </tr>
@@ -89,6 +90,42 @@
                                         <td class="text-left"><span t-field="values.valor"/></td>
                                         <td style="background-color:#ffffff"/>
                                     </tr>
+                                    <t t-if="line.product_id.default_template_ids">
+                                        <tr>
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th><u>Pred. del producto</u></th>
+                                                    <th>Valores</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                        </tr>
+                                        <tr t-foreach="line.product_id.default_template_ids" t-as="prod">
+                                          <td style="background-color:#ffffff"/>
+                                          <td class="text-right"><span t-field="prod.name"/></td>
+                                          <td class="text-left"><span t-field="prod.values"/></td>
+                                          <td style="background-color:#ffffff"/>
+                                        </tr>
+                                    </t>
+                                    <t t-if="line.order_id.partner_id.mrp_values_ids and line.product_id.categ_id.show_partner_values">
+                                        <tr>   
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th><u>Pred. del cliente</u></th>
+                                                    <th>Valores</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                        </tr>
+                                        <tr t-foreach="line.order_id.partner_id.mrp_values_ids" t-as="part_val">
+                                            <td style="background-color:#ffffff"/>
+                                            <td class="text-right"><span t-field="part_val.name"/></td>
+                                            <td class="text-left"><span t-field="part_val.value"/></td>
+                                            <td style="background-color:#ffffff"/>
+                                        </tr>
+                                    </t>
                                 </tr>
                             </t>
                         </tbody>
