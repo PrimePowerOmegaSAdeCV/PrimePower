@@ -19,5 +19,14 @@
             name="primepower_sales_extended.report_workorder_mrp_document"
             print_report_name="'Work Order - %s' % (object.name)"
         />
+        <report
+            id="action_report_prime_delivery"
+            string="Orden de entrega"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            file="primepower_sales_extended.report_prime_delivery"
+            name="primepower_sales_extended.report_prime_delivery"
+            print_report_name="'Orden de entrega - %s'%(object.name)"
+        />            
     </data>
 </odoo>

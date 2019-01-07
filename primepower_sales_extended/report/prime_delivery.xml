@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_prime_delivery">
+        <t t-foreach="docs" t-as="doc">
+            <div class="header">
+                <div class="row">
+                    <div class="col-xs-3 mb4">
+                        <img t-if="doc.company_id.logo" t-att-src="'data:image/png;base64,%s' % to_text(doc.company_id.logo)" style="max-height: 45px;"/>
+                    </div>
+                </div>
+            </div>
+            <div class="article o_report_layout_standard">
+                <div class="page">
+                    <div class="mb32 row">
+                        <div class="row">
+                            <span class="col-xs-6 pull-left" t-field="doc.name"/>
+                            <div class="col-xs-6 pull-right">
+                                    Fecha: <span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb32 row">
+                        <div class="row">
+                            <div class="col-xs-4 pull-left">
+                                <span><strong>Remitente:</strong></span>
+                                <div t-field="doc.picking_type_id.warehouse_id.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>
+                                <div class="row">
+                                    <span class="col-xs-6">Contacto</span>
+                                    <span class="col-xs-6" t-field="doc.sale_id.user_id.name"/>
+                                </div>
+                                <div class="row">
+                                    <span class="col-xs-6">Telefono</span>
+                                    <span class="col-xs-6" t-field="doc.sale_id.user_id.phone"/>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 pull-right">
+                                <span><strong>Destinatario:</strong></span>
+                                <div t-field="doc.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb32 row">
+                        <div class="row">
+                            <span class="col-xs-6 pull-left"><strong>Referencia de Envio</strong></span>
+                        </div>
+                        <div class="row">
+                            <span class="col-xs-6 pull-left" t-field="doc.sale_id.client_order_ref"/>
+                        </div>
+                    </div>
+                    <div class="mb32 row">
+                        <div class="col-xs-6 pull-left">
+                            <div class="row">
+                                <span class="col-xs-6">No. Pedido:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.name"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Cliente:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.partner_id.name"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Comercial:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.user_id.name"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Oportunidad:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.opportunity_id.name"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Tipo de entrega:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.confirmation_date"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 pull-right">
+                            <div class="row">
+                                <span class="col-xs-6">Fecha Confirmacion:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.confirmation_date"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Pago de Flete:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.partner_id.name"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Metodo de Envio:</span>
+                                <span class="col-xs-6" t-field="doc.carrier_id.name"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Orden de Compra:</span>
+                                <span class="col-xs-6" t-field="doc.sale_id.client_order_ref"/>
+                            </div>
+                            <div class="row">
+                                <span class="col-xs-6">Almacen:</span>
+                                <span class="col-xs-6" t-field="doc.picking_type_id.warehouse_id.name"/>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-set="partida" t-value="0"/>                   
+                    <table  class="table">
+                        
+                        <thead>
+                            <tr>
+                                <th>Partida</th>
+                                <th>Producto</th>
+                                <th>Lote/Numero de serie</th>
+                                <th>Entrega</th>
+                                <th>Fecha Entrega</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.move_line_ids" t-as="line">
+                                <t t-set="partida" t-value="partida+1"/>
+                                <td><span t-esc="partida"/></td>
+                                <td><span t-field="line.product_id.display_name"/></td>
+                                <td><span t-field="line.lot_id.name"/></td>
+                                <td><span t-field="line.qty_done"/></td>
+                                <td><span t-field="line.picking_id.scheduled_date"/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div >
+                        <span class="col-xs-6 pull-left"><strong>Notas de Salida</strong></span>
+                        <span class="col-xs-6" t-field="doc.sale_id.note"/>
+                    </div>
+                </div>
+                
+            </div>
+        </t>
+    </template>
+</odoo>
