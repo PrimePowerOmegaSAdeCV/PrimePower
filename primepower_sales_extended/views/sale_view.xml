@@ -39,6 +39,11 @@
                     </field>
                     <field name="date_planned"/>
                   </xpath>
+                  <xpath expr="//field[@name='payment_term_id']" position="after">
+                      <field name="shipping_type_id" options="{'no_quick_create' : True, 'no_create' : True}"/>
+                      <field name="shipping_payer_id" options="{'no_quick_create' : True, 'no_create' : True}"/>
+                      <field name="shipping_notes"/>
+                    </xpath>
             </field>
         </record>
     </data>

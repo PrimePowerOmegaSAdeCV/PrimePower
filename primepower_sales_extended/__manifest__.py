@@ -30,6 +30,7 @@
         'report/work_order_template.xml',
         'report/work_order_report.xml',
         'report/prime_delivery.xml',
+        'views/stock_view.xml',
         'views/partner_view.xml',
         'views/views.xml',
         'views/templates.xml',
