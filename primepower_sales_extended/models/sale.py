@@ -2,6 +2,14 @@ from odoo import api, fields, models, tools, SUPERUSER_ID, _
 from datetime import datetime, timedelta
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 
+class SaleOrder(models.Model):
+    
+    _inherit = 'sale.order'
+    
+    shipping_type_id = fields.Many2one('stock.shipping.type', required=False, copy=True, string="Tipo de entrega", states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'done' : [('readonly',True)], 'sale' : [('readonly',True)]})
+    shipping_payer_id = fields.Many2one('stock.shipping.payer', required=False, copy=True, string="Pago de flete", states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'done' : [('readonly',True)], 'sale' : [('readonly',True)]})
+    shipping_notes = fields.Text(string="Notas de salida de almacen", required=False, copy=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'done' : [('readonly',True)], 'sale' : [('readonly',True)]})
+
 class SaleOrderLine(models.Model):
 
     _inherit = 'sale.order.line'
