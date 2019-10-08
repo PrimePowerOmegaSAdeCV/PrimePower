@@ -3,6 +3,16 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from itertools import groupby
 
+class SaleLayoutSection(models.Model):
+    _name = 'sale.layout_section'
+    _description = 'Sale Layout Section'
+    _order = 'sequence, id'
+
+    name = fields.Char('Name', required=True, translate=True)
+    sequence = fields.Integer('Sequence', required=True, default=10)
+    subtotal = fields.Boolean('Add subtotal', default=True)
+    pagebreak = fields.Boolean('Add pagebreak')
+
 
 class SaleOrder(models.Model):
     _inherit='sale.order'
@@ -27,9 +37,9 @@ class SaleOrder(models.Model):
         self.ensure_one()
         report_pages = [[]]
 
-        optional_product_images = self.options.mapped('product_id.product_image_ids')
+        optional_product_images = self.sale_order_option_ids.mapped('product_id.product_image_ids')
 
-        for category, lines in groupby(self.options, lambda l: l.layout_category_id):
+        for category, lines in groupby(self.sale_order_option_ids, lambda l: l.layout_category_id):
             # If last added category induced a pagebreak, this one will be on a new page
             if report_pages[-1] and report_pages[-1][-1]['pagebreak']:
                 report_pages.append([])
@@ -91,11 +101,13 @@ class SaleOrderLine(models.Model):
 
     delivery_time_id = fields.Many2one('sale.order.line.delivery.time', ondelete='cascade',string='Delivery Time')
 
+    layout_category_id = fields.Many2one('sale.layout_section', ondelete="set null", string='Section')
     # optional = fields.Boolean('Is Optional Lines', default=False)
 
 
 class DeliveryTime(models.Model):
     _name = 'sale.order.line.delivery.time'
+    _description = 'Sale Order Line Delivery Time'
 
     name = fields.Char('Delivery Time')
     sale_order_line_ids = fields.One2many('sale.order.line', 'delivery_time_id', string='Sale Order Lines')

@@ -3,4 +3,5 @@ access_product_specification,product.specification,model_product_specification,s
 access_product_application,product.application,model_product_application,sales_team.group_sale_salesman,1,1,1,0
 access_product_description,product.description,model_product_description,sales_team.group_sale_salesman,1,1,1,0
 access_sale_order_line_delivery_time,sale.order.line.delivery.time,model_sale_order_line_delivery_time,sales_team.group_sale_salesman,1,1,1,0
+access_sale_layout_section,sale.layout.section,model_sale_layout_section,sales_team.group_sale_salesman,1,1,1,0
 access_company_information,company.information,model_company_information,sales_team.group_sale_salesman,1,1,1,0

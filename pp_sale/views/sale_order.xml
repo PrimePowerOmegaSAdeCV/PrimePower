@@ -44,12 +44,12 @@
         </record>
 
         <record id="view_website_quote_sale_order_form_quote_pp" model="ir.ui.view">
-            <field name="name">website_quote_sale_order_form_quote_pp</field>
+            <field name="name">sale_management_sale_order_form_quote_pp</field>
             <field name="model">sale.order</field>
-            <field name="inherit_id" ref="website_quote.sale_order_form_quote" />
+            <field name="inherit_id" ref="sale_management.sale_order_form_quote" />
             <field name="arch" type="xml">
                 <!-- Add delivery time in tree view -->
-                <xpath expr="//field[@name='options']/tree/field[@name='name']" position="after">
+                <xpath expr="//field[@name='sale_order_option_ids']/tree/field[@name='name']" position="after">
                     <field name="delivery_time_id"/>
                 </xpath>
             </field>
