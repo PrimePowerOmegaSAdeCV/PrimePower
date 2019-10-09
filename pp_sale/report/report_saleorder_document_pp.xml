@@ -78,66 +78,94 @@
 
                     <!-- (1) sale order info -->
                     <div class="mb8 row">
-                        <div class="col-xs-12">
+                        <div class="col-12">
                             <div id="section-title">Information: </div>
                         </div>
                     </div>
+		    
                     <div class="mb32 row" id="sale_order_informations">
-                        <div class="col-xs-6">
-                            <div class="row">
-                                <strong class="col-xs-6">Customer:</strong>
-                                <span class="col-xs-6" t-field="doc.partner_id"/>
-                            </div>
-                            <div class="row">
+                        <div class="col-6">
+
+			  <div class="row">
+			    <div class="col-6">
+                              <strong>Customer:</strong>
+			    </div>
+			    <div class="col-6">
+                              <span t-field="doc.partner_id"/>
+			    </div>
+                          </div>
+			  
+                          <div class="row">
+			    <div class="col-6">	    
                                 <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
-                                    <strong class="col-xs-6" t-if="doc.state not in ['draft','sent']">Order # </strong>
-                                    <strong class="col-xs-6" t-if="doc.state in ['draft','sent']">Quotation # </strong>
+                                    <strong t-if="doc.state not in ['draft','sent']">Order # </strong>
+                                    <strong t-if="doc.state in ['draft','sent']">Quotation # </strong>
                                 </t>
                                 <t t-if="env.context.get('proforma', False) or is_pro_forma">
-                                    <strong class="col-xs-6">Pro-Forma Invoice # </strong>
+                                    <strong> Pro-Forma Invoice # </strong>
                                 </t>
-                                <span class="col-xs-6" t-field="doc.name"/>
-                            </div>
-                            <div class="row" t-if="doc.payment_term_id">
-                                <strong class="col-xs-6">Payment Terms:</strong>
-                                <span class="col-xs-6" t-field="doc.payment_term_id"/>
-                            </div>
+			    </div>
+			    <div class="col-6">
+                              <span t-field="doc.name"/>
+			    </div>
+                          </div>
+
+			  <div class="row" t-if="doc.payment_term_id">
+			    <div class="col-6">
+                              <strong>Payment Terms:</strong>
+			    </div>
+			    <div class="col-6">
+                              <span t-field="doc.payment_term_id"/>
+			    </div>
+                          </div>
                         </div>
 
-                        <div class="col-xs-6">
-                            <div class="row" t-if="doc.contact_partner_id">
-                                <strong class="col-xs-6">Contact Customer:</strong>
-                                <span class="col-xs-6" t-field="doc.contact_partner_id.name"/>
-                            </div>
-                            <div class="row" t-if="doc.validity_date and doc.state in ['draft', 'sent']">
-                                <strong class="col-xs-6">Expiration Date:</strong>
-                                <span class="col-xs-6" t-field="doc.validity_date"/>
-                            </div>
-                            <!--<div class="row" t-if="doc.lab_prices">-->
-                                <!--<strong class="col-xs-6">L.A.B Prices:</strong>-->
-                                <!--<span class="col-xs-6" t-field="doc.lab_prices"/>-->
-                            <!--</div>-->
-                            <div class="row" t-if="doc.incoterm">
-                                <strong class="col-xs-6">Incoterms:</strong>
-                                <span class="col-xs-6" t-field="doc.incoterm"/>
-                            </div>
-                            <div class="row" t-if="doc.pricelist_id and doc.pricelist_id.currency_id">
-                                <strong class="col-xs-6">Currency:</strong>
-                                <span class="col-xs-6" t-field="doc.pricelist_id.currency_id.name"/>
-                            </div>
+                        <div class="col-6">
+                          <div class="row" t-if="doc.contact_partner_id">
+			    <div class="col-6">
+                              <strong>Contact Customer:</strong>
+			    </div>
+			    <div class="col-6">
+                              <span t-field="doc.contact_partner_id.name"/>
+			    </div>
+                          </div>
+                          <div class="row" t-if="doc.validity_date and doc.state in ['draft', 'sent']">
+			    <div class="col-6">
+                              <strong>Expiration Date:</strong>
+			    </div>
+			    <div class="col-6">
+                              <span t-field="doc.validity_date"/>
+			    </div>
+                          </div>
+                          <div class="row" t-if="doc.incoterm">
+			    <div class="col-6">
+                              <strong>Incoterms:</strong>
+			    </div>
+			    <div class="col-6">
+                              <span t-field="doc.incoterm"/>
+			    </div>
+                          </div>
+                          <div class="row" t-if="doc.pricelist_id and doc.pricelist_id.currency_id">
+			    <div class="col-6">
+                              <strong>Currency:</strong>
+			    </div>
+			    <div class="col-6">
+                              <span t-field="doc.pricelist_id.currency_id.name"/>
+			    </div>
+                          </div>
                         </div>
                     </div>
 
                     <!-- (2) Texto Cotizacion -->
                     <t t-if="doc.company_id.text_quote">
                         <div class="mb8 row">
-                            <div class="col-xs-12">
+                            <div class="col-12">
                                 <div id="section-title">Text Quote: </div>
                             </div>
                         </div>
 
                         <div class="mb32 row" id="company_text_quote">
-                            <div class="col-xs-12">
+                            <div class="col-12">
                                 <p t-field="doc.company_id.text_quote"/>
                             </div>
                         </div>
@@ -146,7 +174,7 @@
                     <!-- (3) Cotizacion de Productos: lines I'm guessing -->
 
                     <div class="row mb8">
-                        <div class="col-xs-12">
+                        <div class="col-12">
                             <div id="section-title">Order Lines: </div>
                         </div>
                     </div>
@@ -155,7 +183,7 @@
                     <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
 
                     <t t-foreach="doc.order_lines_layouted()" t-as="page">
-                        <table class="table table-condensed">
+                        <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Internal Reference</th>
@@ -233,9 +261,10 @@
                     </t>
 
                     <div class="clearfix">
-                        <div class="row" name="total">
-                            <div class="col-xs-4 pull-right">
-                                <table class="table table-condensed" style="min-width: 200px;max-width: 350px;">
+                      <div class="row mb16" name="total">
+			    <div class="col-8"/>
+                            <div class="col-4">
+                                <table class="table table-sm" style="min-width: 200px;max-width: 350px;">
                                     <tr class="border-black" style="border-bottom:1px solid #dddddd;">
                                         <td><strong>Subtotal</strong></td>
                                         <td class="text-right">
@@ -273,22 +302,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix">
-                        <table class="table table-condensed">
-                            <tr style="background-color:#d3d9de;">
-                                <td>Relevant information</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <p t-field="doc.note"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+
+		    <t t-if="doc.note">
+                        <div class="mb8 row">
+                            <div class="col-12">
+                                <div id="section-title">Note: </div>
+                            </div>
+                        </div>
+
+                        <div class="mb32 row" id="note">
+                            <div class="col-12">
+                                <p t-field="doc.note"/>
+                            </div>
+                        </div>
+                    </t>
+		    
                     <!-- (4) Opcionales -->
                     <t t-if="doc.optional_product_lines_layouted()[0][0]">
                         <div class="row mb8">
-                            <div class="col-xs-12">
+                            <div class="col-12">
                                 <div id="section-title">Optional Products: </div>
                             </div>
                         </div>
@@ -297,7 +329,7 @@
                         <t t-set="optional_product_images" t-value="doc.optional_product_lines_layouted()[1]"/>
 
                         <t t-foreach="optional_product_lines_layout" t-as="page">
-                            <table class="table table-condensed">
+                            <table class="table table-sm">
                                 <thead>
                                     <tr>
                                         <th>Internal Reference</th>
@@ -367,14 +399,14 @@
                         <!-- (5) Imagenes de cada opcional -->
                         <t t-if="optional_product_images">
                             <div class="row mb8">
-                                <div class="col-xs-12">
+                                <div class="col-12">
                                     <div id="section-title">Optional Product Images: </div>
                                 </div>
                             </div>
-                            <div class="row mb32 text-center" id="optional_products_images">
-                                <t t-foreach="optional_product_images" t-as="p_image">
-                                    <img t-att-src="'data:image/png;base64,%s' % to_text(p_image.image)" height="150px"/>
-                                </t>
+                            <div class="row mb32" id="optional_products_images" style="page-break-inside:avoid;">
+                              <t t-foreach="optional_product_images" t-as="p_image">
+                                <img class="col-3" t-att-src="'data:image/png;base64,%s' % to_text(p_image)" height="150px"/>
+                              </t>
                             </div>
                         </t>
 
@@ -384,12 +416,12 @@
 
                     <t t-if="specs">
                         <div class="row mb8">
-                            <div class="col-xs-12">
+                            <div class="col-12">
                                 <div id="section-title">Product Specifications: </div>
                             </div>
                         </div>
 
-                        <table class="table table-condensed">
+                        <table class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Application</th>
@@ -411,80 +443,121 @@
                     <!-- (7) Information Relevante -->
                     <t t-if="doc.company_id.relevant_information_ids">
                         <div class="row mb8">
-                            <div class="col-xs-12">
+                            <div class="col-12">
                                 <div id="section-title">Relevant Information: </div>
                             </div>
                         </div>
-                        <table class="table table-condensed">
-                           <tbody class="sale_tbody">
+                        <table class="table table-sm">
+                           <tbody>
                                <t t-foreach="doc.company_id.relevant_information_ids" t-as="relevant_info">
-                                   <tr>
-                                       <td><span t-esc="str(relevant_info_index + 1) + '. ' + relevant_info.name"/></td>
+                                   <tr t-if="relevant_info.name">
+                                     <!-- <td><span t-esc="str(relevant_info_index + 1) + '. ' + relevant_info.name"/></td> -->
+				     <td><span t-field="relevant_info.name"/></td>
                                    </tr>
                                </t>
                             </tbody>
                         </table>
                     </t>
                     <!-- (8) Bank info -->
-                    <div class="row" id="bank_information">
+                    <div class="row mb32" id="bank_information" style="page-break-inside:avoid;">
                         <t t-if="doc.company_id and doc.company_id.account_peso_id">
-                            <div class="col-xs-6">
+                            <div class="col-6">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading" id="section-title">
+                                    <div class="panel-heading mb8" id="section-title">
                                         <span>Account in Pesos: </span>
                                     </div>
                                     <div class="panel-body">
-                                        <div class="row">
-                                            <strong class="col-xs-6">Name:</strong>
-                                            <span t-field="doc.company_id"/>
-                                        </div>
-                                        <div class="row">
-                                            <strong class="col-xs-6">Account:</strong>
-                                            <span t-field="doc.company_id.account_peso_id.acc_number"/>
-                                        </div>
-                                        <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
-                                            <strong class="col-xs-6">Transfer Code:</strong>
-                                            <span t-field="doc.company_id.account_peso_id.transfer_code"/>
-                                        </div>
-                                        <div class="row">
-                                            <strong class="col-xs-6">Bank:</strong>
-                                            <span t-field="doc.company_id.account_peso_id.bank_name"/>
-                                        </div>
-                                        <div t-if="doc.company_id.account_peso_id.bank_bic" class="row">
-                                            <strong class="col-xs-6">Swift:</strong>
-                                            <span t-field="doc.company_id.account_peso_id.bank_bic"/>
-                                        </div>
+                                      <div class="row">
+					<div class="col-6">
+                                          <strong>Name:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id"/>
+					</div>
+                                      </div>
+                                      <div class="row">
+					<div class="col-6">
+                                          <strong>Account:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_peso_id.acc_number"/>
+					</div>
+                                      </div>
+                                      <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
+					<div class="col-6">
+                                          <strong>Transfer Code:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_peso_id.transfer_code"/>
+					</div>
+                                      </div>
+                                      <div class="row">
+					<div class="col-6">
+                                          <strong>Bank:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_peso_id.bank_name"/>
+					</div>
+                                      </div>
+                                      <div t-if="doc.company_id.account_peso_id.bank_bic" class="row">
+					<div class="col-6">
+                                          <strong>Swift:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_peso_id.bank_bic"/>
+					</div>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
                         </t>
                         <t t-if="doc.company_id and doc.company_id.account_dollar_id">
-                            <div class="col-xs-6">
+                            <div class="col-6">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading" id="section-title">
+                                    <div class="panel-heading mb8" id="section-title">
                                         <span>Account in Dollars: </span>
                                     </div>
                                     <div class="panel-body">
-                                        <div class="row">
-                                            <strong class="col-xs-6">Name:</strong>
-                                            <span t-field="doc.company_id"/>
-                                        </div>
-                                        <div class="row">
-                                            <strong class="col-xs-6">Account:</strong>
-                                            <span t-field="doc.company_id.account_dollar_id.acc_number"/>
-                                        </div>
-                                        <div t-if="doc.company_id.account_dollar_id.transfer_code" class="row">
-                                            <strong class="col-xs-6">Transfer Code:</strong>
-                                            <span t-field="doc.company_id.account_dollar_id.transfer_code"/>
-                                        </div>
-                                        <div class="row">
-                                            <strong class="col-xs-6">Bank:</strong>
-                                            <span t-field="doc.company_id.account_dollar_id.bank_name"/>
-                                        </div>
-                                        <div t-if="doc.company_id.account_dollar_id.bank_bic" class="row">
-                                            <strong class="col-xs-6">Swift:</strong>
-                                            <span t-field="doc.company_id.account_dollar_id.bank_bic"/>
-                                        </div>
+                                      <div class="row">
+					<div class="col-6">
+                                          <strong>Name:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id"/>
+					</div>
+                                      </div>
+                                      <div class="row">
+					<div class="col-6">
+                                          <strong>Account:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_dollar_id.acc_number"/>
+					</div>
+                                      </div>
+                                      <div t-if="doc.company_id.account_dollar_id.transfer_code" class="row">
+					<div class="col-6">
+                                          <strong>Transfer Code:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_dollar_id.transfer_code"/>
+					</div>
+                                      </div>
+                                      <div class="row">
+					<div class="col-6">
+                                          <strong>Bank:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_dollar_id.bank_name"/>
+					</div>
+                                      </div>
+                                      <div t-if="doc.company_id.account_dollar_id.bank_bic" class="row">
+					<div class="col-6">
+                                          <strong>Swift:</strong>
+					</div>
+					<div class="col-6">
+                                          <span t-field="doc.company_id.account_dollar_id.bank_bic"/>
+					</div>
+                                      </div>
                                     </div>
                                 </div>
                             </div>
@@ -494,25 +567,28 @@
                     <!-- (9) Information Cliente -->
 
                     <div class="panel panel-default">
-                        <div class="panel-heading" id="section-title">
+                        <div class="panel-heading mb8" id="section-title">
                             <span>Client Information: </span>
                         </div>
                         <div class="panel-body">
-                            <div class="col-xs-12">
-                                <strong class="col-xs-6">Name:</strong>
-                                <div class="col-xs-6"><span t-field="doc.partner_id"/></div>
+                          <div class="row">
+			    <div class="col-6">
+                              <strong>Name:</strong>
+			    </div>
+                            <div class="col-6"><span t-field="doc.partner_id"/></div>
+			      
                             </div>
-                            <div class="col-xs-12">
-                                <strong class="col-xs-6">VAT:</strong>
-                                <div class="col-xs-6"><span t-field="doc.partner_id.vat"/></div>
+                            <div class="row">
+                                <div class="col-6"><strong>VAT:</strong></div>
+                                <div class="col-6"><span t-field="doc.partner_id.vat"/></div>
                             </div>
-                            <div class="col-xs-12">
-                                <strong class="col-xs-6">Shipping Address:</strong>
-                                <div class="col-xs-6"><span t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/></div>
+                            <div class="row">
+                                <div class="col-6"><strong>Shipping Address:</strong></div>
+                                <div class="col-6"><span t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/></div>
                             </div>
-                            <div class="col-xs-12">
-                                <strong class="col-xs-6">Invoice Address:</strong>
-                                <div class="col-xs-6"><span t-field="doc.partner_invoice_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/></div>
+                            <div class="row">
+                                <div class="col-6"><strong>Invoice Address:</strong></div>
+                                <div class="col-6"><span t-field="doc.partner_invoice_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/></div>
                             </div>
                         </div>
                     </div>
@@ -520,8 +596,8 @@
                     <!-- (10) Image de Firm de Commercial -->
                     <t t-if="doc.user_id and doc.user_id.signature_custom">
                         <div class="row mt32 mb32">
-                            <div class="col-xs-6"/>
-                            <div class="col-xs-6">
+                            <div class="col-6"/>
+                            <div class="col-6">
                                 <div id="section-title">Salesperson Signature: </div>
                                 <div class="mt8">
                                     <span t-raw="doc.user_id.signature_custom"/>
