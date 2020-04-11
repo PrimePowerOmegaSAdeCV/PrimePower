@@ -1,10 +1,31 @@
 from odoo import api, fields, models, tools, SUPERUSER_ID, _
+from datetime import datetime, timedelta
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+
+class SaleOrder(models.Model):
+    
+    _inherit = 'sale.order'
+    
+    shipping_type_id = fields.Many2one('stock.shipping.type', required=False, copy=True, string="Tipo de entrega", states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'done' : [('readonly',True)], 'sale' : [('readonly',True)]})
+    shipping_payer_id = fields.Many2one('stock.shipping.payer', required=False, copy=True, string="Pago de flete", states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'done' : [('readonly',True)], 'sale' : [('readonly',True)]})
+    shipping_notes = fields.Text(string="Notas de salida de almacen", required=False, copy=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'done' : [('readonly',True)], 'sale' : [('readonly',True)]})
 
 class SaleOrderLine(models.Model):
 
     _inherit = 'sale.order.line'
 
-    product_values_ids = fields.One2many('returned.values','sale_line_id', string="Valores del producto", copy=False)
+    product_values_ids = fields.One2many('returned.values','sale_line_id', string="Valores del producto", copy=True)
+    date_planned = fields.Datetime(string='Date planned', invisible=True, compute="_get_date_planned")
+
+    @api.multi
+    @api.depends('customer_lead')
+    def _get_date_planned(self):
+        for line in self:
+            date = line.order_id.confirmation_date or datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            customer_lead = line.customer_lead or 0.0
+            security_lead = line.order_id and line.order_id.company_id.security_lead or self.env.user.company_id.security_lead
+            date_planned = datetime.strptime(date, DEFAULT_SERVER_DATETIME_FORMAT) + timedelta(days=customer_lead) - timedelta(days=security_lead)
+            line.date_planned = date_planned          
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -15,10 +36,15 @@ class SaleOrderLine(models.Model):
             self.product_values_ids = [(6,0,list_vals)]
             template_id = (self.product_id.sale_template_id and self.product_id.sale_template_id) or (self.product_id.categ_id.sale_template_id and self.product_id.categ_id.sale_template_id) or False
             if template_id:
-                for template_value_id in template_id.values_ids:
+                values_ids = self.env['sales.product.template.values'].search([('template_id','=',template_id.id)],order='sequence asc')
+                for template_value_id in values_ids:
                   #values = {'name':template_value_id.name, 'field_type' : template_value_id.field_type, 'values_ids' : [(6,0,template_value_id.selection_values.ids)]}
-                  values = {'template_line_id':template_value_id.id, 'name':template_value_id.name}
-                  
+                  values = {
+                    'template_line_id':template_value_id.id, 
+                    'name':template_value_id.name, 
+                    'selection' : template_value_id.selection_default and template_value_id.selection_default.id or False,
+                    'multi_selection' : template_value_id.multi_selection_default and template_value_id.multi_selection_default.ids or []
+                    }
                   list_vals.append((0,0,values))
                 self.update({'product_values_ids' : list_vals})
         return vals
@@ -53,19 +79,6 @@ class SaleOrderLine(models.Model):
                     option_id = options.create(values)        
         
         return vals
-
-class SaleOrder(models.Model):
-    
-    _inherit = 'sale.order'
-    
-    @api.multi
-    def write(self, values):
-        result = super(SaleOrder, self).write(values)
-        print(values,'-----------------------------')
-        if 'order_line' in values: 
-            for line in values['order_line']:
-                print(line)
-        return result
             
         
         
