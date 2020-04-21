@@ -6,7 +6,9 @@
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
                 <notebook position="inside">
-                    <page string="Fabricacion" attrs="{'invisible': [('customer','=',False)]}">
+                    <page string="Fabricacion">
+<!--                <page string="Fabricacion" attrs="{'invisible': [('customer','=',False)]}">-->
+
                         <field name="mrp_values_ids" string="Detalles" nolabel="1">
                             <tree string="Detalles de produccion" editable="top">
                                 <field name="name" string="Dato"/>

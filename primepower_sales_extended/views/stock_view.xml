@@ -42,7 +42,7 @@
             <field name="name">Tipos de entrega</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">stock.shipping.type</field>
-            <field name="view_type">form</field>
+                 <field name="view_mode">tree,form</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
@@ -74,7 +74,7 @@
             <field name="name">Pagadores del flete</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">stock.shipping.payer</field>
-            <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>

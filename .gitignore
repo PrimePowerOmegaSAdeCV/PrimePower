@@ -4,4 +4,6 @@
 .ropeproject
 .pydevproject
 .settings
+.pyc
 *.zip
+.cpython-35.pyc
