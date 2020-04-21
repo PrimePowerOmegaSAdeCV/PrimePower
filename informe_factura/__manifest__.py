@@ -7,7 +7,7 @@
     'author':'Xmarts',
     'depends': ['base','sale','l10n_mx_edi'],
     'data': [
-        "report/informe_factura.xml",
+        "report/invoice_report.xml",
     ],
     'qweb': [
         ],
