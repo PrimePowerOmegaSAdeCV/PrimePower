@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from odoo.exceptions import ValidationError
 
 class ProductApplication(models.Model):
     _name = 'product.application'
@@ -28,7 +27,7 @@ class ProductSpecification(models.Model):
     _sql_constraints = [('unique_product_specification', 'unique(application_id, description_id)',
                          'Cannot create duplicated Product Specification')]
 
-    @api.multi
+
     @api.depends('application_id', 'description_id')
     def _get_spec_name(self):
         for spec in self:

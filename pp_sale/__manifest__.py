@@ -14,7 +14,7 @@
     'license': 'OEEL-1',
     'author': 'Odoo Inc',
     'version': '1.0',
-    'depends': ['sale_management', 'website_sale', 'website_quote', 'l10n_mx_edi', 'contacts', 'sale_stock'],
+    'depends': ['sale_management', 'website_sale', 'l10n_mx_edi', 'contacts', 'sale_stock','product'],
     'data': [
         'security/ir.model.access.csv',
         'views/res_users.xml',
