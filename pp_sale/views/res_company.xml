@@ -11,7 +11,7 @@
                         <group>
                             <group string="Company Information">
                                 <field name="text_quote"/>
-                                <field name="relevant_information_ids" mode="tree" context="{'default_company_id': active_id}">
+                                <field name="relevant_information_ids" mode="tree" context="{'default_company_id': id}">
                                     <tree editable="1">
                                         <field name="name"/>
                                     </tree>

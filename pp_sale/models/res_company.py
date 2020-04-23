@@ -30,7 +30,6 @@ class Company(models.Model):
 
 class CompanyInformation(models.Model):
     _name = 'company.information'
-    _description = 'Company Information'
 
     company_id = fields.Many2one('res.company', ondelete='cascade', string='Company')
     name = fields.Text('Description')

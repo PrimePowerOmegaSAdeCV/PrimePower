@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="custom_external_layout_factura">
+        <style>
+            td.header{border: 1px solid #66a035;padding-right:10px;padding-left:10px;
+            }
+
+            span.bottom-div{
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            }
+        </style>
+        <div class="header">
+            <div class="row">
+                <div class="col-3 mb4">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;"
+                         alt="Logo"/>
+                </div>
+
+                <t t-if="company.report_header">
+                    <div class="col-4 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="col-5">
+                            <div style="text-align:left;color:#000080">
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'posted'">Factura</span>
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Borrador Factura</span>
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Factura Cancelada</span>
+                                    <span t-if="o.type == 'out_refund'">Nota de Crédito</span>
+                                    <span t-if="o.type == 'in_refund'">Nota de Crédito</span>
+                                    <span t-if="o.type == 'in_invoice'">Factura de Proovedor</span>
+                            </div>
+                            <div>
+                                <table class=" table table-sm" style="border-collapse:collapse;font-size:18px;border:1px solid black">
+                                    <thead>
+                                        <tr style="text-align:center;color:white;background-color:##000080;">
+                                            <th>
+                                                Fecha
+                                            </th>
+                                            <th>
+                                                Folio
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                    <tr style="text-align:center;">
+                                        <td>
+                                            <strong><span t-field="doc.invoice_date"/></strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.name"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </t>
+                </t>
+                <t t-else="">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="col-4"/>
+                        <div class="col-5">
+                            <div style="text-align:left;color:#000080">
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'posted'">Factura</span>
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Borrador Factura</span>
+                                    <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Factura Cancelada</span>
+                                    <span t-if="o.type == 'out_refund'">Nota de Crédito</span>
+                                    <span t-if="o.type == 'in_refund'">Nota de Crédito</span>
+                                    <span t-if="o.type == 'in_invoice'">Factura de Proovedor</span>
+                            </div>
+                            <div>
+                                <table class=" table table-sm" style="border-collapse:collapse;font-size:18px;border:1px solid black">
+                                    <thead>
+                                        <tr style="text-align:center;color:white;background-color:##000080;">
+                                            <th>
+                                                Fecha
+                                            </th>
+                                            <th>
+                                                Folio
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                    <tr style="text-align:center;">
+                                        <td>
+                                            <strong><span t-field="doc.invoice_date"/></strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="doc.name"/>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+
+
+                        </div>
+                    </t>
+                </t>
+
+            </div>
+            <div t-if="company.logo or company.report_header" class="row zero_min_height">
+                <div class="col-12">
+                    <div style="border-bottom: 1px solid black;"/>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer o_standard_footer">
+            <div class="text-center" style="border-top: 1px solid black;">
+                <ul class="list-inline mb4">
+                    <!-- using the list-inline-item class from bootstrap causes weird behaviours in pdf report
+                         adding d-inline class fixes the problem-->
+                    <li t-if="company.phone" class="list-inline-item d-inline">Phone:
+                        <span t-field="company.phone"/>
+                    </li>
+                    <li t-if="company.email" class="list-inline-item d-inline">Email:
+                        <span t-field="company.email"/>
+                    </li>
+                    <li t-if="company.website" class="list-inline-item d-inline">Web:
+                        <span t-field="company.website"/>
+                    </li>
+                    <li t-if="company.vat" class="list-inline-item d-inline"><t
+                            t-esc="company.country_id.vat_label or 'Tax ID'"/>:
+                        <span t-field="company.vat"/>
+                    </li>
+                </ul>
+
+                <div name="financial_infos">
+                    <span t-field="company.report_footer"/>
+                </div>
+
+                <div t-if="report_type == 'pdf'" class="text-muted">
+                    Page:
+                    <span class="page"/>
+                    /
+                    <span class="topage"/>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template id="external_layout_factura">
+
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <t t-call="informe_factura.custom_external_layout_factura">
+            <t t-raw="0"/>
+        </t>
+
+
+    </template>
+
+    <template id="invoice_document_prime_custom" inherit_id="account.report_invoice_document">
+        <xpath expr="//t[@t-call='web.external_layout']" position="attributes">
+            <attribute name="t-call">informe_factura.external_layout_factura</attribute>
+        </xpath>
+
+        <xpath expr="//div[@class='page']" position="replace">
+            <div class="page" style="font-size:12px">
+                <div class="row">
+                    <div class="col-6">
+                        <div style="background-color:#000080; text-align: center;">
+                            <b style="color:#FFFFFF">Cliente</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div style="border: 1px solid #000000;">
+                            <span t-field="o.partner_id.name"/>
+                            <br/>
+                            <span t-field="o.partner_shipping_id"
+                                  t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                            <br/>
+                            <t t-if="o.partner_id.vat">
+                                RFC:
+
+
+                                <span t-field="o.partner_id.vat"/>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <style>
+                    td{
+                    border: 2px solid #000000;
+                    }
+                </style>
+                <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
+                <table class="table table-sm" style="border: 2px solid #000000">
+                    <thead>
+                        <tr style="background-color:#000080; text-align:center;color:#FFFFFF">
+                            <th>
+                                <b>Orden de compra</b>
+                            </th>
+                            <th>
+                                <b>Condiciones</b>
+                            </th>
+                            <th>
+                                <b>Vendedor</b>
+                            </th>
+                            <th>
+                                <b>Via de embarque</b>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>
+                            <span t-field="o.invoice_origin"/>
+                        </td>
+                        <td>
+                            <!--<span t-field="o.invoice_user_id.name"/>-->
+                        </td>
+                        <td>
+                            <span t-field="o.invoice_user_id.name"/>
+                        </td>
+                        <td>
+                            <span/>
+                        </td>
+                    </tr>
+                </table>
+                <t t-set="display_discount" t-value="any([l.discount for l in o.invoice_line_ids])"/>
+
+
+                <table class="table table-sm" style="border: 2px solid #000000">
+                    <thead>
+                        <tr style="background-color:#000080; text-align:center;color:#FFFFFF">
+                            <th>
+                                <b>Articulo</b>
+                            </th>
+                            <th t-if="o.l10n_mx_edi_cfdi_uuid and xml.get('Version')">
+                                <b>Cod SAT</b>
+                            </th>
+                            <th>
+                                <b>Nombre</b>
+                            </th>
+                            <th>
+                                <b>U.med</b>
+                            </th>
+                            <th t-if="o.l10n_mx_edi_cfdi_uuid and xml.get('Version')">
+                                <b>Cve.SAT</b>
+                            </th>
+                            <th>
+                                <b>Unidades</b>
+                            </th>
+                            <th>
+                                <b>Precio</b>
+                            </th>
+                            <th t-if="display_discount">
+                                <b>Descto.</b>
+                            </th>
+                            <th>
+                                <b>Importe</b>
+                            </th>
+                        </tr>
+                    </thead>
+                    <t t-set="current_subtotal" t-value="0"/>
+                    <tbody t-foreach="o.invoice_line_ids" t-as="l">
+                        <t t-set="current_subtotal" t-value="current_subtotal + l.price_subtotal"
+                           groups="account.group_show_line_subtotals_tax_excluded"/>
+                        <t t-set="current_subtotal" t-value="current_subtotal + l.price_total"
+                           groups="account.group_show_line_subtotals_tax_included"/>
+                        <tr>
+                            <t t-if="not l.display_type" name="account_invoice_line_accountable">
+                                <td>
+                                    <span t-field="l.product_id.name"/>
+                                </td>
+                                <td t-if="o.l10n_mx_edi_cfdi_uuid and xml.get('Version')">
+                                    <t t-if="o.l10n_mx_edi_cfdi_uuid and xml.get('Version')">
+                                        <span t-field="l.product_id.l10n_mx_edi_code_sat_id.code"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="l.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.product_uom_id"/>
+                                </td>
+                                <td t-if="o.l10n_mx_edi_cfdi_uuid and xml.get('Version')">
+                                    <t t-if="o.l10n_mx_edi_cfdi_uuid and xml.get('Version')">
+                                        <span t-field="l.product_uom_id.l10n_mx_edi_code_sat_id.code"/>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="l.quantity"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td t-if="display_discount">
+                                    <span t-field="l.discount"/>
+                                </td>
+                                <td>
+                                    <span t-field="l.price_subtotal"/>
+                                </td>
+                            </t>
+                            <t t-if="l.display_type == 'line_section'">
+                                <td colspan="99">
+                                    <span t-field="l.name"/>
+                                </td>
+                                <t t-set="current_section" t-value="line"/>
+                                <t t-set="current_subtotal" t-value="0"/>
+                            </t>
+                            <t t-if="l.display_type == 'line_note'">
+                                <td colspan="99">
+                                    <span t-field="l.name"/>
+                                </td>
+                            </t>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="total" class="row" name="total">
+                    <div class="col-8" style="width:80%">
+                        <div>
+                            <div style="background-color:#000080; text-align:center;color:#FFFFFF">
+                                <b>Cantidad con Letra</b>
+                            </div>
+                            <div t-esc="o.l10n_mx_edi_amount_to_text()"/>
+                            <t t-if="o.l10n_mx_edi_cfdi_uuid">
+                                <br/>
+                                <t t-if="xml.Receptor.get('UsoCFDI', False)">
+                                    <t t-set="usage" t-value="xml.Receptor.get('UsoCFDI')"/>
+                                    <strong>Uso de CFDI:</strong>
+                                    <span t-esc="usage"/>
+                                    -
+
+                                    <span t-field="o.l10n_mx_edi_usage"/>
+                                </t>
+                                <t t-if="o.l10n_mx_edi_payment_method_id">
+                                    <strong>Método de Pago:</strong>
+                                    <span t-esc="' - '.join([o.l10n_mx_edi_payment_method_id.code, o.l10n_mx_edi_payment_method_id.name])"/>
+                                </t>
+                                <div t-att-class="o_grid_layout">
+                                    <strong>Forma de Pago:</strong>
+                                    <span t-esc="xml.get('formaDePago', xml.get('MetodoPago'))"/>
+                                </div>
+                                <t t-if="xml.get('NumCtaPago')">
+                                    <strong>Numero de Cuenta de Pago:</strong>
+                                    <span t-esc="xml.get('NumCtaPago')"/>
+                                </t>
+                            </t>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <table class="table table-sm;page-break-inside: avoid;" style="border:0px solid black">
+                            <tr class="o_subtotal">
+                                <td>
+                                    <strong>Subtotal</strong>
+                                </td>
+                                <td class="text-right" style="border:2px solid black">
+                                    <span t-field="o.amount_untaxed"/>
+                                </td>
+                            </tr>
+                            <t t-foreach="o.amount_by_group" t-as="amount_by_group">
+                                <tr style="">
+                                    <t t-if="len(o.line_ids.filtered(lambda line: line.tax_line_id)) == 1 and o.amount_untaxed == amount_by_group[2]">
+                                        <td>
+                                            <span t-esc="amount_by_group[0]"/>
+                                        </td>
+                                        <td class="text-right o_price_total">
+                                            <span t-esc="amount_by_group[3]"/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td>
+                                            <span t-esc="amount_by_group[0]"/>
+                                            <span>&amp;nbsp;
+
+
+                                                <span>on</span>
+                                                <t t-esc="amount_by_group[4]"/>
+                                            </span>
+                                        </td>
+                                        <td class="text-right o_price_total">
+                                            <span t-esc="amount_by_group[3]"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <tr class="o_total">
+                                <td>
+                                    <strong>Total</strong>
+                                    (<span t-field="o.currency_id.name"/>)
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_total"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <t t-if="o.l10n_mx_edi_cfdi_uuid">
+                    <div class="row" id="complement">
+                        <div class="barcode col-3">
+                            <t t-set="sello" t-value="xml.get('Sello', 'No identificado')[-8:]"/>
+                            <img alt="Barcode"
+                                 t-att-src="'/report/barcode/?type=QR&amp;value=%s' % quote_plus(                             'https://verificacfdi.facturaelectronica.sat.gob.mx/default.aspx?' + keep_query(                                 re=o.l10n_mx_edi_cfdi_supplier_rfc, rr=o.l10n_mx_edi_cfdi_customer_rfc,                                 tt='%.*f' % (o.currency_id.decimal_places, o.l10n_mx_edi_cfdi_amount), id=o.l10n_mx_edi_cfdi_uuid)                                 + '&amp;fe=%s' % quote_plus(                                     sello, 'utf-8', 'strict', '=/').replace('%2B', '+'))"/>
+                        </div>
+                        <div class="complement-details col-9">
+                            <div class="digital-stamp">
+                                <span>Sello digital del emisor</span>
+                            </div>
+                            <div class="digital-stamp-content">
+                                <span t-esc="xml.get('sello', xml.get('Sello', 'No identificado'))"/>
+                            </div>
+                            <div class="digital-stamp">
+                                <span>Sello digital de SAT</span>
+                            </div>
+                            <div class="digital-stamp-content">
+                                <span t-esc="tfd.get('selloSAT', tfd.get('SelloSAT', 'No identificado'))"/>
+                            </div>
+                            <div class="digital-stamp">
+                                <span>Cadena original del complemento del certificado digital del SAT</span>
+                            </div>
+                            <div class="digital-stamp-content">
+                                <span class="nowrap" t-esc="tfd_original_string"/>
+                            </div>
+                            <div t-if="xml.Emisor.xpath('cfdi:ExpedidoEn', namespaces=xml.nsmap)" class="digital-stamp">
+                                <span>Expedido En</span>
+                            </div>
+                            <div t-if="xml.Emisor.xpath('cfdi:ExpedidoEn', namespaces=xml.nsmap)"
+                                 class="digital-stamp-content">
+                                <span t-esc="' | '.join([ '%s: %s' % (key, value) for key, value in xml.Emisor.ExpedidoEn.items()])"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="external_trade">
+                        <t t-if="o.l10n_mx_edi_cfdi_uuid and external != None">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div align="center">
+                                        <span>
+                                            <strong>External Trade</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table table-sm text-center mt4 mb4" align="center"
+                                           style="font-size:10px">
+                                        <thead>
+                                            <tr style="background-color:grey; color:white;">
+                                                <th class="text-center">Operation Type</th>
+                                                <th class="text-center">Certificate Key</th>
+                                                <th class="text-center">Certificate Source</th>
+                                                <th class="text-center"
+                                                    t-if="external.get('CertificadoOrigen', '') == 1">Number Certificate
+                                                    Source
+                                                </th>
+                                                <th class="text-center">Subdivision</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span t-esc="external.get('TipoOperacion', '').replace('2', 'Exportación')"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="external.get('ClaveDePedimento', '')"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="external.get('CertificadoOrigen', '').replace('0', 'No').replace('1', 'Si')"/>
+                                                </td>
+                                                <td t-if="external.get('CertificadoOrigen', '') == 1">
+                                                    <span t-esc="external.get('NumCertificadoOrigen', '')"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="external.get('Subdivision', '')"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-sm text-center mt4 mb4" align="center"
+                                           style="font-size:10px">
+                                        <thead>
+                                            <tr style="background-color:grey; color:white;">
+                                                <th class="text-center"
+                                                    t-if="external.get('NumeroExportadorConfiable', '')">Number of
+                                                    Reliable Exporter
+                                                </th>
+                                                <th class="text-center">Incoterm</th>
+                                                <th class="text-center">Rate USD</th>
+                                                <th class="text-center">Total USD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td t-if="external.get('NumeroExportadorConfiable', '')">
+                                                    <span t-esc="external.get('NumeroExportadorConfiable', '')"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="external.get('Incoterm', '')"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="external.get('TipoCambioUSD', '')"/>
+                                                </td>
+                                                <td>
+                                                    <span t-esc="external.get('TotalUSD', '')"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <div class="row">
+                        <div class="complement-details col-12">
+                            <div class="digital-stamp"
+                                 style="background-color:#000080; text-align:center;color:#FFFFFF">
+                                <span>Información Extra</span>
+                            </div>
+                            <div class="digital-stamp-content">
+                                <span>Certificado del emisor::</span>
+                                <span t-esc="xml.get('noCertificado', xml.get('NoCertificado'))"/>
+                                <span>| Certificado SAT:</span>
+                                <span t-esc="tfd.get('NoCertificadoSAT')"/>
+                                <span>| Lugar de expedición:</span>
+                                <span t-esc="xml.get('LugarExpedicion')"/>
+                                <span>| Régimen Fiscal:</span>
+                                <span t-esc="xml.Emisor.get('RegimenFiscal', '')"/>
+                                <span>| Fecha de Emisión:</span>
+                                <span t-esc="xml.get('fecha', xml.get('Fecha', '')).replace('T', ' ')"/>
+                                <span>| Fecha de Certificación:</span>
+                                <span t-esc="tfd.get('FechaTimbrado', '').replace('T', ' ')"/>
+                                <span>| Folio Fiscal:</span>
+                                <span t-esc="tfd.get('UUID')"/>
+                            </div>
+                            <div class="digital-stamp-content text-center">
+                                <strong>Este documento es una representación impresa de un CFDI</strong>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+    </template>
+</odoo>
