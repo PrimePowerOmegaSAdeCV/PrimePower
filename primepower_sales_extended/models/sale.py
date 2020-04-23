@@ -71,7 +71,7 @@ class SaleOrderLine(models.Model):
                         'product_id' : product.id,
                         'order_id' : order.id,
                         'price_unit' : price_unit,
-                        'website_description' :  product.website_description,
+                        'website_description' : product.website_description,
                         'name' : name,
                         'uom_id' : product.uom_id.id,
                     }
