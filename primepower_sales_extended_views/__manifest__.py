@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Sale extend for Prime Power",
+    'name': "Sale extend for Prime Power ONLY VIEWS",
 
     'summary': """
         Adds extra fields in sales orders""",
@@ -20,24 +20,18 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['mrp','sale','product','stock',],
+    'depends': ['primepower_sales_extended',],
 
     # always loaded
     'data': [
-        'security/sales_template_security.xml',
-        'security/ir.model.access.csv',
-        'report/work_order_mrp.xml',
-        'report/work_order_template.xml',
-        'report/work_order_report.xml',
-        'report/prime_delivery.xml',
-        # 'views/stock_view.xml',
-        # 'views/partner_view.xml',
-        # 'views/views.xml',
-        # 'views/templates.xml',
-        # 'views/sales_template_view.xml',
-        # 'views/product_category_view.xml',
-        # 'views/product_view.xml',
-        # 'views/sale_view.xml'
+        'views/stock_view.xml',
+        'views/partner_view.xml',
+        'views/views.xml',
+        'views/templates.xml',
+        'views/sales_template_view.xml',
+        'views/product_category_view.xml',
+        'views/product_view.xml',
+        'views/sale_view.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
