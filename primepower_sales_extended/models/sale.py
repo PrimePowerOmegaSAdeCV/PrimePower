@@ -24,7 +24,7 @@ class SaleOrderLine(models.Model):
             customer_lead = line.customer_lead or 0.0
             security_lead = line.order_id and line.order_id.company_id.security_lead or self.env.user.company_id.security_lead
             date_planned = date + timedelta(days=customer_lead) - timedelta(days=security_lead)
-            line.date_planned = date
+            line.date_planned = date_planned
 
     @api.onchange('product_id')
     def onchange_product_id(self):

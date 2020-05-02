@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_product_specification_pp_new_2" model="ir.ui.view">
+            <field name="name">Product Specification Form View NEW 2</field>
+            <field name="model">product.specification</field>
+            <field name="priority">16</field>
+            <field name="arch" type="xml">
+                <form string="Product Specification">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="application_id"/>
+                            </group>
+                            <group>
+                                <field name="description_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_product_normal_form_view_inherit_pp_new_2" model="ir.ui.view">
+            <field name="name">product_product_normal_form_view_inherit_pp NEW 2</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type']" position="after">
+                    <field name="product_specification_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+
+
