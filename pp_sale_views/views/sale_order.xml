@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-        <record id="view_delivery_time_pp" model="ir.ui.view">
-            <field name="name">Order Line Delivery Time Form View</field>
+        <record id="view_delivery_time_pp_new_2" model="ir.ui.view">
+            <field name="name">Order Line Delivery Time Form View NEW 2</field>
             <field name="model">sale.order.line.delivery.time</field>
             <field name="priority">16</field>
             <field name="arch" type="xml">
@@ -17,8 +17,8 @@
         </record>
 
 
-        <record id="view_sale_view_order_form_pp" model="ir.ui.view">
-            <field name="name">sale_view_order_form_pp</field>
+        <record id="view_sale_view_order_form_pp_new_2" model="ir.ui.view">
+            <field name="name">sale_view_order_form_pp_new_2</field>
             <field name="model">sale.order</field>
             <field name="inherit_id" ref="sale.view_order_form" />
             <field name="arch" type="xml">

@@ -47,7 +47,7 @@ class ReturnedValues(models.Model):
     
     _name = 'returned.values'
     
-    @api.multi
+
     @api.depends('text','char','selection','boolean','multi_selection')
     def _get_value(self):
         for line in self:
@@ -81,6 +81,6 @@ class ReturnedValues(models.Model):
     )
     sale_line_id = fields.Many2one('sale.order.line', string='Linea de pedido de venta', required=True, copy=True, readonly=True, ondelete='cascade')
     template_line_id = fields.Many2one('sales.product.template.values', string="Linea de plantilla")
-    values_ids = fields.Many2many('sales.template.selection.values', 'returned_values_selection_rel', 'returned_value_id', 'selection_value_id',related='template_line_id.selection_values', string="Values selection", store=True)
+    values_ids = fields.Many2many('sales.template.selection.values', 'returned_values_selection_rel', 'returned_value_id', 'selection_value_id',related='template_line_id.selection_values',ondelete = 'cascade', string="Values selection", store=True)
     sequence = fields.Integer('Secuencia', related='template_line_id.sequence')
-    multi_selection = fields.Many2many('sales.template.selection.values','sale_value_returned_selection_rel','sale_id','values_ids', string = 'Valores', copy=True)
+    multi_selection = fields.Many2many('sales.template.selection.values','sale_value_returned_selection_rel','sale_id','values_ids', string = 'Valores',ondelete = 'cascade', copy=True)

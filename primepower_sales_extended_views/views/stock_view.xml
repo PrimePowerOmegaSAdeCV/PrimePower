@@ -1,7 +1,7 @@
 <odoo>
     <data>
-        <record id="view_stock_picking_type_inherit_form" model="ir.ui.view">
-            <field name="name">view.stock.picking.type.inherit.form</field>
+        <record id="view_stock_picking_type_inherit_form_new_2" model="ir.ui.view">
+            <field name="name">view.stock.picking.type.inherit.form.new.2</field>
             <field name="model">stock.picking.type</field>
             <field name="inherit_id" ref="stock.view_picking_type_form"/>
             <field name="arch" type="xml">
@@ -17,8 +17,8 @@
     </data>
     
     
-        <record id="view_stock_shipping_type_tree" model="ir.ui.view">
-            <field name="name">view.stock.shipping.type.tree</field>
+        <record id="view_stock_shipping_type_tree_new_2" model="ir.ui.view">
+            <field name="name">view.stock.shipping.type.tree.new.2</field>
             <field name="model">stock.shipping.type</field>
             <field name="arch" type="xml">
                 <tree string="Tipos de entrega">
@@ -26,8 +26,8 @@
                 </tree>
             </field>
         </record>
-        <record id="view_stock_shipping_type_form" model="ir.ui.view">
-            <field name="name">view.stock.shipping.type.form</field>
+        <record id="view_stock_shipping_type_form_new_2" model="ir.ui.view">
+            <field name="name">view.stock.shipping.type.form.new.2</field>
             <field name="model">stock.shipping.type</field>
             <field name="arch" type="xml">
                 <form string="Tipo de entrega">
@@ -38,7 +38,7 @@
             </field>
         </record>
 
-        <record id="action_shipping_type" model="ir.actions.act_window">
+        <record id="action_shipping_type_new_2" model="ir.actions.act_window">
             <field name="name">Tipos de entrega</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">stock.shipping.type</field>
@@ -46,11 +46,11 @@
             <field name="domain">[]</field>
             <field name="context">{}</field>
         </record>
-        <menuitem id="menu_shipping_type" name="Ordenes de entrega" parent="stock.menu_stock_config_settings"/>
-        <menuitem id="menu_action_shipping_type" action="action_shipping_type" name="Tipos de entrega" parent="menu_shipping_type"/>
+        <menuitem id="menu_shipping_type_new_2" name="Ordenes de entrega" parent="stock.menu_stock_config_settings"/>
+        <menuitem id="menu_action_shipping_type_new_2" action="action_shipping_type_new_2" name="Tipos de entrega" parent="menu_shipping_type_new_2"/>
             
-        <record id="view_stock_shipping_payer_tree" model="ir.ui.view">
-            <field name="name">view.stock.shipping.payer.tree</field>
+        <record id="view_stock_shipping_payer_tree_new_2" model="ir.ui.view">
+            <field name="name">view.stock.shipping.payer.tree.new.2</field>
             <field name="model">stock.shipping.payer</field>
             <field name="arch" type="xml">
                 <tree string="Pagadores del flete">
@@ -58,8 +58,8 @@
                 </tree>
             </field>
         </record>
-        <record id="view_stock_shipping_payer_form" model="ir.ui.view">
-            <field name="name">view.stock.shipping.payer.form</field>
+        <record id="view_stock_shipping_payer_form_new_2" model="ir.ui.view">
+            <field name="name">view.stock.shipping.payer.form.new.2</field>
             <field name="model">stock.shipping.payer</field>
             <field name="arch" type="xml">
                 <form string="Pagadores del flete">
@@ -70,7 +70,7 @@
             </field>
         </record>
 
-        <record id="action_shipping_payer" model="ir.actions.act_window">
+        <record id="action_shipping_payer_new_2" model="ir.actions.act_window">
             <field name="name">Pagadores del flete</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">stock.shipping.payer</field>
@@ -79,6 +79,6 @@
             <field name="context">{}</field>
         </record>
         
-        <menuitem id="menu_action_shipping_payer" action="action_shipping_payer" name="Pagadores del flete" parent="menu_shipping_type"/>
+        <menuitem id="menu_action_shipping_payer_new_2" action="action_shipping_payer_new_2" name="Pagadores del flete" parent="menu_shipping_type_new_2"/>
     
 </odoo>

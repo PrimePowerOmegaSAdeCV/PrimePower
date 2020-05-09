@@ -17,15 +17,14 @@ class SaleOrderLine(models.Model):
     product_values_ids = fields.One2many('returned.values','sale_line_id', string="Valores del producto", copy=True)
     date_planned = fields.Datetime(string='Date planned', invisible=True, compute="_get_date_planned")
 
-    @api.multi
     @api.depends('customer_lead')
     def _get_date_planned(self):
         for line in self:
-            date = line.order_id.confirmation_date or datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            date = line.order_id.date_order or datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             customer_lead = line.customer_lead or 0.0
             security_lead = line.order_id and line.order_id.company_id.security_lead or self.env.user.company_id.security_lead
-            date_planned = datetime.strptime(date, DEFAULT_SERVER_DATETIME_FORMAT) + timedelta(days=customer_lead) - timedelta(days=security_lead)
-            line.date_planned = date_planned          
+            date_planned = date + timedelta(days=customer_lead) - timedelta(days=security_lead)
+            line.date_planned = date_planned
 
     @api.onchange('product_id')
     def onchange_product_id(self):
@@ -72,7 +71,7 @@ class SaleOrderLine(models.Model):
                         'product_id' : product.id,
                         'order_id' : order.id,
                         'price_unit' : price_unit,
-                        'website_description' : product.quote_description or product.website_description,
+                        'website_description' : product.website_description,
                         'name' : name,
                         'uom_id' : product.uom_id.id,
                     }

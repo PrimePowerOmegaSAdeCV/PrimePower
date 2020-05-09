@@ -18,7 +18,6 @@ class SaleOrder(models.Model):
 
     # lab_prices = fields.Char('L.A.B Prices')
 
-    @api.multi
     def optional_product_lines_layouted(self):
         """
         Returns this order lines classified by sale_layout_category and separated in
@@ -27,9 +26,10 @@ class SaleOrder(models.Model):
         self.ensure_one()
         report_pages = [[]]
 
-        optional_product_images = self.options.mapped('product_id.product_image_ids')
+        #we changed option field of v11 to sale_order_option_ids  field of v13
+        optional_product_images = self.sale_order_option_ids.mapped('product_id.product_template_image_ids')
 
-        for category, lines in groupby(self.options, lambda l: l.layout_category_id):
+        for category, lines in groupby(self.sale_order_option_ids, lambda l: l.layout_category_id):
             # If last added category induced a pagebreak, this one will be on a new page
             if report_pages[-1] and report_pages[-1][-1]['pagebreak']:
                 report_pages.append([])
@@ -44,6 +44,7 @@ class SaleOrder(models.Model):
 
         return report_pages, optional_product_images
 
+    # this comment was made on v11.
     # @api.multi
     # def optional_product_lines_layouted(self):
     #     """

@@ -1,7 +1,7 @@
 <odoo>
     <data>
-        <record model="ir.ui.view" id="view_sale_product_template_tree">
-              <field name="name">view.sale.product.template.tree</field>
+        <record model="ir.ui.view" id="view_sale_product_template_tree_new_2">
+              <field name="name">view.sale.product.template.tree.new.2</field>
               <field name="model">sales.product.template</field>
               <field name="arch" type="xml">
                 <tree string="Valores plantilla">
@@ -10,8 +10,8 @@
                 </tree>
               </field>
         </record>
-        <record model="ir.ui.view" id="view_sale_product_template_form">
-              <field name="name">view.sale.product.template.tree</field>
+        <record model="ir.ui.view" id="view_sale_product_template_form_new_2">
+              <field name="name">view.sale.product.template.tree.new.2</field>
               <field name="model">sales.product.template</field>
               <field name="arch" type="xml">
                 <form>
@@ -39,7 +39,7 @@
               </field>
         </record>
         
-        <record id="action_sale_product_template" model="ir.actions.act_window">
+        <record id="action_sale_product_template_new_2" model="ir.actions.act_window">
             <field name="name">Plantilla de ventas</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">sales.product.template</field>
@@ -47,9 +47,9 @@
             <field name="context">{}</field>
         </record>
 
-        <menuitem id="menu_sale_product_template"
+        <menuitem id="menu_sale_product_template_new_2"
             name="Plantila de ventas"
-            action="action_sale_product_template"
+            action="action_sale_product_template_new_2"
             parent="stock.menu_stock_config_settings"
         />
     </data>

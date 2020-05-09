@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="l10n_mx_payment_method_and_usage" model="ir.ui.view">
+    <field name="name">l10n_mx_payment_method_and_usage</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+	 <xpath expr="//field[@name='l10n_mx_edi_curp']" position="after">
+    <field name="l10n_mx_edi_payment_method_id"/>
+    <field name="l10n_mx_edi_usage"/>
+    </xpath>
+    </field>
+</record>
+
+</odoo>
