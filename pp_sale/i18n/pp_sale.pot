@@ -1,0 +1,478 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* pp_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-21 20:48+0000\n"
+"PO-Revision-Date: 2018-08-21 20:48+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "&amp;bull;"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "&amp;nbsp;<span>on</span>&amp;nbsp;"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.external_layout_custom_pp
+msgid ", RFC:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<span>Account in Dollars: </span>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<span>Account in Pesos: </span>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<span>Client Information: </span>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Account:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Bank:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Contact Customer:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Currency:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Customer:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Expiration Date:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Incoterms:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Invoice Address:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Name:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Payment Terms:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Pro-Forma Invoice # </strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Shipping Address:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Swift:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">Transfer Code:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"col-xs-6\">VAT:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Subtotal: </strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Subtotal</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Total</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_company_account_dollar_id
+msgid "Account Dollars"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.view_base_view_company_form_inherit_pp
+msgid "Account Information"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_company_account_peso_id
+msgid "Account Pesos"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Amount"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_product_application_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_application_id
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Application"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_res_bank
+msgid "Bank"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_res_partner_bank
+msgid "Bank Accounts"
+msgstr ""
+
+#. module: pp_sale
+#: sql_constraint:product.application:0
+msgid "Cannot create duplicated Product Applications"
+msgstr ""
+
+#. module: pp_sale
+#: sql_constraint:product.description:0
+msgid "Cannot create duplicated Product Descriptions"
+msgstr ""
+
+#. module: pp_sale
+#: sql_constraint:product.specification:0
+msgid "Cannot create duplicated Product Specification"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_company_id
+msgid "Company"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.view_base_view_company_form_inherit_pp
+msgid "Company Information"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_contact_partner_id
+msgid "Contact Customer"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_application_create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_description_create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_create_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_application_create_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_description_create_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_create_date
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_create_date
+msgid "Created on"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_users_signature_custom
+msgid "Custom Signature (for SO report)"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_id
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_name
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_option_delivery_time_id
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model:ir.ui.view,arch_db:pp_sale.view_delivery_time_pp
+msgid "Delivery Time"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_description_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_description_id
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Description"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Disc.(%)"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_display_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_application_display_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_description_display_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_display_name
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_id
+#: model:ir.model.fields,field_description:pp_sale.field_product_application_id
+#: model:ir.model.fields,field_description:pp_sale.field_product_description_id
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_id
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_id_4762
+msgid "ID"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Information:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Internal Reference"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information___last_update
+#: model:ir.model.fields,field_description:pp_sale.field_product_application___last_update
+#: model:ir.model.fields,field_description:pp_sale.field_product_description___last_update
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification___last_update
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time___last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_application_write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_description_write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_company_information_write_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_application_write_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_description_write_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_write_date
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Optional Product Images:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Optional Products:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Order #"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Order Lines:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_product_product
+msgid "Product"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_product_product_product_specification_id
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_name
+#: model:ir.ui.view,arch_db:pp_sale.view_product_specification_pp
+msgid "Product Specification"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Product Specifications:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification_product_ids
+msgid "Products"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Quantity"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_sale_order
+msgid "Quotation"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Quotation #"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_company_relevant_information_ids
+msgid "Relevant Information"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Relevant Information:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_company_report_footer_image
+msgid "Report Footer Image"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_sale_order_option
+msgid "Sale Options"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_sale_order_line_ids
+msgid "Sale Order Lines"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_sale_order_option_ids
+msgid "Sale Order Option Lines"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.view_base_view_company_form_inherit_pp
+msgid "Sales"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Salesperson Signature:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_company_text_quote
+msgid "Text Quote"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Text Quote:"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,help:pp_sale.field_res_company_report_footer_image
+msgid "This image will appear in the SO report as the footer."
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Total Price"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_partner_bank_transfer_code
+msgid "Transfer Code"
+msgstr ""
+
+#. module: pp_sale
+#: code:addons/pp_sale/models/sale_order.py:39
+#, python-format
+msgid "Uncategorized"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Unit Price"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_company_information
+msgid "company.information"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_product_application
+msgid "product.application"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_product_description
+msgid "product.description"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_product_specification
+msgid "product.specification"
+msgstr ""
+
+#. module: pp_sale
+#: model:ir.model,name:pp_sale.model_sale_order_line_delivery_time
+msgid "sale.order.line.delivery.time"
+msgstr ""
+
+
