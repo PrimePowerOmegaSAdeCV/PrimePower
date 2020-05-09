@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="action_report_workorder"
+            string="Work Order"
+            model="sale.order" 
+            report_type="qweb-pdf"
+            file="primepower_sales_extended.report_workorder_document" 
+            name="primepower_sales_extended.report_workorder_document"
+            print_report_name="'Work Order - %s' % (object.name)"
+        />
+        <report 
+            id="action_report_workorder_mrp"
+            string="Work Order"
+            model="mrp.production" 
+            report_type="qweb-pdf"
+            file="primepower_sales_extended.report_workorder_mrp_document" 
+            name="primepower_sales_extended.report_workorder_mrp_document"
+            print_report_name="'Work Order - %s' % (object.name)"
+        />
+        <report
+            id="action_report_prime_delivery"
+            string="Orden de entrega"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            file="primepower_sales_extended.report_prime_delivery"
+            name="primepower_sales_extended.report_prime_delivery"
+            print_report_name="'Orden de entrega - %s'%(object.name)"
+        />            
+    </data>
+</odoo>

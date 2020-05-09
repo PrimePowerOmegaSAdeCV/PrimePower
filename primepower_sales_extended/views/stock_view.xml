@@ -1,0 +1,84 @@
+<odoo>
+    <data>
+        <record id="view_stock_picking_type_inherit_form" model="ir.ui.view">
+            <field name="name">view.stock.picking.type.inherit.form</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group>
+                        <group string="Orden de entrega">
+                            <field name="contact_id"/>
+                        </group>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+    
+    
+        <record id="view_stock_shipping_type_tree" model="ir.ui.view">
+            <field name="name">view.stock.shipping.type.tree</field>
+            <field name="model">stock.shipping.type</field>
+            <field name="arch" type="xml">
+                <tree string="Tipos de entrega">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_stock_shipping_type_form" model="ir.ui.view">
+            <field name="name">view.stock.shipping.type.form</field>
+            <field name="model">stock.shipping.type</field>
+            <field name="arch" type="xml">
+                <form string="Tipo de entrega">
+                    <group col="4">
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_shipping_type" model="ir.actions.act_window">
+            <field name="name">Tipos de entrega</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.shipping.type</field>
+                 <field name="view_mode">tree,form</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        <menuitem id="menu_shipping_type" name="Ordenes de entrega" parent="stock.menu_stock_config_settings"/>
+        <menuitem id="menu_action_shipping_type" action="action_shipping_type" name="Tipos de entrega" parent="menu_shipping_type"/>
+            
+        <record id="view_stock_shipping_payer_tree" model="ir.ui.view">
+            <field name="name">view.stock.shipping.payer.tree</field>
+            <field name="model">stock.shipping.payer</field>
+            <field name="arch" type="xml">
+                <tree string="Pagadores del flete">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_stock_shipping_payer_form" model="ir.ui.view">
+            <field name="name">view.stock.shipping.payer.form</field>
+            <field name="model">stock.shipping.payer</field>
+            <field name="arch" type="xml">
+                <form string="Pagadores del flete">
+                    <group col="4">
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_shipping_payer" model="ir.actions.act_window">
+            <field name="name">Pagadores del flete</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.shipping.payer</field>
+        <field name="view_mode">form,tree</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+        
+        <menuitem id="menu_action_shipping_payer" action="action_shipping_payer" name="Pagadores del flete" parent="menu_shipping_type"/>
+    
+</odoo>
