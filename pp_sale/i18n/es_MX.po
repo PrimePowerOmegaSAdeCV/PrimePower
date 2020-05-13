@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* pp_sale
+# 	* pp_sale
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 11.0+e\n"
+"Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-21 20:48+0000\n"
-"PO-Revision-Date: 2018-08-21 20:48+0000\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2020-05-12 23:44+0000\n"
+"PO-Revision-Date: 2020-05-12 23:44+0000\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,439 +16,421 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "&amp;bull;"
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid ""
+"&amp;nbsp;\n"
+"                                                \n"
+"                                                <span>on</span>&amp;nbsp;"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "&amp;nbsp;<span>on</span>&amp;nbsp;"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.external_layout_custom_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.external_layout_custom_pp
 msgid ", RFC:"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "<span>Account in Dollars: </span>"
-msgstr ""
+msgstr "<span>Cuenta en Dolares (USD) </span>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "<span>Account in Pesos: </span>"
-msgstr ""
+msgstr "<span>Cuenta en Pesos (MXN) </span>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "<span>Client Information: </span>"
+msgstr "<span>Datos de Direccion </span>"
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong class=\"mr16\">Subtotal</strong>"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Account:</strong>"
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Account:</strong>"
+msgstr "<strong>No. de Cuenta:</strong>"
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Bank:</strong>"
+msgstr "<strong>Banco:</strong>"
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Currency:</strong>"
+msgstr "<strong>Moneda:</strong>"
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Customer:</strong>"
+msgstr "<strong>Cliente:</strong>"
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Expiration Date:</strong>"
+msgstr "<strong>Fecha de Vencimiento:</strong>"
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Fiscal Position Remark:</strong>"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Bank:</strong>"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Incoterms:</strong>"
+msgstr "<strong>Precios LAB:</strong>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Contact Customer:</strong>"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Invoice Address:</strong>"
+msgstr "<strong>Dirección de Facturación:</strong>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Currency:</strong>"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Name:</strong>"
+msgstr "<strong>Cliente:</strong>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Customer:</strong>"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Payment Terms:</strong>"
+msgstr "<strong>Plazos de Pago:</strong>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Expiration Date:</strong>"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Pro-Forma Invoice # </strong>"
+msgstr "<strong>Num. de Proforma</strong>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Incoterms:</strong>"
-msgstr ""
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Shipping Address:</strong>"
+msgstr "<strong>Dirección de Envio:</strong>"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Invoice Address:</strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Name:</strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Payment Terms:</strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Pro-Forma Invoice # </strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Shipping Address:</strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Swift:</strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">Transfer Code:</strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong class=\"col-xs-6\">VAT:</strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-msgid "<strong>Subtotal: </strong>"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "<strong>Subtotal</strong>"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Swift:</strong>"
+msgstr ""
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "<strong>Total</strong>"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_res_company_account_dollar_id
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>Transfer Code:</strong>"
+msgstr "<strong>Clabe Interbancaria:</strong>"
+
+#. module: pp_sale
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "<strong>VAT:</strong>"
+msgstr "<strong>RFC:</strong>"
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_company__account_dollar_id
 msgid "Account Dollars"
-msgstr ""
+msgstr "Cuenta Dolares"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.view_base_view_company_form_inherit_pp
-msgid "Account Information"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_res_company_account_peso_id
+#: model:ir.model.fields,field_description:pp_sale.field_res_company__account_peso_id
 msgid "Account Pesos"
-msgstr ""
+msgstr "Cuenta Pesos"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Amount"
-msgstr ""
+msgstr "Monto"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_product_application_name
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_application_id
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model:ir.model.fields,field_description:pp_sale.field_product_application__name
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__application_id
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Application"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.model,name:pp_sale.model_res_bank
-msgid "Bank"
-msgstr ""
+msgstr "Concepto"
 
 #. module: pp_sale
 #: model:ir.model,name:pp_sale.model_res_partner_bank
 msgid "Bank Accounts"
-msgstr ""
+msgstr "Cuentas Bancarias"
 
 #. module: pp_sale
-#: sql_constraint:product.application:0
+#: model:ir.model.constraint,message:pp_sale.constraint_product_application_unique_application
 msgid "Cannot create duplicated Product Applications"
 msgstr ""
 
 #. module: pp_sale
-#: sql_constraint:product.description:0
+#: model:ir.model.constraint,message:pp_sale.constraint_product_description_unique_description
 msgid "Cannot create duplicated Product Descriptions"
 msgstr ""
 
 #. module: pp_sale
-#: sql_constraint:product.specification:0
+#: model:ir.model.constraint,message:pp_sale.constraint_product_specification_unique_product_specification
 msgid "Cannot create duplicated Product Specification"
 msgstr ""
 
 #. module: pp_sale
 #: model:ir.model,name:pp_sale.model_res_company
 msgid "Companies"
-msgstr ""
+msgstr "Compañías"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_company_id
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__company_id
 msgid "Company"
-msgstr ""
+msgstr "Compañia"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.view_base_view_company_form_inherit_pp
-msgid "Company Information"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_contact_partner_id
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order__contact_partner_id
 msgid "Contact Customer"
-msgstr ""
+msgstr "Contacto"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_create_uid
-#: model:ir.model.fields,field_description:pp_sale.field_product_application_create_uid
-#: model:ir.model.fields,field_description:pp_sale.field_product_description_create_uid
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_create_uid
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_application__create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_description__create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__create_uid
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__create_uid
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_create_date
-#: model:ir.model.fields,field_description:pp_sale.field_product_application_create_date
-#: model:ir.model.fields,field_description:pp_sale.field_product_description_create_date
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_create_date
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_create_date
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__create_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_application__create_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_description__create_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__create_date
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__create_date
 msgid "Created on"
-msgstr ""
+msgstr "Creado el"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_res_users_signature_custom
+#: model:ir.model.fields,field_description:pp_sale.field_res_users__signature_custom
 msgid "Custom Signature (for SO report)"
-msgstr ""
+msgstr "Firma personalizada (para Cotizacion)"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_id
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_name
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_option_delivery_time_id
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
-#: model:ir.ui.view,arch_db:pp_sale.view_delivery_time_pp
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line__delivery_time_id
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__name
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_option__delivery_time_id
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Delivery Time"
-msgstr ""
+msgstr "Tiempo Entrega"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_name
-#: model:ir.model.fields,field_description:pp_sale.field_product_description_name
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_description_id
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__name
+#: model:ir.model.fields,field_description:pp_sale.field_product_description__name
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__description_id
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Description"
-msgstr ""
+msgstr "Descripcion"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Disc.(%)"
-msgstr ""
+msgstr "Desc.(%)"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_display_name
-#: model:ir.model.fields,field_description:pp_sale.field_product_application_display_name
-#: model:ir.model.fields,field_description:pp_sale.field_product_description_display_name
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_display_name
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_display_name
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__display_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_application__display_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_description__display_name
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__display_name
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__display_name
 msgid "Display Name"
-msgstr ""
+msgstr "Nombre a Mostrar"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_id
-#: model:ir.model.fields,field_description:pp_sale.field_product_application_id
-#: model:ir.model.fields,field_description:pp_sale.field_product_description_id
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_id
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_id_4762
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__id
+#: model:ir.model.fields,field_description:pp_sale.field_product_application__id
+#: model:ir.model.fields,field_description:pp_sale.field_product_description__id
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__id
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__id
 msgid "ID"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Information:"
-msgstr ""
+msgstr "Información:"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Internal Reference"
-msgstr ""
+msgstr "Codigo"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information___last_update
-#: model:ir.model.fields,field_description:pp_sale.field_product_application___last_update
-#: model:ir.model.fields,field_description:pp_sale.field_product_description___last_update
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification___last_update
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time___last_update
+#: model:ir.model.fields,field_description:pp_sale.field_company_information____last_update
+#: model:ir.model.fields,field_description:pp_sale.field_product_application____last_update
+#: model:ir.model.fields,field_description:pp_sale.field_product_description____last_update
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification____last_update
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time____last_update
 msgid "Last Modified on"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_write_uid
-#: model:ir.model.fields,field_description:pp_sale.field_product_application_write_uid
-#: model:ir.model.fields,field_description:pp_sale.field_product_description_write_uid
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_write_uid
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_application__write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_description__write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__write_uid
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_company_information_write_date
-#: model:ir.model.fields,field_description:pp_sale.field_product_application_write_date
-#: model:ir.model.fields,field_description:pp_sale.field_product_description_write_date
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_write_date
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_write_date
+#: model:ir.model.fields,field_description:pp_sale.field_company_information__write_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_application__write_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_description__write_date
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__write_date
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__write_date
 msgid "Last Updated on"
 msgstr ""
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Optional Product Images:"
-msgstr ""
+msgstr "Imagenes Productos Opcionales"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Optional Products:"
-msgstr ""
+msgstr "Productos Opcionales"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Order #"
-msgstr ""
+msgstr "No. Cotizacion"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Order Lines:"
-msgstr ""
+msgstr "Lineas de Pedido"
 
 #. module: pp_sale
 #: model:ir.model,name:pp_sale.model_product_product
 msgid "Product"
-msgstr ""
+msgstr "Producto"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_product_product_product_specification_id
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_name
-#: model:ir.ui.view,arch_db:pp_sale.view_product_specification_pp
+#: model:ir.model.fields,field_description:pp_sale.field_product_product__product_specification_id
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__name
 msgid "Product Specification"
-msgstr ""
+msgstr "Especificacion de Producto"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Product Specifications:"
-msgstr ""
+msgstr "Especificaciones de Productos"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_product_specification_product_ids
+#: model:ir.model.fields,field_description:pp_sale.field_product_specification__product_ids
 msgid "Products"
-msgstr ""
+msgstr "Productos"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Quantity"
-msgstr ""
+msgstr "Cantidad"
 
 #. module: pp_sale
-#: model:ir.model,name:pp_sale.model_sale_order
-msgid "Quotation"
-msgstr ""
-
-#. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Quotation #"
-msgstr ""
+msgstr "No. Cotizacion"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_res_company_relevant_information_ids
+#: model:ir.model.fields,field_description:pp_sale.field_res_company__relevant_information_ids
 msgid "Relevant Information"
-msgstr ""
+msgstr "Informacion Relevante"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Relevant Information:"
-msgstr ""
+msgstr "Informacion Relevante:"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_res_company_report_footer_image
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+msgid "Relevant information"
+msgstr "Terminos y Condiciones"
+
+#. module: pp_sale
+#: model:ir.model.fields,field_description:pp_sale.field_res_company__report_footer_image
 msgid "Report Footer Image"
-msgstr ""
+msgstr "Imagen de pie de Pagina"
 
 #. module: pp_sale
 #: model:ir.model,name:pp_sale.model_sale_order_option
 msgid "Sale Options"
-msgstr ""
+msgstr "Opciones de venta"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_sale_order_line_ids
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__sale_order_line_ids
 msgid "Sale Order Lines"
-msgstr ""
+msgstr "Lineas del Pedido"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time_sale_order_option_ids
+#: model:ir.model.fields,field_description:pp_sale.field_sale_order_line_delivery_time__sale_order_option_ids
 msgid "Sale Order Option Lines"
-msgstr ""
+msgstr "Lineas de Opcionales"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.view_base_view_company_form_inherit_pp
-msgid "Sales"
-msgstr ""
+#: model:ir.model,name:pp_sale.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
 
 #. module: pp_sale
 #: model:ir.model,name:pp_sale.model_sale_order_line
 msgid "Sales Order Line"
-msgstr ""
+msgstr "Línea de pedido de ventas"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Salesperson Signature:"
-msgstr ""
+msgstr "Firma del Vendedor:"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_res_company_text_quote
+#: model:ir.model.fields,field_description:pp_sale.field_res_company__text_quote
 msgid "Text Quote"
-msgstr ""
+msgstr "Presentacion"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Text Quote:"
-msgstr ""
+msgstr "Presentacion:"
 
 #. module: pp_sale
-#: model:ir.model.fields,help:pp_sale.field_res_company_report_footer_image
+#: model:ir.model.fields,help:pp_sale.field_res_company__report_footer_image
 msgid "This image will appear in the SO report as the footer."
-msgstr ""
+msgstr "Esta imagen aparecera en el pie de pagina de la cotizacion"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Total Price"
-msgstr ""
+msgstr "Precio Total"
 
 #. module: pp_sale
-#: model:ir.model.fields,field_description:pp_sale.field_res_partner_bank_transfer_code
+#: model:ir.model.fields,field_description:pp_sale.field_account_setup_bank_manual_config__transfer_code
+#: model:ir.model.fields,field_description:pp_sale.field_res_partner_bank__transfer_code
 msgid "Transfer Code"
-msgstr ""
+msgstr "Codigo de Transferencia"
 
 #. module: pp_sale
-#: code:addons/pp_sale/models/sale_order.py:39
+#: code:addons/pp_sale/models/sale_order.py:0
 #, python-format
 msgid "Uncategorized"
-msgstr ""
+msgstr "Sin categoría"
 
 #. module: pp_sale
-#: model:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
+#: model_terms:ir.ui.view,arch_db:pp_sale.report_saleorder_document_pp
 msgid "Unit Price"
-msgstr ""
+msgstr "Precio Unidad"
 
 #. module: pp_sale
 #: model:ir.model,name:pp_sale.model_res_users
 msgid "Users"
-msgstr ""
+msgstr "Usuarios"
 
 #. module: pp_sale
 #: model:ir.model,name:pp_sale.model_company_information
@@ -474,5 +456,3 @@ msgstr ""
 #: model:ir.model,name:pp_sale.model_sale_order_line_delivery_time
 msgid "sale.order.line.delivery.time"
 msgstr ""
-
-
