@@ -14,15 +14,14 @@
         <div class="header">
             <div class="row">
                 <div class="col-3 mb4">
-                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;"
-                         alt="Logo"/>
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
                 </div>
 
                 <t t-if="company.report_header">
                     <div class="col-4 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
                     <t t-foreach="docs" t-as="doc">
                         <div class="col-5">
-                            <div style="text-align:left;color:#000080;font-size:18px">
+                            <div class="text-right" style="color:#000080;font-size:20px">
                                 <strong>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'posted'">Factura</span>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Borrador Factura</span>
@@ -36,10 +35,10 @@
                                 <table class=" table table-sm" style="border-collapse:collapse;font-size:18px;border:1px solid black">
                                     <thead>
                                         <tr style="text-align:center;color:white;background-color:#000080;">
-                                            <th style="border:1px solid black">
+                                            <th>
                                                 Fecha
                                             </th>
-                                            <th style="border:1px solid black">
+                                            <th>
                                                 Folio
                                             </th>
                                         </tr>
@@ -64,13 +63,15 @@
                     <t t-foreach="docs" t-as="doc">
                         <div class="col-4"/>
                         <div class="col-5">
-                            <div style="text-align:left;color:#000080">
+                            <div class="text-right" style="color:#000080;font-size:20px">
+                                <strong>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'posted'">Factura</span>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Borrador Factura</span>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Factura Cancelada</span>
                                     <span t-if="o.type == 'out_refund'">Nota de Crédito</span>
                                     <span t-if="o.type == 'in_refund'">Nota de Crédito</span>
                                     <span t-if="o.type == 'in_invoice'">Factura de Proovedor</span>
+                                </strong>
                             </div>
                             <div>
                                 <table class=" table table-sm" style="border-collapse:collapse;font-size:18px;border:1px solid black">
@@ -84,14 +85,11 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-
-                                    </tbody>
                                     <tr style="text-align:center;">
-                                        <td>
+                                        <td style="border:1px solid black">
                                             <strong><span t-field="doc.invoice_date"/></strong>
                                         </td>
-                                        <td>
+                                        <td style="border:1px solid black">
                                             <span t-field="doc.name"/>
                                         </td>
                                     </tr>
