@@ -85,22 +85,36 @@
             <div class="row" id="sale_order_informations">
                 <div class="col-6">
                     <div class="row">
-                        <strong class="col-6">Customer:</strong>
-                        <span class="col-6" t-field="doc.partner_id"/>
+                        <div class="col-6">
+                            <strong>Customer:</strong>
+                        </div>
+                        <div class="col-6">
+                            <span t-field="doc.partner_id"/>
+                        </div>
                     </div>
                     <div class="row">
                         <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
-                            <strong class="col-6" t-if="doc.state not in ['draft','sent']">Order # </strong>
-                            <strong class="col-6" t-if="doc.state in ['draft','sent']">Quotation # </strong>
+                            <div class="col-6">
+                                <strong t-if="doc.state not in ['draft','sent']">Order # </strong>
+                                <strong t-if="doc.state in ['draft','sent']">Quotation # </strong>
+                            </div>
                         </t>
                         <t t-if="env.context.get('proforma', False) or is_pro_forma">
-                            <strong class="col-6">Pro-Forma Invoice # </strong>
+                            <div class="col-6">
+                                <strong >Pro-Forma Invoice # </strong>
+                            </div>
                         </t>
-                        <span class="col-6" t-field="doc.name"/>
+                        <div class="col-6">
+                            <span  t-field="doc.name"/>
+                        </div>
                     </div>
                     <div class="row" t-if="doc.payment_term_id">
-                        <strong class="col-6">Payment Terms:</strong>
-                        <span class="col-6" t-field="doc.payment_term_id"/>
+                        <div class="col-6">
+                            <strong>Payment Terms:</strong>
+                        </div>
+                        <div class="col-6">
+                            <span t-field="doc.payment_term_id"/>
+                        </div>
                     </div>
                 </div>
                 <div class="col-6">
@@ -109,20 +123,32 @@
                     <!--<span class="col-xs-6" t-field="doc.contact_partner_id.name"/>-->
                     <!--</div>-->
                     <div class="row" t-if="doc.validity_date and doc.state in ['draft', 'sent']">
-                        <strong class="col-6">Expiration Date:</strong>
-                        <span class="col-6" t-field="doc.validity_date"/>
+                        <div class="col-6">
+                            <strong>Expiration Date:</strong>
+                        </div>
+                        <div class="col-6">
+                            <span t-field="doc.validity_date"/>
+                        </div>
                     </div>
                     <!--<div class="row" t-if="doc.lab_prices">-->
                     <!--<strong class="col-xs-6">L.A.B Prices:</strong>-->
                     <!--<span class="col-xs-6" t-field="doc.lab_prices"/>-->
                     <!--</div>-->
                     <div class="row" t-if="doc.incoterm">
-                        <strong class="col-6">Incoterms:</strong>
-                        <span class="col-6" t-field="doc.incoterm"/>
+                        <div class="col-6">
+                            <strong>Incoterms:</strong>
+                        </div>
+                        <div class="col-6">
+                            <span  t-field="doc.incoterm"/>
+                        </div>
                     </div>
                     <div class="row" t-if="doc.pricelist_id and doc.pricelist_id.currency_id">
-                        <strong class="col-6">Currency:</strong>
-                        <span class="col-6" t-field="doc.pricelist_id.currency_id.name"/>
+                        <div class="col-6">
+                            <strong>Currency:</strong>
+                        </div>
+                        <div class="col-6">
+                            <span t-field="doc.pricelist_id.currency_id.name"/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -424,123 +450,110 @@
                     </t>
 
                 <!-- (8) Bank info -->
-                    <div class="row" id="bank_information" style="page-break-inside:avoid">
-                        <t t-if="doc.company_id and doc.company_id.account_peso_id">
-                            <div class="col-6">
-                                <div class="panel panel-default" style="border:1px solid #ddd">
-                                    <div class="panel-heading" id="section-title">
-                                        <span>Account in Pesos: </span>
+            <div class="row" id="bank_information" style="page-break-inside:avoid">
+                <t t-if="doc.company_id and doc.company_id.account_peso_id">
+                    <div class="col-6">
+                        <div class="panel panel-default" style="border:1px solid #ddd">
+                            <div class="panel-heading" id="section-title">
+                                <span>Account in Pesos: </span>
+                            </div>
+                            <div class="panel-body" style="padding-left:10px;font-size:90%">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong>Name:</strong>
                                     </div>
-                                    <div class="panel-body">
-                                        <div class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                <strong>Name:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                               <span t-field="doc.company_id"/>
-                                            </div>
-                                        </div>
-                                         <div class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Account:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                               <span t-field="doc.company_id.account_peso_id.acc_number"/>
-                                            </div>
-                                        </div>
-                                         <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                <strong>Transfer Code:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                               <span t-field="doc.company_id.account_peso_id.bank_name"/>
-                                            </div>
-                                        </div>
-                                         <div class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Bank:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                               <span t-field="doc.company_id.account_peso_id.bank_name"/>
-                                            </div>
-                                        </div>
-                                         <div t-if="doc.company_id.account_peso_id.bank_bic" class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Swift:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                               <span t-field="doc.company_id.account_peso_id.bank_bic"/>
-                                            </div>
-                                        </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong>Account:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_peso_id.acc_number"/>
+                                    </div>
+                                </div>
+                                <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
+                                    <div class="col-4">
+                                        <strong>Transfer Code:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_peso_id.transfer_code"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong>Bank:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_peso_id.bank_name"/>
+                                    </div>
+                                </div>
+                                <div t-if="doc.company_id.account_peso_id.bank_bic" class="row">
+                                    <div class="col-4">
+                                        <strong>Swift:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_peso_id.bank_bic"/>
                                     </div>
                                 </div>
                             </div>
-                        </t>
-                        <t t-if="doc.company_id and doc.company_id.account_dollar_id">
-                            <div class="col-6">
-                                <div class="panel panel-default" style="border:1px solid #ddd ">
-                                    <div class="panel-heading" id="section-title">
-                                        <span>Account in Dollars: </span>
-                                    </div>
-                                    <div class="panel-body">
-                                         <div class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Name:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                                <span t-field="doc.company_id"/>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Account:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                                   <span t-field="doc.company_id.account_dollar_id.acc_number"/>
-                                            </div>
-                                        </div>
-                                        <div t-if="doc.company_id.account_dollar_id.transfer_code" class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Transfer Code:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                                    <span t-field="doc.company_id.account_dollar_id.transfer_code"/>
-                                            </div>
-                                        </div>
-                                       <div class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Bank:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                                    <span t-field="doc.company_id.account_dollar_id.bank_name"/>
-                                            </div>
-                                        </div>
-                                         <div t-if="doc.company_id.account_dollar_id.bank_bic" class="row">
-                                            <div class="col-1"/>
-                                            <div class="col-3">
-                                                 <strong>Swift:</strong>
-                                            </div>
-                                            <div class="col-8">
-                                      <span t-field="doc.company_id.account_dollar_id.bank_bic"/>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                        </t>
+                        </div>
                     </div>
-
+                </t>
+                <t t-if="doc.company_id and doc.company_id.account_dollar_id">
+                    <div class="col-6">
+                        <div class="panel panel-default" style="border:1px solid #ddd ">
+                            <div class="panel-heading" id="section-title" >
+                                <span>Account in Dollars: </span>
+                            </div>
+                            <div class="panel-body" style="padding-left:10px;font-size:90%">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong>Name:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong>Account:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_dollar_id.acc_number"/>
+                                    </div>
+                                </div>
+                                <div t-if="doc.company_id.account_dollar_id.transfer_code" class="row">
+                                    <div class="col-4">
+                                        <strong>Transfer Code:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_dollar_id.transfer_code"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <strong>Bank:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_dollar_id.bank_name"/>
+                                    </div>
+                                </div>
+                                <div t-if="doc.company_id.account_dollar_id.bank_bic" class="row">
+                                    <div class="col-4">
+                                        <strong>Swift:</strong>
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_dollar_id.bank_bic"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </div>
 
                 <!-- (9) Information Cliente -->
                         <br/>
@@ -590,9 +603,7 @@
                             </div>
                         </div>
                     </t>
-                     <p t-if="doc.payment_term_id.note">
-                        <span t-field="doc.payment_term_id.note"/>
-                    </p>
+
                     <p id="fiscal_position_remark" t-if="doc.fiscal_position_id and doc.fiscal_position_id.note">
                         <strong>Fiscal Position Remark:</strong>
                         <span t-field="doc.fiscal_position_id.note"/>
