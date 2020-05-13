@@ -13,78 +13,69 @@
             </div>
             <div class="article o_report_layout_standard">
                 <div class="page">
-
-                           <div class="row">
-                               <div class="col-6" >
-                                   <h3>
-                                     <span t-field="doc.name"/>
-                                     </h3>
-                               </div>
-
-
-
-                            <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>
+                                <span t-field="doc.name"/>
+                            </h3>
+                        </div>
+                        <div class="col-6">
                                     Fecha:
-                                <span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
-                            </div>
+                            <span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
                         </div>
-
-
-
-                        <div class="row">
-                            <div class="col-4 pull-left">
-                                <span>
-                                    <strong>Remitente:</strong>
-                                </span>
-                                <div t-field="doc.picking_type_id.warehouse_id.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>
-                                <div class="row">
-                                    <span class="col-6">Contacto</span>
-                                    <span class="col-6" t-field="doc.picking_type_id.contact_id.name"/>
-                                </div>
-                                <div class="row">
-                                    <span class="col-6">Telefono</span>
-                                    <span class="col-6" t-field="doc.picking_type_id.contact_id.phone"/>
-                                </div>
-                            </div>
-                            <div class="col-4 pull-right">
-                                <span>
-                                    <strong>Destinatario:</strong>
-                                </span>
-                                <div t-field="doc.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>
-                                <div class="row">
-                                    <span class="col-6">Contacto</span>
-                                    <t t-if="'contact_partner_id' in doc">
-                                        <span class="col-6" t-field="doc.sale_id.contact_partner_id.name"/>
-                                    </t>
-                                </div>
-                                <div class="row">
-                                    <span class="col-6">Telefono</span>
-                                    <t t-if="'contact_partner_id' in doc">
-                                        <span class="col-6" t-field="doc.sale_id.contact_partner_id.phone"/>
-                                    </t>
-                                </div>
-                                <div class="row">
-                                    <span class="col-6">Notas</span>
-                                    <span class="col-6" t-field="doc.partner_id.comment"/>
-                                </div>
-                            </div>
-                        </div>
-                         <br/>
-                        <t t-if="doc.carrier_tracking_ref">
+                    </div>
+                    <br/>
+                    <div class="row">
+                        <div class="col-6">
+                            <span>
+                                <strong>Remitente:</strong>
+                            </span>
+                            <div t-field="doc.picking_type_id.warehouse_id.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>
                             <div class="row">
-                            <div class="col-6 ">
-                                  <strong>Referencia de Envio</strong>
+                                <span class="col-6">Contacto</span>
+                                <span class="col-6" t-field="doc.picking_type_id.contact_id.name"/>
                             </div>
-
+                            <div class="row">
+                                <span class="col-6">Telefono</span>
+                                <span class="col-6" t-field="doc.picking_type_id.contact_id.phone"/>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <span>
+                                <strong>Destinatario:</strong>
+                            </span>
+                            <div t-field="doc.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>
+                            <div class="row">
+                                <span class="col-6">Contacto</span>
+                                <t t-if="'contact_partner_id' in doc">
+                                    <span class="col-6" t-field="doc.sale_id.contact_partner_id.name"/>
+                                </t>
+                            </div>
+                            <div class="row">
+                                <span class="col-6">Telefono</span>
+                                <t t-if="'contact_partner_id' in doc">
+                                    <span class="col-6" t-field="doc.sale_id.contact_partner_id.phone"/>
+                                </t>
+                            </div>
+                            <div class="row">
+                                <span class="col-6">Notas</span>
+                                <span class="col-6" t-field="doc.partner_id.comment"/>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <t t-if="doc.carrier_tracking_ref">
+                        <div class="row">
+                            <div class="col-6 ">
+                                <strong>Referencia de Envio</strong>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                     <span  t-field="doc.carrier_tracking_ref"/>
+                                <span t-field="doc.carrier_tracking_ref"/>
                             </div>
-
                         </div>
-                        </t>
-
+                    </t>
                     <div class="mb32 row">
                         <div class="col-6 pull-left">
                             <div class="row">
@@ -163,8 +154,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div>
-                        <span class="col-6 pull-left">
+                    <div class="row">
+                        <span class="col-6">
                             <strong>Notas de Salida</strong>
                         </span>
                         <span class="col-6" t-field="doc.sale_id.shipping_notes"/>
