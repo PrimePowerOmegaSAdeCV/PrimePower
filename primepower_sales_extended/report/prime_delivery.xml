@@ -12,7 +12,7 @@
                 </div>
             </div>
             <div class="article o_report_layout_standard">
-                <div class="page">
+                                <div class="page">
                     <div class="row">
                         <div class="col-6">
                             <h3>
@@ -21,10 +21,10 @@
                         </div>
                         <div class="col-6">
                                     Fecha:
+
                             <span t-esc="time.strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
                         </div>
                     </div>
-                    <br/>
                     <div class="row">
                         <div class="col-6">
                             <span>
@@ -40,7 +40,7 @@
                                 <span class="col-6" t-field="doc.picking_type_id.contact_id.phone"/>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 pull">
                             <span>
                                 <strong>Destinatario:</strong>
                             </span>
@@ -76,50 +76,41 @@
                             </div>
                         </div>
                     </t>
+                    <br/>
                     <div class="mb32 row">
-                        <div class="col-6 pull-left">
+                        <div class="col-6">
                             <div class="row">
-                                <span class="col-6">No. Pedido:</span>
-                                <span class="col-6" t-field="doc.sale_id.name"/>
-                            </div>
+                                <div class="col-6">No. Pedido:</div>
+                                <div class="col-6" t-field="doc.sale_id.name"/></div>
                             <div class="row">
-                                <span class="col-6">Cliente:</span>
-                                <span class="col-6" t-field="doc.sale_id.partner_id.name"/>
-                            </div>
+                                <div class="col-6">Cliente:</div>
+                                <div class="col-6" t-field="doc.sale_id.partner_id.name"/></div>
                             <div class="row">
-                                <span class="col-6">Comercial:</span>
-                                <span class="col-6" t-field="doc.sale_id.user_id.name"/>
-                            </div>
+                                <div class="col-6">Comercial:</div>
+                                <div class="col-6" t-field="doc.sale_id.user_id.name"/></div>
                             <div class="row">
-                                <span class="col-6">Oportunidad:</span>
-                                <span class="col-6" t-field="doc.sale_id.opportunity_id.name"/>
-                            </div>
+                                <div class="col-6">Oportunidad:</div>
+                                <div class="col-6" t-field="doc.sale_id.opportunity_id.name"/></div>
                             <div class="row">
-                                <span class="col-6">Tipo de entrega:</span>
-                                <span class="col-6" t-field="doc.sale_id.shipping_type_id.name"/>
-                            </div>
+                                <div class="col-6">Tipo de entrega:</div>
+                                <div class="col-6" t-field="doc.sale_id.shipping_type_id.name"/></div>
                         </div>
                         <div class="col-6 pull-right">
                             <div class="row">
-                                <span class="col-6">Fecha Confirmacion:</span>
-                                <span class="col-6" t-field="doc.sale_id.date_order"/>
-                            </div>
+                                <div class="col-6">Fecha Confirmacion:</div>
+                                <div class="col-6" t-field="doc.sale_id.date_order"/></div>
                             <div class="row">
-                                <span class="col-6">Pago de Flete:</span>
-                                <span class="col-6" t-field="doc.sale_id.shipping_payer_id.name"/>
-                            </div>
+                                <div class="col-6">Pago de Flete:</div>
+                                <div class="col-6" t-field="doc.sale_id.shipping_payer_id.name"/></div>
                             <div class="row">
-                                <span class="col-6">Metodo de Envio:</span>
-                                <span class="col-6" t-field="doc.carrier_id.name"/>
-                            </div>
+                                <div class="col-6">Metodo de Envio:</div>
+                                <div class="col-6" t-field="doc.carrier_id.name"/></div>
                             <div class="row">
-                                <span class="col-6">Orden de Compra:</span>
-                                <span class="col-6" t-field="doc.sale_id.client_order_ref"/>
-                            </div>
+                                <div class="col-6">Orden de Compra:</div>
+                                <div class="col-6" t-field="doc.sale_id.client_order_ref"/></div>
                             <div class="row">
-                                <span class="col-6">Almacen:</span>
-                                <span class="col-6" t-field="doc.picking_type_id.warehouse_id.name"/>
-                            </div>
+                                <div class="col-6">Almacen:</div>
+                                <div class="col-6" t-field="doc.picking_type_id.warehouse_id.name"/></div>
                         </div>
                     </div>
                     <t t-set="partida" t-value="0"/>
@@ -154,13 +145,13 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="row">
-                        <span class="col-6">
+                    <div>
+                        <div class="col-6">
                             <strong>Notas de Salida</strong>
-                        </span>
-                        <span class="col-6" t-field="doc.sale_id.shipping_notes"/>
-                    </div>
+                        </div>
+                        <div class="col-12" t-field="doc.sale_id.shipping_notes"/></div>
                 </div>
+
                 
             </div>
         </t>

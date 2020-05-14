@@ -344,7 +344,14 @@
                                     <t t-set="optional_product_images" t-value="True"/>
                                 </t>
                                                 <td><span t-field="l.product_id.default_code"/></td>
-                                                <td><span t-field="l.product_id.description_sale"/></td>
+                                                <td> <t t-if="l.product_id.description_sale">
+                                                        <span t-field="l.product_id.description_sale"/>
+                                                    </t>
+                                                    <t else="">
+                                                        <span t-field="l.product_id.name"/>
+                                                    </t>
+
+                                                </td>
                                                 <td><span t-field="l.delivery_time_id"/></td>
                                                 <!--<td><span t-field="l.name"/></td>-->
                                                 <td class="text-right">
@@ -469,10 +476,17 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <strong>Account:</strong>
+<<<<<<< HEAD
                                     </div>
                                     <div class="col-8">
                                         <span t-field="doc.company_id.account_peso_id.acc_number"/>
                                     </div>
+=======
+                                    </div>
+                                    <div class="col-8">
+                                        <span t-field="doc.company_id.account_peso_id.acc_number"/>
+                                    </div>
+>>>>>>> master
                                 </div>
                                 <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
                                     <div class="col-4">
