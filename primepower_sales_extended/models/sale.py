@@ -11,6 +11,7 @@ class SaleOrder(models.Model):
     shipping_notes = fields.Text(string="Notas de salida de almacen", required=False, copy=True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)], 'done' : [('readonly',True)], 'sale' : [('readonly',True)]})
 
     def create(self, values):
+
         order = super(SaleOrder, self).create(values)
         for line in order.order_line.filtered(lambda x: not x.display_type):
             for product_template in order.env['product.product'].browse(line.product_id.id).optional_product_ids:
@@ -20,20 +21,36 @@ class SaleOrder(models.Model):
                 product = product.with_context(lang=order.partner_id.lang)
                 pricelist = order.pricelist_id
                 partner_id = order.partner_id.id
+
+        vals = super(SaleOrder, self).create(values)
+        for line in self.order_line.filtered(lambda x: not x.display_type):
+            if line.product_id in self.sale_order_option_ids.mapped(lambda x: x.product_id):
+                continue
+            options = self.env['sale.order.option']
+            for product_template in self.env['product.product'].browse(line.product_id.id).optional_product_ids:
+                product = product_template.product_variant_id
+                product = product.with_context(lang=self.partner_id.lang)
+                pricelist = self.pricelist_id
+                partner_id = self.partner_id.id
+
                 price_unit = pricelist.with_context(uom=product.uom_id.id).get_product_price(product, 1, partner_id)
                 name = product.name
                 if product.description_sale:
                     name += '\n' + product.description_sale
+
                 new_values = {
                     'product_id': product.id,
                     'order_id': order.id,
+
                     'price_unit': price_unit,
                     'website_description': product.website_description,
                     'name': name,
                     'uom_id': product.uom_id.id,
                 }
+
                 order.write({'sale_order_option_ids':[(0, 0, new_values)]})
         return order
+
 
 
 class SaleOrderLine(models.Model):
