@@ -476,17 +476,10 @@
                                 <div class="row">
                                     <div class="col-4">
                                         <strong>Account:</strong>
-<<<<<<< HEAD
                                     </div>
                                     <div class="col-8">
                                         <span t-field="doc.company_id.account_peso_id.acc_number"/>
                                     </div>
-=======
-                                    </div>
-                                    <div class="col-8">
-                                        <span t-field="doc.company_id.account_peso_id.acc_number"/>
-                                    </div>
->>>>>>> master
                                 </div>
                                 <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
                                     <div class="col-4">

@@ -21,11 +21,7 @@
                     <div class="col-4 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
                     <t t-foreach="docs" t-as="doc">
                         <div class="col-5">
-<<<<<<< HEAD
-                            <div style="text-align:left;color:#000080;font-size:18px">
-=======
                             <div class="text-right" style="color:#000080;font-size:20px">
->>>>>>> master
                                 <strong>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'posted'">Factura</span>
                                     <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Borrador Factura</span>
@@ -39,14 +35,10 @@
                                 <table class=" table table-sm" style="border-collapse:collapse;font-size:18px;border:1px solid black">
                                     <thead>
                                         <tr style="text-align:center;color:white;background-color:#000080;">
-<<<<<<< HEAD
-                                            <th style="border:1px solid black">
-=======
                                             <th>
->>>>>>> master
                                                 Fecha
                                             </th>
-                                            <th style="border:1px solid black">
+                                            <th>
                                                 Folio
                                             </th>
                                         </tr>
