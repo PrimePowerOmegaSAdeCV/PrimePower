@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="credit_limit_alert_partner_statement_wizard_view">
+        <field name="name">Generador de reportes</field>
+        <field name="model">credit_limit_alert.partner_statement_wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group col="4" string="Fechas">
+                    <field name="date_start" required="True"/>
+                    <field name="date_end" required="True"/>
+                </group>
+                <footer>
+                    <button string='Generar reporte' name="check_report" type="object" class="oe_highlight"/>
+                     or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="credit_limit_alert_partner_statement_wizard_action" model="ir.actions.act_window">
+        <field name="name">Estados de cuenta de clientes</field>
+        <field name="res_model">credit_limit_alert.partner_statement_wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+       <field name="view_id" ref="credit_limit_alert_partner_statement_wizard_view"/>
+       <field name="target">new</field>
+    </record>
+    </data>
+</openerp>

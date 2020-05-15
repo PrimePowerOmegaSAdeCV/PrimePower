@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="add_approval_buttons_and_state_in_sale_order_form_view"
+		model="ir.ui.view">
+		<field name="name">add.approval.buttons.and.state.in.sale.order.view</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_order_form" />
+		<field name="arch" type="xml">
+			<field name="state" position="attributes">
+				<attribute name="statusbar_visible">draft,sent,send_for_approval,sale</attribute>
+			</field>
+			<xpath expr="//button[@name='print_quotation']" position="after">	
+				<button name="send_for_approval" string="Aprobar" type="object" class="oe_highlight" attrs="{'invisible':[('state','!=','send_for_approval')]}" groups="account.credit_approval"/>
+			</xpath>
+			<xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">
+				<attribute name="attrs">{'invisible':[('state','not in',('draft'))]}</attribute>
+			</xpath>
+			<xpath expr="//header/button[@name='action_confirm']" position="attributes">
+				<attribute name="attrs">{'invisible':[('state','in',('sale','draft','send_for_approval'))]}
+				</attribute>
+			</xpath>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_tipodecambio_bill" model="ir.ui.view">
+        <field name="name">account_cambio_bill</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+        
+ <xpath expr="//field[@name='currency_id']" position="after">
+
+    <field name="cambiobill" force_save="1"/>
+  </xpath>
+        </field>
+    </record>
+</odoo>

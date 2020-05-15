@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Inherit Form View to Modify it -->
+        <record id="credit_limit_alert_view_order_form" model="ir.ui.view">
+            <field name="name">credit.limit.alert.view.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_term_id']" position="after">
+                    <!-- Add your fields or attributes here -->
+                    <field name="permitted_credit_limit" invisible="1"/><!--<field name="permitted_credit_limit" attrs="{'invisible': [('partner_id.credit_limit', '=', 0)]}"/>-->
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                    <!-- Add your fields or attributes here -->
+                    <atribute name="required">1</atribute>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                        <page name="credito" string="Credito">
+                            <group>
+                                <field name="credit_limit"/>
+                                <field name="credit_available"/>
+                                <field name="credit_partner"/>
+                            </group>
+
+                        </page>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

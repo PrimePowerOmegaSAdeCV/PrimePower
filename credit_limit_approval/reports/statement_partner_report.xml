@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report
+            string="Statement of accounts"
+            id="action_report_statement_partner"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="credit_limit_alert.statement_partner_report"
+            file="credit_limit_alert.statement_partner_report"
+        />
+        <template id="statement_partner_report">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="credit_limit_alert.statement_partner_docs"/>
+                </t>
+            </t>
+        </template>
+        <template id="external_layout_report_statemnt">
+            <t t-if="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id"></t>
+            </t>
+            <t t-if="not o or not 'company_id' in o">
+                <t t-set="company" t-value="res_company"></t>
+            </t>
+            <t t-call="credit_limit_alert.header_statemnt_partner" />
+            <t t-raw="0" />
+            <t t-call="credit_limit_alert.footer_statemnt_partner" />
+        </template>
+        <template id="header_statemnt_partner">
+            <div class="header">
+                <style type="text/css">
+                    .tg  {border-collapse:collapse;border-spacing:0;}
+                    .tg td{font-family:Arial, sans-serif;font-size:16px;padding:1px 1px;overflow:hidden;word-break:normal;}
+                    .tg th{font-family:Arial, sans-serif;font-size:16px;font-weight:normal;padding:1px 1px;overflow:hidden;word-break:normal;}
+                    .tg .tg-28bo{text-align:right;vertical-align:top}
+                    .tg .tg-28bo2{text-align:left;vertical-align:top}
+
+                </style>
+                <table class="tg" style="undefined;table-layout: fixed; width: 1020px">
+                    <colgroup>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                        <col style="width: 80px"/>
+                    </colgroup>
+                <tr>
+                    <th class="tg-28bo2" colspan="7">
+
+                        <strong><span t-field="company.name"/></strong><br/>
+                        <span t-field="company.partner_id.street"/>, <br/>
+                        <span t-field="company.partner_id.city"/>,<span t-field="company.partner_id.state_id"/>, <span t-field="company.partner_id.zip"/><br/>
+                        <span t-field="company.partner_id.country_id"/><br/>
+                        Telefono: <span t-field="company.partner_id.phone"/> <br/>
+                        Correo: <span t-field="company.partner_id.email"/> <br/>
+                        RFC: <span t-field="company.partner_id.vat"/><br/> <br/>
+
+                    </th>
+                    <th class="tg-28bo" colspan="5">
+                        <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo"
+                             style="max-height: 150px;"/>
+                    </th>
+                </tr>
+                </table>
+
+            </div>
+        </template>
+
+        <template id="statement_partner_docs">
+            <!--<t t-call="report.external_layout">-->
+            <t t-call="credit_limit_alert.external_layout_report_statemnt">
+
+                <div class="page">
+
+                    <t t-if="o and 'company_id' in o">
+                        <t t-set="company" t-value="o.company_id"></t>
+                    </t>
+                    <t t-if="not o or not 'company_id' in o">
+                        <t t-set="company" t-value="res_company"></t>
+                    </t>
+                    
+                    <style type="text/css">
+                        .tg  {border-collapse:collapse;border-spacing:0;}
+                        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:2px 2px;overflow:hidden;word-break:normal;}
+                        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:2px 2px;overflow:hidden;word-break:normal;}
+                        .tg .tg-0ord{text-align:right}
+                        .tg .tg-s6z2{text-align:center}
+                        .tg .tg-o24q{font-weight:bold;font-size:24px;text-align:center}
+                        .tg .tg-e3zv{font-weight:bold}
+                        .tg .tg-yw4l{vertical-align:top}
+                        .tg .tg-hgcj{font-weight:bold;text-align:center}
+                        .tg .tg-hgcjbot{font-weight:bold;text-align:center;border-style:solid;border-width:1px;border-right:0px;border-left:0px;border-top:0px}
+                        .tg .tg-34fq{font-weight:bold;text-align:right}
+                        .tg .tg-34fqbot{font-weight:bold;text-align:right;border-style:solid;border-width:1px;border-right:0px;border-left:0px;border-top:0px}
+                        .tg .tg-9hbo{font-weight:bold;vertical-align:top}
+                        .tg .tg-l2oz{font-weight:bold;text-align:right;vertical-align:top}
+                    </style>
+                    <table class="tg" style="undefined;table-layout: fixed; width: 979px">
+                        <colgroup>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                            <col style="width: 80px"/>
+                        </colgroup>
+                        <tr>
+                            <th class="tg-o24q" colspan="12">Estado de cuenta original</th>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e" colspan="12"><br/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-yw4l" colspan="6" rowspan="7">
+
+                                <span t-esc="partner.get('name')"/>, <br/>
+                                <span t-esc="partner.get('street')"/>, <br/>
+                                <span t-esc="partner.get('city')"/>, <span t-esc="partner.get('state_id')"/>, <span t-esc="partner.get('zip')"/> <br/>
+                                <span t-esc="partner.get('country_id')"/><br/>
+                                Telefono: <span t-esc="partner.get('phone')"/><br/>
+                                Correo: <span t-esc="partner.get('email')"/>
+                            </td>
+                            <td class="tg-e3zv" colspan="2">Código de cliente</td>
+                            <td class="tg-031e" colspan="4"><span t-esc="partner.get('ref')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-e3zv" colspan="2">Condiciones de pago</td>
+                            <td class="tg-031e" colspan="4"><span t-esc="partner.get('property_payment_term_id')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-e3zv" colspan="2">Moneda</td>
+                            <td class="tg-031e" colspan="4" style="color:red"><span t-esc="o.get('currency')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-e3zv" colspan="2">Desde fecha</td>
+                            <td class="tg-031e" colspan="4"><span t-esc="dates.get('start')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-e3zv" colspan="2">Hasta fecha</td>
+                            <td class="tg-031e" colspan="4"><span t-esc="dates.get('end')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-e3zv" colspan="2">Limite de crédito</td>
+                            <td class="tg-031e" colspan="4"><span t-field="company.currency_id.name"/> $<span t-esc="partner.get('credit_limit')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-e3zv" colspan="2">Credito disponible</td>
+                            <td class="tg-031e" colspan="4"><span t-field="company.currency_id.name"/> $<span t-esc="partner.get('credit_available')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e" colspan="12"><br/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-hgcjbot" colspan="2">Fecha</td>
+                            <td class="tg-hgcjbot" colspan="2">Factura / Pago</td>
+                            <td class="tg-hgcjbot" colspan="2">Vencido</td>
+                            <td class="tg-hgcjbot" colspan="2">Débito</td>
+                            <td class="tg-hgcjbot" colspan="2">Crédito</td>
+                            <td class="tg-34fqbot" colspan="2">Saldo</td>
+                        </tr>
+                        <tr t-foreach="o['report_lines']" t-as="line">
+                            <td class="tg-s6z2" colspan="2"><span t-esc="line.get('date')"/></td>
+                            <td class="tg-s6z2" colspan="2"><span t-esc="line.get('move_name')"/></td>
+                            <td class="tg-s6z2" colspan="2"><span t-esc="line.get('date_due')"/></td>
+                            <td class="tg-s6z2" colspan="2">
+                                <t t-if="line.get('type')=='invoice'">
+                                    $<span t-esc="line.get('amount_total')"/>
+                                </t>
+                                <t t-if="line.get('type')=='payment'">
+                                    $0.00
+                                </t>
+                            </td>
+                            <td class="tg-s6z2" colspan="2">
+                                <t t-if="line.get('type')=='payment'">
+                                    -$<span t-esc="line.get('amount_total')"/>
+                                </t>
+                                <t t-if="line.get('type')=='invoice'">
+                                    $0.00
+                                </t>
+                            </td>
+                            <td class="tg-0ord" colspan="2"><span t-esc="line.get('saldo')"/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e" colspan="12"><br/></td>
+                        </tr>
+                        <tr>
+                            <td class="tg-9hbo"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-yw4l"></td>
+                            <td class="tg-34fqbot" colspan="2">Saldo Total</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-031e"></td>
+                            <td class="tg-0ord" colspan="2">$<span t-esc="o.get('saldo')"/></td>
+                        </tr>
+                    </table>
+                </div>
+            </t>
+        </template>
+
+        <template id="footer_statemnt_partner">
+            <div class="footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <ul class="list-inline">
+                        <li>Page:</li>
+                        <li><span class="page"/></li>
+                        <li>/</li>
+                        <li><span class="topage"/></li>
+                    </ul>
+                </div>
+            </div>
+        </template>
+
+
+
+
+    </data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="my_credit_limit_wizard">
+        <field name="name">Confirming Sale Order When Sale is Credit</field>
+        <field name="model">sale.control.limit.wizard</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <span>Pedido de Venta de Crédito: Se enviará a aprobación por Crédito y Cobranza</span>
+                </group>
+                <footer>
+                    <button string="Cancel" special="cancel" class="oe_highlight"/>
+                 <button name="action_validation" string="Pedir aprobación" type="object" class="oe_highlight" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

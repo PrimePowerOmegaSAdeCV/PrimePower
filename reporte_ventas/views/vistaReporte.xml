@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+
+    <!-- Tree View of Customer-->
+    <record id="ventas_report_view" model="ir.ui.view">
+        <field name="name">ventas.report.tree.view</field>
+        <field name="model">report.ventas</field>
+        <field name="arch" type="xml">
+            <tree string="Informe de Ventas">
+                <field name="id" invisible="1"/>
+                <field name="partner_id"/>
+                <field name="pedido_de_venta"/>
+                <field name="estado_de_venta"/>
+                <field name="fecha_de_pedido" widget="date"/>
+                <field name="orden_de_compra"/>
+                <field name="product_id"/>
+                <field name="precio_unitario"/>
+                <field name="cantidad"/>
+                <field name="tiempo_serv"/>
+                <field name="fecha_prevista"/>
+                <field name="invoice_name"/>
+                <field name="fecha_factura"/>
+                <field name="envio_aprobado"/>
+                <field name="movimiento"/>
+                <field name="guia"/>
+                <field name="mensajeria"/>
+                <field name="fecha_envio"/>
+                <field name="recibido"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="ventas_report_tree_view" model="ir.ui.view">
+        <field name="name">ventas.report.form.view</field>
+        <field name="model">report.ventas</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet string="Reporte Ventas">
+                    <group>
+                    <group>
+                        <h2>Ventas</h2>
+                            <field name="id" invisible="1"/>
+
+                            <field name="partner_id"/>
+                            <field name="pedido_de_venta"/>
+                            <field name="fecha_de_pedido"/>
+                            <field name="orden_de_compra"/>
+                            <field name="product_id"/>
+                            <field name="precio_unitario"/>
+                            <field name="cantidad"/>
+                        <h2>Movimiento</h2>
+                           <field name="movimiento"/>
+                        <field name="guia"/>
+                        <field name="mensajeria"/>
+                        <field name="fecha_envio"/>
+                        <field name="recibido"/>
+                    </group>
+                    <group>
+                        <h2>Factura</h2>
+                        <field name="invoice_name"/>
+                        <field name="fecha_factura" />
+                            <field name="envio_aprobado"/>
+                    </group>
+                    </group>
+                </sheet>
+            </form>
+
+        </field>
+    </record>
+
+
+    <record id="view_open_report_ventas" model="ir.actions.act_window">
+        <field name="name">Menu de reporte de ventas</field>
+        <field name="res_model">report.ventas</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click here to create!
+            </p>
+        </field>
+    </record>
+    <!--    -->
+    <menuitem name="Reporte de Ventas" id="Menu_principal_reporte_ventas" parent="sale.sale_menu_root" sequence="6"/>
+    <menuitem name="Reporte de Ventas" id="Menu_secundario_reporte_ventas" parent="Menu_principal_reporte_ventas"
+              action="view_open_report_ventas"
+              sequence="6"/>
+
+</odoo>
