@@ -46,7 +46,6 @@ class reporte_ventas(models.Model):
     guia = fields.Char(string="Guía")
     mensajeria = fields.Many2one('delivery.carrier', string="Mensajeria")
     fecha_envio = fields.Date(string="Fecha de envío")
-    recibido = fields.Boolean(string="Recibido por cliente")
 
     #################################################################
 
@@ -59,7 +58,6 @@ CREATE OR REPLACE VIEW {} AS (
           sp.name,
           sp.carrier_tracking_ref as guia,
           sp.carrier_id as mensajeria,
-          sp.recibido as recibido,
           spt.code
    FROM stock_picking sp
           Left join stock_picking_type spt on sp.picking_type_id = spt.id and spt.code = 'outgoing'
@@ -82,7 +80,6 @@ CREATE OR REPLACE VIEW {} AS (
    sml.reference as movimiento,
         (SELECT guia FROM moves WHERE moves.picking_id = sml.picking_id) as guia,
         (SELECT mensajeria FROM moves WHERE moves.picking_id = sml.picking_id) as mensajeria,
-        (SELECT recibido FROM moves WHERE moves.picking_id = sml.picking_id) as recibido
  FROM sale_order so
    Left join account_move_line aml on aml.id in (SELECT invoice_line_id FROM sale_order_line_invoice_rel WHERE order_line_id = sl.id )
    Left join stock_move_line sml on so.name = sml.stock_move_origin and sl.id = sml.move_sale_line_id
