@@ -79,7 +79,7 @@ CREATE OR REPLACE VIEW {} AS (
    --  Stock picking por medio de stock moves lines type_id y tabla (moves) de arriba.
    sml.reference as movimiento,
         (SELECT guia FROM moves WHERE moves.picking_id = sml.picking_id) as guia,
-        (SELECT mensajeria FROM moves WHERE moves.picking_id = sml.picking_id) as mensajeria,
+        (SELECT mensajeria FROM moves WHERE moves.picking_id = sml.picking_id) as mensajeria
  FROM sale_order so
    Left join account_move_line aml on aml.id in (SELECT invoice_line_id FROM sale_order_line_invoice_rel WHERE order_line_id = sl.id )
    Left join stock_move_line sml on so.name = sml.stock_move_origin and sl.id = sml.move_sale_line_id
