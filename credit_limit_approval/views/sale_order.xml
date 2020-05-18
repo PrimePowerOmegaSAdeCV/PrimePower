@@ -14,12 +14,12 @@
 			</xpath>
 			<xpath expr="//button[@name='action_quotation_send']" position="after">
 				<button name="accept_approval" string="Aprobar Credito" type="object" class="oe_highlight"
-						attrs="{'invisible':['|',('type_id','=',2),('state','!=','send_for_approval')]}"
+						attrs="{'invisible':[('state','!=','send_for_approval')]}"
 						groups="credit_limit_approval.credit_approval"/>
 			</xpath>
 			<xpath expr="//button[@name='accept_approval']" position="after">
 				<button name="reject_approval" string="Rechazar Credito" type="object" class="oe_highlight"
-						attrs="{'invisible':['|',('type_id','=',2),('state','!=','send_for_approval')]}"
+						attrs="{'invisible':[('state','!=','send_for_approval')]}"
 						groups="credit_limit_approval.credit_approval"/>
 			</xpath>
 			<xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">
