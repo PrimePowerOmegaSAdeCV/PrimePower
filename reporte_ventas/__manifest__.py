@@ -19,7 +19,7 @@
     # any module necessary for this one to work correctly
      "depends": [
 
-        'sale','xmarts_info_envio','stock','account','sale_delivery_block'
+        'sale','stock','account'
 
     ],
 
