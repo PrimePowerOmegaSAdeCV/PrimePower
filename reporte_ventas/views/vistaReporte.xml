@@ -17,16 +17,11 @@
                 <field name="product_id"/>
                 <field name="precio_unitario"/>
                 <field name="cantidad"/>
-                <field name="tiempo_serv"/>
-                <field name="fecha_prevista"/>
                 <field name="invoice_name"/>
                 <field name="fecha_factura"/>
-                <field name="envio_aprobado"/>
                 <field name="movimiento"/>
                 <field name="guia"/>
                 <field name="mensajeria"/>
-                <field name="fecha_envio"/>
-                <field name="recibido"/>
 
             </tree>
         </field>
@@ -53,14 +48,11 @@
                            <field name="movimiento"/>
                         <field name="guia"/>
                         <field name="mensajeria"/>
-                        <field name="fecha_envio"/>
-                        <field name="recibido"/>
                     </group>
                     <group>
                         <h2>Factura</h2>
                         <field name="invoice_name"/>
                         <field name="fecha_factura" />
-                            <field name="envio_aprobado"/>
                     </group>
                     </group>
                 </sheet>
