@@ -9,8 +9,14 @@
     'data': [
         'views/res_partner_view.xml',
         'views/sale_order_view.xml',
+<<<<<<< Updated upstream
         'wizards/credit_wizard_view.xml',
         'views/sale_order.xml',
+=======
+       'wizards/partnert_statement_wizard_view.xml',
+        'views/sale_order.xml',
+        'security/groups.xml',
+>>>>>>> Stashed changes
     ],
     'installable': True,
 }

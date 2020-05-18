@@ -7,14 +7,21 @@ class CreditLimitAlertResPartner(models.Model):
     credit_limit = fields.Monetary('Limite de credito')
     credit_available = fields.Monetary('Credito disponible', compute='_compute_amount_credit_available')
 
+<<<<<<< Updated upstream
     @api.one
+=======
+>>>>>>> Stashed changes
     @api.depends('credit_limit','credit_available','credit')
     def _compute_amount_credit_available(self):
 
         self.credit_available = self.credit_limit - self.credit
 
         pass
+<<<<<<< Updated upstream
     @api.multi
+=======
+
+>>>>>>> Stashed changes
     def call_wizard(self):
         wizard_form = self.env.ref('credit_limit_alert.credit_limit_alert_partner_statement_wizard_view', False)
         view_id = self.env['credit_limit_alert.partner_statement_wizard']

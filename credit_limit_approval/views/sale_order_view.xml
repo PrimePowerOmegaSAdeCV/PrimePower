@@ -16,9 +16,15 @@
                     <atribute name="required">1</atribute>
                 </xpath>
                 <xpath expr="//notebook" position="inside">
+<<<<<<< Updated upstream
                         <page name="credito" string="Credito">
                             <group>
                                 <field name="credit_limit"/>
+=======
+                        <page name="credito" string="Credito" groups="credit_limit_approval.credit_approval">
+                            <group>
+                                <field name="credit_limit" />
+>>>>>>> Stashed changes
                                 <field name="credit_available"/>
                                 <field name="credit_partner"/>
                             </group>
