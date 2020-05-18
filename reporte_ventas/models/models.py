@@ -59,7 +59,6 @@ CREATE OR REPLACE VIEW {} AS (
           sp.name,
           sp.carrier_tracking_ref as guia,
           sp.carrier_id as mensajeria,
-          sp.fecha_envio as fecha_envio,
           sp.recibido as recibido,
           spt.code
    FROM stock_picking sp
@@ -83,7 +82,6 @@ CREATE OR REPLACE VIEW {} AS (
    sml.reference as movimiento,
         (SELECT guia FROM moves WHERE moves.picking_id = sml.picking_id) as guia,
         (SELECT mensajeria FROM moves WHERE moves.picking_id = sml.picking_id) as mensajeria,
-        (SELECT fecha_envio FROM moves WHERE moves.picking_id = sml.picking_id) as fecha_envio,
         (SELECT recibido FROM moves WHERE moves.picking_id = sml.picking_id) as recibido
  FROM sale_order so
    Left join account_move_line aml on aml.id in (SELECT invoice_line_id FROM sale_order_line_invoice_rel WHERE order_line_id = sl.id )
