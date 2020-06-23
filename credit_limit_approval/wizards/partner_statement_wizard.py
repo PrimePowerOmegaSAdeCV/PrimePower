@@ -12,7 +12,8 @@ class PosOrderLineWizardReport(models.TransientModel):
     date_end = fields.Date('Fecha de fin')  # ,y
     sale_id = fields.Many2one('sale.order', 'Venta')
     credit_available = fields.Float(string="Credito disponible",)
-
+    invalid_limit = fields.Boolean()
+    invalid_invoice = fields.Boolean()
 
     def send_for_approval(self):
         context = dict(self.env.context)

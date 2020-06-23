@@ -10,11 +10,16 @@
                 <group col="4">
                     <field name="partner_id" readonly="True"/>
                     <field name="sale_id" readonly="True"/>
+                    <field name="invalid_limit" invisible="True"/>
+                    <field name="invalid_invoice" invisible="True"/>
                   <!--  <field name="credit_available" readonly="True"/>-->
                 </group>
                 <div>
-                   <h3>
-                     El Credito disponible del cliente supera el credito establecido, se requiere aprobacion del departamente de Credito. Favor de enviar solicitud del pedido de venta.
+                   <h3 attrs="{'invisible': [('invalid_limit', '=', False)]}">
+                     El Credito disponible del cliente supera el credito establecido, se requiere aprobacion del departamento de Credito. Favor de enviar solicitud del pedido de venta.
+                   </h3>
+                    <h3 attrs="{'invisible': [('invalid_invoice', '=', False)]}">
+                     El Cliente tiene una Factura vencida sin pagar.
                    </h3>
                 </div>
                 <footer>

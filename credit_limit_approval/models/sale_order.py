@@ -38,15 +38,27 @@ class SaleOrder(models.Model):
     def action_confirm(self):
 
         real_credit = self.partner_id.commercial_partner_id.credit_available - self.amount_total
+        invoice_expired = self.env['account.move'].search_count([
+            ('invoice_payment_state', '!=', 'paid'),
+            ('state', '=', 'posted'),
+            ('partner_id', '=', self.partner_id.id),
+            ('type', '=', 'out_invoice'),
+            # ('invoice_date_due', '>=', fields.Date.context_today(self).date()),]) > 0
+            ('invoice_date_due', '<=', fields.Date.today())]) > 0
 
-        if not self.permitted_credit_limit and real_credit <=0 and self.payment_term_id.id != 1:
+        credit_limit = not self.permitted_credit_limit and real_credit <= 0 and self.payment_term_id.id != 1
+
+        if credit_limit or invoice_expired:
             action = self.env.ref('credit_limit_approval.credit_limit_alert_wizard_action')
             result = action.read()[0]
-            result['context'] = {
+            vals = {
                 'default_sale_id': self.id,
                 'default_partner_id': self.partner_id.id,
                 'default_credit_available': self.partner_id.commercial_partner_id.credit_available,
+                'default_invalid_limit': credit_limit,
+                'default_invalid_invoice': invoice_expired,
             }
+            result['context'] = vals
             return result
         else:
             res = super(SaleOrder, self).action_confirm()
