@@ -43,6 +43,28 @@ class SaleOrderLine(models.Model):
     product_values_ids = fields.One2many('returned.values','sale_line_id', string="Valores del producto", copy=True)
     date_planned = fields.Datetime(string='Date planned', invisible=True, compute="_get_date_planned")
 
+    def get_product_attributes_table(self):
+        for record in self:
+            if not record.is_configurable_product:
+                return False
+            selection_records = record.product_no_variant_attribute_value_ids.filtered(lambda x: not x.is_custom)
+            custom_values = record.product_custom_attribute_value_ids
+            product_attributes = record.product_template_id.attribute_line_ids.mapped('attribute_id')
+            attributes={str(line.id):"" for line in product_attributes}
+            # attributes = {}
+            for selection in selection_records:
+                attributes[str(selection.attribute_id.id)] = selection.name
+            if custom_values:
+                for custom in custom_values:
+                    attributes[str(custom.custom_product_template_attribute_value_id.attribute_id.id)] = custom.custom_value or " "
+            # names = {line.name: attributes.get(str(line.id)," ") for line in product_attributes}
+            categories = self.env['product.attribute'].fields_get().get(
+                'category').get('selection')
+            sections = {}
+            for category, name in categories:
+                sections[name]= {line.name: attributes.get(str(line.id), " ") for line in product_attributes if line.category == category}
+            return sections
+
     @api.depends('customer_lead')
     def _get_date_planned(self):
         for line in self:
@@ -74,7 +96,7 @@ class SaleOrderLine(models.Model):
                 self.update({'product_values_ids' : list_vals})
         return vals
         
-    
+
         
     # def create(self, values):
     #     vals = super(SaleOrderLine, self).create(values)
@@ -104,6 +126,6 @@ class SaleOrderLine(models.Model):
     #             option_id = options.create(values)
     #
     #     return vals
-            
+
         
         

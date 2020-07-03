@@ -1,0 +1,736 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* primepower_sales_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e-20200622\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-03 14:46+0000\n"
+"PO-Revision-Date: 2020-07-03 14:46+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: primepower_sales_extended
+#: model:ir.actions.report,print_report_name:primepower_sales_extended.action_report_prime_delivery
+msgid "'Orden de entrega - %s'%(object.name)"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.actions.report,print_report_name:primepower_sales_extended.action_report_workorder
+#: model:ir.actions.report,print_report_name:primepower_sales_extended.action_report_workorder_mrp
+msgid "'Work Order - %s' % (object.name)"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid ""
+"<b>\n"
+"                                                Valores\n"
+"                                            </b>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid ""
+"<span class=\"col-6\">\n"
+"                            <strong>Notas de Salida</strong>\n"
+"                        </span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Almacen:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Cliente:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Comercial:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Contacto</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Fecha Confirmacion:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Metodo de Envio:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">No. Pedido:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Notas</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Oportunidad:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Orden de Compra:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Pago de Flete:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Telefono</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<span class=\"col-6\">Tipo de entrega:</span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid ""
+"<span>\n"
+"                                <strong>Destinatario:</strong>\n"
+"                            </span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid ""
+"<span>\n"
+"                                <strong>Remitente:</strong>\n"
+"                            </span>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Almacen:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Cliente:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Comercial:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Direccion Entrega:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Fecha Confirmacion:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Flete:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">No. Partidas:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">No. Pedido:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Oportunidad:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-6\">Orden de Compra:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-xs-6\">Cantidad a producir:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-xs-6\">Ord. Manufactura:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-xs-6\">Origen:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-xs-6\">Producto:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-xs-6\">Responsable:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-xs-6\">Tipo de operacion:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong class=\"col-xs-6\">Vigente desde:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Almacen:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Cliente:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Comercial:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Direccion Entrega:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Fecha Confirmacion:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Flete:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<strong>HC Work Order</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>No. Partidas:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>No. Pedido:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Oportunidad:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+msgid "<strong>Orden de Compra:</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "<strong>Referencia de Envio</strong>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<u>Pred. del cliente</u>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "<u>Pred. del producto</u>"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Cantidad"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__sales_product_template_values__field_type__boleano
+msgid "Casilla de verificacion"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_product_attribute__category
+msgid "Categoría"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__partner_id
+msgid "Cliente"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__product_attribute__category__product_config
+msgid "Configuración de Producto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_res_partner
+msgid "Contact"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_picking_type__contact_id
+msgid "Contacto de almacen"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__create_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__create_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__create_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__create_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__create_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values__create_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer__create_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__create_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__create_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__create_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__create_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__create_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values__create_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer__create_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sale_order_line__date_planned
+msgid "Date planned"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__name
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Dato"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__display_name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__display_name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__display_name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__display_name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__display_name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values__display_name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer__display_name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "Entrega"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__product_attribute__category__client_specification
+msgid "Especificación de Cliente"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__product_attribute__category__product_specification
+msgid "Especificación de Producto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Fecha Entrega"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "Fecha:"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values__id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer__id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type__id
+msgid "ID"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__product_attribute__category__product_info
+msgid "Información de Producto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values____last_update
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values____last_update
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template____last_update
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template____last_update
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values____last_update
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values____last_update
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer____last_update
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__write_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__write_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__write_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__write_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__write_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values__write_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer__write_uid
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__write_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__write_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__write_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__write_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__write_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values__write_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer__write_date
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__sale_line_id
+msgid "Linea de pedido de venta"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__template_line_id
+msgid "Linea de plantilla"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__sales_product_template_values__field_type__linea_texto
+msgid "Linea de texto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+msgid "Lote/Numero de serie"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:res.groups,name:primepower_sales_extended.group_sales_template_manager
+msgid "Manager: Sales template"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_product_category__show_partner_values
+msgid "Mostrar valores del cliente en WO"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__sales_product_template_values__field_type__multi-seleccion
+msgid "Multi Seleccion"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__name
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_payer__name
+msgid "Nombre"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sale_order__shipping_notes
+msgid "Notas de salida de almacen"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Numero de Serie"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.actions.report,name:primepower_sales_extended.action_report_prime_delivery
+msgid "Orden de entrega"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sale_order__shipping_payer_id
+msgid "Pago de flete"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__sales_product_template_values__field_type__parrafo
+msgid "Parrafo"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Partida"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_stock_picking_type
+msgid "Picking Type"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__template_id
+msgid "Plantilla de producto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_product_category__sale_template_id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_product_product__sale_template_id
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_product_template__sale_template_id
+msgid "Plantilla de ventas"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_product_product__default_template_ids
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_product_template__default_template_ids
+msgid "Plantilla pred. de ventas"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__selection_default
+msgid "Predeterminado"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_product_product
+msgid "Product"
+msgstr "Producto"
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_product_attribute
+msgid "Product Attribute"
+msgstr "Atributo de producto"
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_product_category
+msgid "Product Category"
+msgstr "Categoría de producto"
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__product_tmpl_id
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_prime_delivery
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_document
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Producto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__rpo_default
+msgid "RPO"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_sale_order
+msgid "Sales Order"
+msgstr "Pedido de venta"
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de ventas"
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__sequence
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__sequence
+msgid "Secuencia"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields.selection,name:primepower_sales_extended.selection__sales_product_template_values__field_type__seleccion
+msgid "Seleccion"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Sin plantillas"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:res.groups,comment:primepower_sales_extended.group_sales_template_user
+msgid ""
+"The user will only have acces to basic features of sales template module."
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_stock_shipping_type__name
+msgid "Tipo"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__field_type
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__field_type
+msgid "Tipo de campo"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sale_order__shipping_type_id
+msgid "Tipo de entrega"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:res.groups,name:primepower_sales_extended.group_sales_template_user
+msgid "User: Sales template"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_partner_mrp_values__value
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__boolean
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__char
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__selection
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__text
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__valor
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_template_selection_values__name
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Valor"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__multi_selection_default
+msgid "Valor predeterminado"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__multi_selection
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_default_template__values
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template__values_ids
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Valores"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_res_partner__mrp_values_ids
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_res_users__mrp_values_ids
+msgid "Valores de fabricacion"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sales_product_template_values__selection_values
+msgid "Valores de seleccion"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_sale_order_line__product_values_ids
+msgid "Valores del producto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model_terms:ir.ui.view,arch_db:primepower_sales_extended.report_workorder_mrp_document
+msgid "Valores predeterminados del producto"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model.fields,field_description:primepower_sales_extended.field_returned_values__values_ids
+msgid "Values selection"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.actions.report,name:primepower_sales_extended.action_report_workorder
+#: model:ir.actions.report,name:primepower_sales_extended.action_report_workorder_mrp
+msgid "Work Order"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_partner_mrp_values
+msgid "partner.mrp.values"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_returned_values
+msgid "returned.values"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_sales_product_default_template
+msgid "sales.product.default.template"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_sales_product_template
+msgid "sales.product.template"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_sales_product_template_values
+msgid "sales.product.template.values"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_sales_template_selection_values
+msgid "sales.template.selection.values"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_stock_shipping_payer
+msgid "stock.shipping.payer"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:ir.model,name:primepower_sales_extended.model_stock_shipping_type
+msgid "stock.shipping.type"
+msgstr ""
+
+#. module: primepower_sales_extended
+#: model:res.groups,comment:primepower_sales_extended.group_sales_template_manager
+msgid ""
+"tThe user will have acces to all the features of sales template module."
+msgstr ""

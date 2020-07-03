@@ -118,10 +118,12 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <!--<div class="row" t-if="doc.contact_partner_id">-->
-                    <!--    <strong class="col-xs-6">Contact Customer:</strong>-->
-                    <!--<span class="col-xs-6" t-field="doc.contact_partner_id.name"/>-->
-                    <!--</div>-->
+                    <div class="row" t-if="doc.contact_partner_id">
+                        <div class="col-6">
+                        <strong>Contact Customer:</strong>
+                        </div>
+                    <div class="col-6" t-field="doc.contact_partner_id.name"/>
+                    </div>
                     <div class="row" t-if="doc.validity_date and doc.state in ['draft', 'sent']">
                         <div class="col-6">
                             <strong>Expiration Date:</strong>
@@ -203,10 +205,11 @@
                                     <span t-field="line.product_id.default_code"/>
                                 </td>
                                 <td name="td_name">
-                                    <span t-field="line.name"/>
+                                    <span t-field="line.product_id.name"/> <br/>
+                                    <span t-field="line.product_id.description_sale"/>
                                 </td>
                                 <td name="td_time">
-                                    <span/>
+                                    <span t-field="line.delivery_time_id"/>
                                 </td>
                                 <td name="td_priceunit" class="text-right">
                                     <span t-field="line.price_unit"/>
@@ -299,10 +302,10 @@
                     </div>
                 </div>
             </div>
-            <div class="clearfix">
-                        <table class="table table-condensed">
-                            <tr style="background-color:#d3d9de;">
-                                <td>Relevant information</td>
+            <div class="clearfix" >
+                        <table class="table table-sm">
+                            <tr>
+                                <td id="section-title">Relevant information</td>
                             </tr>
                             <tr>
                                 <td>
@@ -320,7 +323,7 @@
                             </div>
                         </div>
                         <t t-set="optional_product_images" t-value="False"/>
-                        <t t-foreach="doc.sale_order_option_ids" t-as="l">
+
                             <table class="table table-condensed" style="page-break-inside:avoid;">
                                 <thead>
                                     <tr>
@@ -339,6 +342,7 @@
                                     </tr>
                                </thead>
                               <tbody>
+                                  <t t-foreach="doc.sale_order_option_ids" t-as="l">
                                 <tr>
                                 <t t-if="l.mapped('product_id.product_template_image_ids')">
                                     <t t-set="optional_product_images" t-value="True"/>
@@ -375,9 +379,10 @@
                                                 <!--    <span t-field="l.price_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>-->
                                                 <!--</td>-->
                                             </tr>
+                                    </t>
                               </tbody>
                                </table>
-                               </t>
+
                 </t>
 
 
@@ -409,13 +414,13 @@
                     <t t-set="specs" t-value="doc.order_line.mapped('product_id.product_specification_id')"/>
 
                     <t t-if="specs">
-                        <div class="row">
+                        <div class="row" style="page-break-inside:avoid">
                             <div class="col-12">
-                                <div id="section-title">Product Specifications: </div>
+                                <div id="section-title" style="page-break-inside:avoid">Product Specifications: </div>
                             </div>
                         </div>
 
-                        <table class="table table-sm">
+                        <table class="table table-sm" style="page-break-inside:avoid">
                             <thead>
                                 <tr>
                                     <th>Application</th>
