@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="prime_purchase_order" inherit_id="purchase.report_purchaseorder">
+        <xpath expr="//t[@t-call='purchase.report_purchaseorder_document']" position="replace">
+            <t t-call="pp_purchase_order.prime_report_purchaseorder_document" t-lang="o.partner_id.lang"/>
+        </xpath>
+    </template>
+
+    <template id="prime_report_purchaseorder_document">
+            <t t-call="pp_purchase_order.custom_external_layout">
+                <div class="page">
+            <br/>
+            <style>
+                          .table-pp td{
+                          background-color:#000080;border:3px solid white;
+                          color:white;
+                          }
+                      </style>
+            <div class="row">
+                <div class="col-6">
+                    <div style="background-color:#000080;color:white;border:1px solid black;border-bottom:none;" class="text-center">
+                        <strong>Proveedor</strong>
+                    </div>
+                    <div style="border:1px solid black;min-height:120px;">
+                        <span t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;],                               &quot;no_marker&quot;: true}"/>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="background-color:#000080;color:white;border:1px solid black;border-bottom:none;" class="text-center">
+                        <strong>Consignatario</strong>
+                    </div>
+                    <div style="border:1px solid black;min-height:120px;">
+                        <span t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;],                               &quot;no_marker&quot;: true}"/>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <table style="width:100%">
+                <tr class="text-center table-pp">
+                    <td style="border-left:none;">
+                        <strong>Entrega</strong>
+                    </td>
+                    <td>
+                        <strong>Condiciones</strong>
+                    </td>
+                    <td>
+                        <strong>Vía de embarque </strong>
+                    </td>
+                    <td>
+                        <strong>Requisitante</strong>
+                    </td>
+                    <td style="border-right:none;">
+                        <strong>Depto. Solicitante</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span t-field="o.date_planned"/></td>
+                    <td><span t-field="o.payment_term_id.name"/></td>
+                    <td>
+<!--                        <span t-field="o.date_planned"/>-->
+                    </td>
+                    <td><span t-field="o.x_studio_field_8eNy7"/></td>
+                    <td><span t-field="o.x_studio_field_8eNy7.department_id.name"/></td>
+                </tr>
+            </table>
+            <table style="width:100%">
+                <tr class="text-center table-pp">
+                    <td style="border-left:none;">
+                        <strong>Artículo</strong>
+                    </td>
+                    <td>
+                        <strong>Nombre</strong>
+                    </td>
+                    <td>
+                        <strong>U.med.</strong>
+                    </td>
+                    <td>
+                        <strong>Unidades</strong>
+                    </td>
+                    <td>
+                        <strong>Precio</strong>
+                    </td>
+                    <!--<td><strong>Descto.</strong></td>-->
+                    <td style="border-right:none;">
+                        <strong>Importe</strong>
+                    </td>
+                </tr>
+                <tr t-foreach="o.order_line" t-as="line">
+                    <t t-if="not line.display_type">
+                        <td>
+                            <span t-field="line.id"/>
+                        </td>
+                        <td>
+                            <span t-field="line.name"/>
+                        </td>
+                        <td>
+                            <span t-field="line.product_uom"/>
+                        </td>
+                        <td class="text-center">
+                            <span t-field="line.product_qty" t-options-widget="'integer'"/>
+                        </td>
+                        <td  class="text-center">
+                            <span t-field="line.price_unit"/>
+                        </td>
+                        <!--<td><span t-field="line.product_uom"/></td>-->
+                        <td class="text-right">
+                            <span t-field="line.price_subtotal"/>
+                        </td>
+                    </t>
+                    <t t-if="line.display_type">
+                        <td colspan="99">
+                            <span t-field="line.name"/>
+                        </td>
+                    </t>
+                </tr>
+            </table>
+            <br/>
+            <div id="total" class="row">
+                <div class="col-5">
+                    <span t-esc="o.amount_in_letter()"/>
+                </div>
+                <div class="col-4 offset-3">
+                    <table class="table table-sm">
+                        <tr class="border-black">
+                            <td name="td_subtotal_label">
+                                <strong>Subtotal</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td name="td_taxes_label">I.V.A</td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                            </td>
+                        </tr>
+                        <tr class="border-black o_total">
+                            <td name="td_amount_total_label">
+                                <strong>Total</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+            </t>
+    </template>
+
+    <template id="custom_external_layout">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+
+        <t t-call="pp_purchase_order.custom_external_layout_standard_purchase"><t t-raw="0"/></t>
+    </template>
+
+    <template id="pp_purchase_order.custom_external_layout_standard_purchase">
+        <style>
+            .datos td, .datos tr {
+                border:1px solid black;
+            }
+        </style>
+        <div class="header">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 style="color:#000080;font-size:38px"><strong>Orden de compra</strong></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4" name="company_address">
+                    <div t-field="company.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+                    <div>RFC: <span t-field="company.vat"/> </div>
+                </div>
+                <div class="col-4 offset-4">
+                    <table class="datos" style="width:100%">
+                        <tr style="background-color:#000080;border:1px solid black;" class="text-center">
+                            <td style="border:1px solid black;">
+                                <strong style="color:white;">Fecha</strong>
+                            </td>
+                            <td style="border:1px solid black;">
+                                <strong style="color:white;">Folio</strong>
+                            </td>
+                        </tr>
+                        <tr style="border:1px solid black;">
+                            <td class="text-center" style="border:1px solid black;">
+                                <strong><span t-field="o.date_order" t-options-widget="'date'"/></strong>
+                            </td>
+                            <td style="border:1px solid black;">
+                                <strong><span t-field="o.name"/></strong>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="article o_report_layout_standard" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer o_standard_footer"/>
+    </template>
+
+</odoo>
