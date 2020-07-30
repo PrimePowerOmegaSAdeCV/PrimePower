@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_template_image_wizard" model="ir.ui.view">
+        <field name="name">product_template_image_wizard</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <form string="Dibujo de Producto" edit="false" create="false" delete="false">
+                <sheet>
+                    <div class="workorder_pdf" name="studio_div_656534">
+                        <field nolabel="1" filename="x_studio_field_XgjD8_filename" name="x_studio_field_XgjD8"
+                               string="Dibujo" widget="pdf_viewer"/>
+                    </div>
+                    <field invisible="1" name="x_studio_field_XgjD8_filename"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

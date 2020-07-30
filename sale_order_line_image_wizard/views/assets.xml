@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+    Copyright 2018 Simone Orsi - Camptocamp SA
+    License LGPLv3.0 or later (https://www.gnu.org/licenses/lgpl-3.0.en.html).
+-->
+<odoo>
+    <template
+        id="assets_backend"
+        name="product_image_widget assets"
+        inherit_id="web.assets_backend"
+    >
+        <xpath expr="." position="inside">
+            <script
+                type="text/javascript"
+                src="/sale_order_line_image_wizard/static/src/js/product_image.js"
+            />
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,16 @@
+<templates>
+    <div t-name="sale_order_line_image_wizard.image_wizard">
+        <div t-att-class="!widget.data.has_image ? 'invisible' : ''">
+            <a tabindex="0" class="fa fa-file-o text-primary"/>
+        </div>
+    </div>
+
+    <div t-name="sale_order_line_image_wizard.DetailPopOver">
+
+        <button t-if="data.has_image" class="text-left btn btn-link action_open_image"
+            type="button">
+            <i class="fa fa-fw o_button_icon fa-arrow-right"></i>
+            Ver Imagen
+        </button>
+    </div>
+</templates>
