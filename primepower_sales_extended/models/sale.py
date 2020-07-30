@@ -63,6 +63,9 @@ class SaleOrderLine(models.Model):
             sections = {}
             for category, name in categories:
                 sections[name]= {line.name: attributes.get(str(line.id), " ") for line in product_attributes if line.category == category}
+            if record.product_template_id.default_template_ids:
+                fname = _('Fabrication')
+                sections[fname] = {line.name : line.values for line in record.product_template_id.default_template_ids}
             return sections
 
     @api.depends('customer_lead')
