@@ -6,15 +6,6 @@
             <t t-call="web.external_layout">
                 <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
                  <div class="page">
-                    <style>
-                        .attribute th, .attribute td {
-                        padding: 0.2rem;
-                        vertical-align: top;
-                        border-top: 1px solid #dee2e6;
-                    }
-                    .attribute thead{
-                        border-bottom: 3px solid #a7a7a7;}
-                    </style>
                     <p>
                         <strong>HC Work Order</strong>
                     </p>
@@ -63,13 +54,8 @@
                                 <div class="col-6">
                                     <strong>Direccion Entrega:</strong>
                                 </div>
-                                <div class="col-6">
-                                    <span t-field="doc.partner_shipping_id.city"/> |
-
-
-
-                                    <span t-field="doc.partner_shipping_id.state_id.name"/>
-                                </div>
+                                <span t-field="doc.partner_shipping_id.city"/> |
+                                <span t-field="doc.partner_shipping_id.state_id.name"/>
                             </div>
                             <div class="row">
                                 <div class="col-6">
@@ -84,151 +70,108 @@
                         </div>
                     </div>
                     <t t-set="partida" t-value="0"/>
-                    <t t-foreach="doc.order_line" t-as="line">
-                        <table  class="table">
-                            <t t-set="partida" t-value="partida+1"/>
-                            <thead>
+                    <table t-foreach="doc.order_line" t-as="line" class="table">
+                        <t t-set="partida" t-value="partida+1"/>
+                        <thead>
+                            <tr>
+                                <th style="width:10%">Partida</th>
+                                <th style="width:60%">Producto</th>
+                                <th style="width:15%">Cantidad</th>
+                                <th style="width:15%">Fecha Entrega</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span t-esc="partida"/>
+                                </td>
+                                <th>
+                                    <span t-field="line.product_id.display_name"/>
+                                </th>
+                                <td>
+                                    <span t-field="line.product_uom_qty"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.date_planned"/>
+                                </td>
+                            </tr>
+                            <t t-if="line.product_values_ids">
+                                <t t-set="header" t-value="line.product_id.sale_template_id and line.product_id.sale_template_id.name or line.product_id.categ_id.sale_template_id.name"/>
                                 <tr>
-                                    <th style="width:10%">Partida</th>
-                                    <th style="width:60%">Producto</th>
-                                    <th style="width:15%">Cantidad</th>
-                                    <th style="width:15%">Fecha Entrega</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <span t-esc="partida"/>
-                                    </td>
-                                    <th>
-                                        <span t-field="line.product_id.display_name"/>
-                                    </th>
-                                    <td>
-                                        <span t-field="line.product_uom_qty"/>
-                                    </td>
-                                    <td>
-                                        <span t-field="line.date_planned"/>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <t t-set="attributes" t-value="line.get_product_attributes_table()"/>
-                        <t t-if="attributes">
-                            <t t-set="category" t-value ="attributes.items()"/>
-                            <!--<t t-esc="attributes" />-->
-                            <t t-foreach="category" t-as="items">
-                                <t t-if="items[1]">
-                                    <br/>
-                                    <table class="attribute" style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th  style="width:45%">
-                                                    <b>
-                                                        <t t-esc="items[0]" />
-                                                    </b>
-                                                </th>
-                                                <th  style="width:55%">
-                                                    <b>
-                                                Valores
-                                            </b>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <t t-foreach="items[1].items()" t-as="att">
+                                    <thead>
+                                        <tr>
+                                            <th/>
+                                            <th>
+                                                <u>
+                                                    <t t-esc="header"/>
+                                                </u>
+                                            </th>
+                                            <th>Valores</th>
+                                            <th>Numero de Serie</th>
+                                        </tr>
+                                    </thead>
+                                    <tr t-foreach="line.product_values_ids" t-as="values">
+                                        <td style="background-color:#ffffff"/>
+                                        <td class="text-right">
+                                            <span t-field="values.name"/>
+                                        </td>
+                                        <td class="text-left">
+                                            <span t-field="values.valor"/>
+                                        </td>
+                                        <td style="background-color:#ffffff"/>
+                                    </tr>
+                                    <t t-if="line.product_id.default_template_ids">
+                                        <tr>
+                                            <thead>
                                                 <tr>
-                                                    <td>
-                                                        <b>
-                                                            <span t-esc="att[0]"/>
-                                                        </b>
-                                                    </td>
-                                                    <td>
-                                                        <span t-esc="att[1]"/>
-                                                    </td>
+                                                    <th/>
+                                                    <th>
+                                                        <u>Pred. del producto</u>
+                                                    </th>
+                                                    <th>Valores</th>
+                                                    <th/>
                                                 </tr>
-                                            </t>
-                                        </tbody>
-                                    </table>
-                                </t>
+                                            </thead>
+                                        </tr>
+                                        <tr t-foreach="line.product_id.default_template_ids" t-as="prod">
+                                            <td style="background-color:#ffffff"/>
+                                            <td class="text-right">
+                                                <span t-field="prod.name"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="prod.values"/>
+                                            </td>
+                                            <td style="background-color:#ffffff"/>
+                                        </tr>
+                                    </t>
+                                    <t t-if="line.order_id.partner_id.mrp_values_ids and line.product_id.categ_id.show_partner_values">
+                                        <tr>
+                                            <thead>
+                                                <tr>
+                                                    <th/>
+                                                    <th>
+                                                        <u>Pred. del cliente</u>
+                                                    </th>
+                                                    <th>Valores</th>
+                                                    <th/>
+                                                </tr>
+                                            </thead>
+                                        </tr>
+                                        <tr t-foreach="line.order_id.partner_id.mrp_values_ids" t-as="part_val">
+                                            <td style="background-color:#ffffff"/>
+                                            <td class="text-right">
+                                                <span t-field="part_val.name"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="part_val.value"/>
+                                            </td>
+                                            <td style="background-color:#ffffff"/>
+                                        </tr>
+                                    </t>
+                                </tr>
                             </t>
-                        </t>
-                    </t>
-                    <!--<t t-if="line.product_values_ids">-->
-                    <!--    <t t-set="header" t-value="line.product_id.sale_template_id and line.product_id.sale_template_id.name or line.product_id.categ_id.sale_template_id.name"/>-->
-                    <!--    <tr>-->
-                    <!--        <thead>-->
-                    <!--            <tr>-->
-                    <!--                <th/>-->
-                    <!--                <th>-->
-                    <!--                    <u>-->
-                    <!--                        <t t-esc="header"/>-->
-                    <!--                    </u>-->
-                    <!--                </th>-->
-                    <!--                <th>Valores</th>-->
-                    <!--                <th>Numero de Serie</th>-->
-                    <!--            </tr>-->
-                    <!--        </thead>-->
-                    <!--        <tr t-foreach="line.product_values_ids" t-as="values">-->
-                    <!--            <td style="background-color:#ffffff"/>-->
-                    <!--            <td class="text-right">-->
-                    <!--                <span t-field="values.name"/>-->
-                    <!--            </td>-->
-                    <!--            <td class="text-left">-->
-                    <!--                <span t-field="values.valor"/>-->
-                    <!--            </td>-->
-                    <!--            <td style="background-color:#ffffff"/>-->
-                    <!--        </tr>-->
-                    <!--        <t t-if="line.product_id.default_template_ids">-->
-                    <!--            <tr>-->
-                    <!--                <thead>-->
-                    <!--                    <tr>-->
-                    <!--                        <th/>-->
-                    <!--                        <th>-->
-                    <!--                            <u>Pred. del producto</u>-->
-                    <!--                        </th>-->
-                    <!--                        <th>Valores</th>-->
-                    <!--                        <th/>-->
-                    <!--                    </tr>-->
-                    <!--                </thead>-->
-                    <!--            </tr>-->
-                    <!--            <tr t-foreach="line.product_id.default_template_ids" t-as="prod">-->
-                    <!--                <td style="background-color:#ffffff"/>-->
-                    <!--                <td class="text-right">-->
-                    <!--                    <span t-field="prod.name"/>-->
-                    <!--                </td>-->
-                    <!--                <td class="text-left">-->
-                    <!--                    <span t-field="prod.values"/>-->
-                    <!--                </td>-->
-                    <!--                <td style="background-color:#ffffff"/>-->
-                    <!--            </tr>-->
-                    <!--        </t>-->
-                    <!--        <t t-if="line.order_id.partner_id.mrp_values_ids and line.product_id.categ_id.show_partner_values">-->
-                    <!--            <tr>-->
-                    <!--                <thead>-->
-                    <!--                    <tr>-->
-                    <!--                        <th/>-->
-                    <!--                        <th>-->
-                    <!--                            <u>Pred. del cliente</u>-->
-                    <!--                        </th>-->
-                    <!--                        <th>Valores</th>-->
-                    <!--                        <th/>-->
-                    <!--                    </tr>-->
-                    <!--                </thead>-->
-                    <!--            </tr>-->
-                    <!--            <tr t-foreach="line.order_id.partner_id.mrp_values_ids" t-as="part_val">-->
-                    <!--                <td style="background-color:#ffffff"/>-->
-                    <!--                <td class="text-right">-->
-                    <!--                    <span t-field="part_val.name"/>-->
-                    <!--                </td>-->
-                    <!--                <td class="text-left">-->
-                    <!--                    <span t-field="part_val.value"/>-->
-                    <!--                </td>-->
-                    <!--                <td style="background-color:#ffffff"/>-->
-                    <!--            </tr>-->
-                    <!--        </t>-->
-                    <!--    </tr>-->
-                    <!--</t>-->
+                        </tbody>
+                    </table>
                 </div>
             </t>
         </t>

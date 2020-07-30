@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_workorder_attributes_document">
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+                 <div class="page">
+                    <style>
+                        .attribute th, .attribute td {
+                        padding: 0.2rem;
+                        vertical-align: top;
+                        border-top: 1px solid #dee2e6;
+                    }
+                    .attribute thead{
+                        border-bottom: 3px solid #a7a7a7;}
+                    </style>
+                    <p>
+                        <strong>HC Work Order</strong>
+                    </p>
+                    <div class="oe_structure"/>
+                    <div class="mb32 row" id="wo_information">
+                        <div class="col-6">
+                            <t t-set="partidas" t-value="len(doc.order_line)"/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>No. Pedido:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.name"/></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Cliente:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.partner_id.name"/></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Comercial:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.user_id.name"/></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Oportunidad:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.opportunity_id.name"/></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>No. Partidas:</strong>
+                                </div>
+                                <div class="col-6" t-esc="partidas"/></div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Fecha Confirmacion:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.date_order"/></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Flete:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.carrier_id.name"/></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Direccion Entrega:</strong>
+                                </div>
+                                <div class="col-6">
+                                    <span t-field="doc.partner_shipping_id.city"/> |
+
+
+
+                                    <span t-field="doc.partner_shipping_id.state_id.name"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Orden de Compra:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.client_order_ref"/></div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Almacen:</strong>
+                                </div>
+                                <div class="col-6" t-esc="doc.warehouse_id.name"/></div>
+                        </div>
+                    </div>
+                    <t t-set="partida" t-value="0"/>
+                    <t t-foreach="doc.order_line" t-as="line">
+                        <table  class="table">
+                            <t t-set="partida" t-value="partida+1"/>
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Partida</th>
+                                    <th style="width:60%">Producto</th>
+                                    <th style="width:15%">Cantidad</th>
+                                    <th style="width:15%">Fecha Entrega</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span t-esc="partida"/>
+                                    </td>
+                                    <th>
+                                        <span t-field="line.product_id.display_name"/>
+                                    </th>
+                                    <td>
+                                        <span t-field="line.product_uom_qty"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.date_planned"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <t t-set="attributes" t-value="line.get_product_attributes_table()"/>
+                        <t t-if="attributes">
+                            <t t-set="category" t-value ="attributes.items()"/>
+                            <!--<t t-esc="attributes" />-->
+                            <t t-foreach="category" t-as="items">
+                                <t t-if="items[1]">
+                                    <br/>
+                                    <table class="attribute" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th  style="width:45%">
+                                                    <b>
+                                                        <t t-esc="items[0]" />
+                                                    </b>
+                                                </th>
+                                                <th  style="width:55%">
+                                                    <b>
+                                                Valores
+                                            </b>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="items[1].items()" t-as="att">
+                                                <tr>
+                                                    <td>
+                                                        <b>
+                                                            <span t-esc="att[0]"/>
+                                                        </b>
+                                                    </td>
+                                                    <td>
+                                                        <span t-esc="att[1]"/>
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </t>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </t>
+    </template>
+
+    <report
+            id="action_report_workorder_attributes"
+            string="Orden de Trabajo (Nuevo)"
+            model="sale.order"
+            report_type="qweb-pdf"
+            file="pp_work_order.report_workorder_attributes_document"
+            name="pp_work_order.report_workorder_attributes_document"
+            print_report_name="'Work Order - %s' % (object.name)"
+    />
+</odoo>
