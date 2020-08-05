@@ -22,7 +22,7 @@ class SaleOrderLine(models.Model):
             for rec in self:
                 if not rec.product_id:
                     rec.is_price_editable = True
-                if rec.product_id.type in ('consu', 'service') or self.user_has_groups('sale_stock_extended_vts.sale_price_modify'):
+                if rec.product_id.type in ('consu', 'service') or self.user_has_groups('sale_price_block.sale_price_modify'):
                 #if rec.product_id.type in ('consu', 'service') or rec._uid in (2, 66, 67, 68, 85, 9, 69):
                     rec.is_price_editable = True
                 else:
