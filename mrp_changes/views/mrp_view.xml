@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="mrp_remove_button_in_repair_validation" model="ir.ui.view">
+    <field name="name">mrp_remove_button_in_repair_validation</field>
+    <field name="model">quality.check</field>
+    <field name="inherit_id" ref="quality_control.quality_check_view_form_failure"/>
+    <field name="arch" type="xml">
+         <xpath expr="//button[@name='redirect_after_failure'][1]" position="attributes">
+             <attribute name="invisible">1</attribute>
+        </xpath>
+    </field>
+</record>
+
+</odoo>
