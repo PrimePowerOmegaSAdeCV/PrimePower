@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="view_pp_sale_company_form_inherit" model="ir.ui.view">
+            <field name="name">view_pp_sale_company_form_inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="pp_sale_views.view_base_view_company_form_inherit_pp_new_2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='account_dollar_id']" position="after">
+                    <field name="account_usa_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

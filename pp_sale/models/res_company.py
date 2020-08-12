@@ -6,7 +6,7 @@ from odoo.exceptions import ValidationError
 class Company(models.Model):
     _inherit = 'res.company'
 
-    text_quote = fields.Text(string='Text Quote')
+    text_quote = fields.Text(string='Text Quote',translate=True)
 
     report_footer_image = fields.Binary(
         string='Report Footer Image',

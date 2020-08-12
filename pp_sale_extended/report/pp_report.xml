@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="pp_sale_report_extended_document" inherit_id="pp_sale.report_saleorder_document_pp">
+        <xpath expr="//div[@id='bank_information']" position="replace">
+            <div class="row" id="bank_information" style="page-break-inside:avoid">
+                <t t-if="not doc.partner_id.company_llc">
+                        <t t-if="doc.company_id and doc.company_id.account_peso_id">
+                            <div class="col-6">
+                                <div class="panel panel-default" style="border:1px solid #ddd">
+                                    <div class="panel-heading" id="section-title">
+                                        <span>Account in Pesos: </span>
+                                    </div>
+                                    <div class="panel-body" style="padding-left:10px;font-size:90%">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Name:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Account:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_peso_id.acc_number"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="doc.company_id.account_peso_id.transfer_code" class="row">
+                                            <div class="col-4">
+                                                <strong>Transfer Code:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_peso_id.transfer_code"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Bank:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_peso_id.bank_name"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="doc.company_id.account_peso_id.bank_bic" class="row">
+                                            <div class="col-4">
+                                                <strong>Swift:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_peso_id.bank_bic"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <t t-if="doc.company_id and doc.company_id.account_dollar_id">
+                            <div class="col-6">
+                                <div class="panel panel-default" style="border:1px solid #ddd ">
+                                    <div class="panel-heading" id="section-title">
+                                        <span>Account in Dollars: </span>
+                                    </div>
+                                    <div class="panel-body" style="padding-left:10px;font-size:90%">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Name:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Account:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.acc_number"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="doc.company_id.account_dollar_id.transfer_code" class="row">
+                                            <div class="col-4">
+                                                <strong>Transfer Code:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.transfer_code"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Bank:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.bank_name"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="doc.company_id.account_dollar_id.bank_bic" class="row">
+                                            <div class="col-4">
+                                                <strong>Swift:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.bank_bic"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                </t>
+                <t t-else="">
+                    <t t-if="doc.company_id and doc.company_id.account_usa_id">
+                            <div class="col-6">
+                                <div class="panel panel-default" style="border:1px solid #ddd ">
+                                    <div class="panel-heading" id="section-title">
+                                        <span>US Dollars Account Information: </span>
+                                    </div>
+                                    <div class="panel-body" style="padding-left:10px;font-size:90%">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Name:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Account:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.acc_number"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="doc.company_id.account_dollar_id.transfer_code" class="row">
+                                            <div class="col-4">
+                                                <strong>Transfer Code:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.transfer_code"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <strong>Bank:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.bank_name"/>
+                                            </div>
+                                        </div>
+                                        <div t-if="doc.company_id.account_dollar_id.bank_bic" class="row">
+                                            <div class="col-4">
+                                                <strong>Swift:</strong>
+                                            </div>
+                                            <div class="col-8">
+                                                <span t-field="doc.company_id.account_dollar_id.bank_bic"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                </t>
+            </div>
+        </xpath>
+    </template>
+    <template id="custom_pp_sale_external_layout_inherit" inherit_id="pp_sale.external_layout_custom_pp">
+        <xpath expr="//div[1]" position="replace">
+            <div class="header o_pp_header">
+            <div class="pull-right">
+                <h3 class="mt0 text-right" t-field="company.report_header"/>
+            </div>
+            <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % to_text(company.logo)" class="pull-left"/>
+            <div class="pull-right company_address">
+                <t t-if="not doc.partner_id.company_llc">
+                    <div class="text-center">
+                    <!--todo modify t-if so that there is no awkward empty space?-->
+                    <p id="pp-top-line">
+                        <span t-field="company.name"/>, RFC: <span t-field="company.partner_id.vat"/>
+                    </p>
+                    <p>
+                        <span t-field="company.street_name"/><span t-esc="' '"/><span t-field="company.street_number"/>
+                    </p>
+                    <p>
+                        <span t-field="company.l10n_mx_edi_colony"/>, <span t-field="company.l10n_mx_edi_locality"/>, <span t-field="company.zip"/>, <span t-field="company.state_id.code"/>, <span t-field="company.country_id"/>
+                    </p>
+                    <p>
+                        <span t-field="company.phone"/>, <span t-field="company.website"/>
+                    </p>
+                </div>
+                </t>
+                <t t-else="">
+                    <div class="text-center">
+                    <!--todo modify t-if so that there is no awkward empty space?-->
+                    <p id="pp-top-line">
+                        <span>Pymes Export Import LLC</span>
+                    </p>
+                    <p>
+                        <span>8411 Gavin Rd. Ste B</span>
+                    </p>
+                    <p>
+                        <span>Laredo, TX 78040 </span>
+                    </p>
+                    <p>
+                        <span>832 702 8973</span>
+                    </p>
+                    <p>
+                        <span>www.primepower.mx/en</span>
+                    </p>
+                </div>
+                </t>
+            </div>
+            <div class="clearfix mb8"/>
+        </div>
+        </xpath>
+    </template>
+</odoo>
