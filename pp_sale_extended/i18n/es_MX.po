@@ -1,0 +1,107 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pp_sale_extended
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-08-12 08:50+0000\n"
+"PO-Revision-Date: 2020-08-12 08:50+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.custom_pp_sale_external_layout_inherit
+msgid ", RFC:"
+msgstr ""
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.custom_pp_sale_external_layout_inherit
+msgid "<span>832 702 8973</span>"
+msgstr ""
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.custom_pp_sale_external_layout_inherit
+msgid "<span>8411 Gavin Rd. Ste B</span>"
+msgstr ""
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<span>Account in Dollars: </span>"
+msgstr "<span>Cuenta en Dolares (USD) </span>"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<span>Account in Pesos: </span>"
+msgstr "<span>Cuenta en Pesos (MXN) </span>"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.custom_pp_sale_external_layout_inherit
+msgid "<span>Laredo, TX 78040 </span>"
+msgstr ""
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.custom_pp_sale_external_layout_inherit
+msgid "<span>Pymes Export Import LLC</span>"
+msgstr ""
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<span>US Dollars Account Information: </span>"
+msgstr "<span>Cuenta en Dolares: </span>"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.custom_pp_sale_external_layout_inherit
+msgid "<span>www.primepower.mx/en</span>"
+msgstr "<span>www.primepower.mx</span>"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<strong>Account:</strong>"
+msgstr "<strong>No. de Cuenta:</strong>"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<strong>Bank:</strong>"
+msgstr "<strong>Banco:</strong>"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<strong>Name:</strong>"
+msgstr "<strong>Cliente:</strong>"
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<strong>Swift:</strong>"
+msgstr ""
+
+#. module: pp_sale_extended
+#: model_terms:ir.ui.view,arch_db:pp_sale_extended.pp_sale_report_extended_document
+msgid "<strong>Transfer Code:</strong>"
+msgstr "<strong>Clabe Interbancaria:</strong>"
+
+#. module: pp_sale_extended
+#: model:ir.model.fields,field_description:pp_sale_extended.field_res_company__account_usa_id
+msgid "Account USA"
+msgstr "Cuenta USA"
+
+#. module: pp_sale_extended
+#: model:ir.model,name:pp_sale_extended.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: pp_sale_extended
+#: model:ir.model.fields,field_description:pp_sale_extended.field_res_partner__company_llc
+#: model:ir.model.fields,field_description:pp_sale_extended.field_res_users__company_llc
+msgid "Company LLC"
+msgstr ""
+
+#. module: pp_sale_extended
+#: model:ir.model,name:pp_sale_extended.model_res_partner
+msgid "Contact"
+msgstr "Contacto"
