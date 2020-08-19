@@ -1,0 +1,15 @@
+
+<odoo>
+    <template id="sale_report_tipo_de_cambio" inherit_id="informe_cotizacion.sale_cotizacion">
+
+    <xpath expr="//div[@id='informations']/div[5]" position="after">
+        <div t-if="doc.cambio" class="col-auto mw-100 mb-2">
+            <strong>Tipo de cambio:</strong>
+            <p class="m-0" t-field="doc.cambio"/>
+        </div>
+    </xpath>
+
+  </template>
+
+</odoo>
+

@@ -1,0 +1,16 @@
+
+<odoo>
+    <template id="report_tipo_Cambio" inherit_id="account.report_invoice_document">
+        
+        <data>
+    <xpath expr="//div[@id='informations']" position="inside">
+        <div t-if="o.cambio" class="col-auto mw-100 mb-2">
+            <strong>Tipo de cambio:</strong>
+            <p class="m-0" t-field="o.cambio"/>
+        </div>
+    </xpath>
+</data>
+
+  </template>
+	
+</odoo>
