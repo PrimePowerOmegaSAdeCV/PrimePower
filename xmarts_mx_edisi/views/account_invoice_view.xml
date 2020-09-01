@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="xmarts_view_l10n_mx_edi_invoice_form_inherit" model="ir.ui.view">
+            <field name="name">xmarts_l10n_mx_edi.invoice.form.inherit</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="edi_uuid2" string="UUID SI"/>
+                    <field name="skip_mx_edi_invoice"/>
+                   </xpath>
+
+            </field>
+        </record>
+        <record id="xmarts_view_l10n_mx_edi_payment_form_inherit" model="ir.ui.view">
+            <field name="name">xmarts_l10n_mx_edi.payment.form.inherit</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='communication']" position="after">
+                    <field name="edi_uuid2" string="UUID SI"/>
+                    <field name="skip_mx_edi_invoice"/>
+                   </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
