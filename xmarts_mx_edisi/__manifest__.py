@@ -8,6 +8,7 @@
     'depends': ['base','l10n_mx_edi','account','account_payment'],
     'data': [
     'views/account_invoice_view.xml',
+    'views/payment_10.xml',
     ],
     'qweb': [
         ],

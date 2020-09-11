@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="payment10_xmarts_edisi" inherit_id="l10n_mx_edi.payment10">
+             <xpath expr="//*[local-name() = 'DoctoRelacionado']" position="attributes">
+            <attribute name="t-att-MetodoDePagoDR">invoice.l10n_mx_edi_get_payment_method_cfdi() or invoice._l10n_mx_edi_get_payment_policy()</attribute>
+        </xpath>
+        </template>
+    </data>
+</odoo>
