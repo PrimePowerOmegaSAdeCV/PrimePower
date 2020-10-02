@@ -61,7 +61,8 @@ class ReturnedValues(models.Model):
                 line.valor = (line.boolean == False and "Falso") or (line.boolean == None and "") or (line.boolean and "Verdadero")
             elif line.field_type == 'multi-seleccion':
                 line.valor = ",".join([sel.name for sel in line.multi_selection])
-            
+            else:
+                line.valor = ''
     
     name = fields.Char(string='Dato', required=True, copy=True)
     valor = fields.Text(string='Valor', compute='_get_value', readonly=True, store=True)
