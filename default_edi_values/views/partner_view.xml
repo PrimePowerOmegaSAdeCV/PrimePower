@@ -5,11 +5,10 @@
     <field name="model">res.partner</field>
     <field name="inherit_id" ref="base.view_partner_form"/>
     <field name="arch" type="xml">
-
 	 <xpath expr="//field[@name='l10n_mx_edi_curp']" position="after">
-    <field name="l10n_mx_edi_payment_method_id"/>
-    <field name="l10n_mx_edi_usage"/>
-    </xpath>
+        <field name="l10n_mx_edi_payment_method_id"/>
+        <field name="l10n_mx_edi_usage"/>
+        </xpath>
     </field>
 </record>
 

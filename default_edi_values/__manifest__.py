@@ -5,7 +5,7 @@
     'description': """ get data from partner  and fill in the Invoice.
     """,
     'author':'Xmarts',
-    'depends': ['base','account'],
+    'depends': ['base','account','l10n_mx','l10n_mx_edi'],
     'data': [
 	'views/partner_view.xml',
     ],
