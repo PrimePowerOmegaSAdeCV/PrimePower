@@ -15,7 +15,7 @@ class SaleOrderLine(models.Model):
             if line.move_ids:
                 reserved_lots = [move.lot_id.name or '' for picking in
                                  line.mapped('move_ids').filtered(lambda x: x.state == 'done' and x.picking_code != 'incoming')
-                                 for move in picking.mapped('move_line_ids').filtered(lambda x: x.qty_done > 0)]
+                                 for move in picking.mapped('move_line_ids').filtered(lambda x: x.qty_done > 0 and x.picking_id.sale_id.name == x.picking_id.origin,)]
             if reserved_lots:
                 line.related_lots = ','.join(reserved_lots)
             else:
