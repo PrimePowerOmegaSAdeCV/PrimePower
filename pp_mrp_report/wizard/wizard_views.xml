@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wizard_mrp_report_form_view" model="ir.ui.view">
+            <field name="name">wizard.mrp.report.form.view</field>
+            <field name="model">custom.mrp.report</field>
+            <field name="arch" type="xml">
+                <form string="MRP Custom Report">
+                    <group>
+                        <group>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                            <field name="location_id"/>
+                        </group>
+                        <group>
+                            <field name="warehouse_id"/>
+                            <field name="product_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print Report" class="oe_highlight"
+                                type="object"/>
+                            Or
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_wizard_mrp_report_form_view" model="ir.actions.act_window">
+            <field name="name">Custom MRP Report</field>
+            <field name="res_model">custom.mrp.report</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem id="wizard_menu_mrp_report"
+                  name="Mrp Custom Report"
+                  action="action_wizard_mrp_report_form_view"
+                  parent="mrp.menu_mrp_reporting"
+                  sequence="17"/>
+    </data>
+</odoo>
