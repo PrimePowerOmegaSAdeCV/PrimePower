@@ -52,7 +52,7 @@ class CustomMrpReport(models.TransientModel):
                 ], limit=1)
                 new_line += [(
                     (line_product.display_name, move_required_qty, move_reserved_qty,
-                     move_required_qty - move_reserved_qty, product.qty_available,
+                     move_required_qty - move_reserved_qty, line_product.qty_available,
                      moves.product_uom.name, line_warehouse_orderpoint.product_max_qty,
                      line_warehouse_orderpoint.product_min_qty)
                 )]
