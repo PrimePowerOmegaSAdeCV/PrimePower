@@ -13,14 +13,18 @@
                     <h3 class="o_mrp_header o_mrp_table_header">Custom Report</h3>
                         <div class="row mb32">
                             <div class="col-6">
-                                <h3>
-                                    Fecha inicial: <span t-esc="start"/>
-                                    Localizacion: <span t-esc="location"/>
-                                </h3>
+                                    <b>Fecha inicial:</b>
+                                    <span t-esc="start"/>
+                                    <br/>
+                                    <b>Localizacion:</b>
+                                    <span t-esc="location"/>
                             </div>
                             <div class="col-6">
-                                    Fecha Final: <span t-esc="end"/>
-                                    Almacen: <span t-esc="warehouse"/>
+                                    <b>Fecha Final:</b>
+                                    <span t-esc="end"/>
+                                    <br/>
+                                    <b>Almacen:</b>
+                                    <span t-esc="warehouse"/>
                             </div>
                         </div>
                     <table class="table table-sm o_mrp_report_table">
