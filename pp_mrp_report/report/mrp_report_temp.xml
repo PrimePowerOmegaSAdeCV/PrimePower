@@ -11,6 +11,18 @@
                     <t t-else="">
 
                     <h3 class="o_mrp_header o_mrp_table_header">Custom Report</h3>
+                        <div class="row mb32">
+                            <div class="col-6">
+                                <h3>
+                                    Fecha inicial: <span t-esc="start"/>
+                                    Localizacion: <span t-esc="location"/>
+                                </h3>
+                            </div>
+                            <div class="col-6">
+                                    Fecha Final: <span t-esc="end"/>
+                                    Almacen: <span t-esc="warehouse"/>
+                            </div>
+                        </div>
                     <table class="table table-sm o_mrp_report_table">
                         <thead>
                             <tr class="o_mrp_report_header">

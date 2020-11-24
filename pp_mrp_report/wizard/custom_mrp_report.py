@@ -58,10 +58,15 @@ class CustomMrpReport(models.TransientModel):
                 )]
             report_line['columns'] = new_line
             report_values.append(report_line)
+
+        location = self.location_id.name if self.location_id else ''
+        warehouse = self.warehouse_id.name if self.warehouse_id else ''
         data = {
             'ids': self,
             'model': 'custom.mrp.report',
             'form': report_values,
+            'query': {'start': self.start_date, 'end': self.end_date, 'location': location,
+                      'warehouse': warehouse}
         }
 
         return self.env.ref('pp_mrp_report.action_report_mrp_custom_report').report_action([], data=data)
