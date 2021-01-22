@@ -9,7 +9,8 @@
     'data': [
 	'views/sale_order_view.xml',
 	'views/invoice_view.xml',
-	'views/purchase_order_view .xml',
+	'views/purchase_order_view.xml',
+    'views/payment_view.xml',
 	# 'report/reporte_sale.xml',
 	  
     ],
