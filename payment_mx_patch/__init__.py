@@ -15,8 +15,7 @@ def post_load():
         for invoice in self.invoice_ids:
             foreign_currency = invoice.currency_id if invoice.currency_id != invoice.company_id.currency_id else False
 
-            pay_term_line_ids = invoice.line_ids.filtered(
-                lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))
+            pay_term_line_ids = invoice.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))
             partials = pay_term_line_ids.mapped('matched_debit_ids') + pay_term_line_ids.mapped('matched_credit_ids')
             for partial in partials:
                 counterpart_lines = partial.debit_move_id + partial.credit_move_id
@@ -25,16 +24,14 @@ def post_load():
                     continue
 
                 if foreign_currency and partial.currency_id == foreign_currency:
-                    if self.skip_payment_patch:
-                        amount = partial.amount_currency
-                    else:
-                        amount = partial.credit_move_id.amount_currency
+                    amount = partial.amount_currency
                 else:
-                    amount = partial.company_currency_id._convert(partial.amount, invoice.currency_id,
-                                                                  invoice.company_id, invoice.date)
+                    amount = partial.company_currency_id._convert(partial.amount, invoice.currency_id, invoice.company_id, invoice.date)
 
                 if float_is_zero(amount, precision_rounding=invoice.currency_id.rounding):
                     continue
+                if self.writeoff_account_id.is_perdida and not self.skip_payment_patch:
+                    amount = -amount
                 res[invoice.id] = amount
         return res
 
