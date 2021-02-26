@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="pp_mrp_report_document">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-call-assets="mrp_account_enterprise.assets_mrp_cost_structure_report" t-js="False"/>
+                <div class="page o_mrp_report_page">
+                    <t t-if="not data">
+                      <h3 class="o_mrp_header o_mrp_table_header">Data Not Found</h3>
+                    </t>
+                    <t t-else="">
+
+                    <h3 class="o_mrp_header o_mrp_table_header">Custom Report</h3>
+                        <div class="row mb32">
+                            <div class="col-6">
+                                    <b>Fecha inicial:</b>
+                                    <span t-esc="start"/>
+                                    <br/>
+                                    <b>Localizacion:</b>
+                                    <span t-esc="location"/>
+                            </div>
+                            <div class="col-6">
+                                    <b>Fecha Final:</b>
+                                    <span t-esc="end"/>
+                                    <br/>
+                                    <b>Almacen:</b>
+                                    <span t-esc="warehouse"/>
+                            </div>
+                        </div>
+                    <table class="table table-sm o_mrp_report_table">
+                        <thead>
+                            <tr class="o_mrp_report_header">
+                                <th class="o_mrp_report_line_header"><span>Productos</span></th>
+                                <th class="o_mrp_report_line_header"><span>Cantidad requerida</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>Cantidad reservada</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>Cantidad a abastecer</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>Cantidad en inventario</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>Unidad de medida</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>Máximo</span></th>
+                                <th class="text-right o_mrp_report_line_header"><span>Mínimo</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="data" t-as="move">
+
+                            <tr class="o_mrp_data">
+                                <td>
+                                    <span t-esc="move['header'][0]"/>
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="move['header'][1]"/>
+                                    <!--<span class="o_mrp_reports_web_action" t-att-res-id="m['bom_line_id']" res-model="mrp.bom.line" view-type="form" t-esc="m['product_id'].display_name"/>-->
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="move['header'][2]"/>
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="move['header'][3]"/>
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="move['header'][4]"/>
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="move['header'][5]"/>
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="move['header'][6]"/>
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="move['header'][7]"/>
+                                </td>
+                            </tr>
+                            <t t-foreach="move['columns']" t-as="child_lines">
+                             <tr>
+                                  <td>
+                                      <span class='text-right' style="padding-left:10px;" t-esc="child_lines[0]"/>
+                                  </td>
+                                  <td class="text-right">
+                                    <span t-esc="child_lines[1]"/>
+                                      <!--<span class="o_mrp_reports_web_action" t-att-res-id="m['bom_line_id']" res-model="mrp.bom.line" view-type="form" t-esc="m['product_id'].display_name"/>-->
+                                  </td>
+                                  <td class="text-right">
+                                    <span t-esc="child_lines[2]"/>
+                                  </td>
+                                  <td class="text-right">
+                                    <span t-esc="child_lines[3]"/>
+                                  </td>
+                                  <td class="text-right">
+                                    <span t-esc="child_lines[4]"/>
+                                  </td>
+                                  <td class="text-right">
+                                    <span t-esc="child_lines[5]"/>
+                                  </td>
+                                  <td class="text-right">
+                                  <span t-esc="child_lines[6]"/>
+                                </td>
+                                <td class="text-right">
+                                  <span t-esc="child_lines[7]"/>
+                                </td>
+                              </tr>
+                            </t>
+                           </t>
+                        </tbody>
+                    </table>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
