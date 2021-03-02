@@ -48,7 +48,7 @@
                                 <div class="col-6" t-field="o.picking_type_id.contact_id.name"/>
                             </div>
                             <div class="row">
-                                <div class="col-6">Telefono</div>
+                                <div class="col-6">Teléfono</div>
                                 <div class="col-6" t-field="o.picking_type_id.contact_id.phone"/>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-6">Telefono</div>
+                                <div class="col-6">Teléfono</div>
                                  <t t-if="o.sale_id">
 
                                     <div class="col-6" t-field="o.sale_id.contact_partner_id.phone"/>
@@ -196,7 +196,7 @@
                         <strong>Autorizó</strong>
                         <br/>
                         <span>Nombre:</span>
-                        <span/>
+                        <span t-field="usuario_autoriza"/>
                         <br/>
                         <span>Departamento:</span>
                         <span/>
