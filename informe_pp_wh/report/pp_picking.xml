@@ -196,7 +196,7 @@
                         <strong>Autorizó</strong>
                         <br/>
                         <span>Nombre:</span>
-                        <span t-field="usuario_autoriza"/>
+                        <span t-field="o.usuario_autoriza.name"/>
                         <br/>
                         <span>Departamento:</span>
                         <span/>
