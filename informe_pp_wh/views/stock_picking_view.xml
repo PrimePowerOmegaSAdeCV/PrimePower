@@ -1,0 +1,23 @@
+<odoo>
+    <record id="picking_inherit_form" model="ir.ui.view">
+        <field name="name">picking task form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="other_info" string="Datos de Informe">
+                    <group>
+                        <group name="right">
+                            <field name="motivo_salida"/>
+                            <field name="fecha_regreso"/>
+
+                        </group>
+                        <group name="left">
+                            <field name="motivo_salida_no_regresa"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
