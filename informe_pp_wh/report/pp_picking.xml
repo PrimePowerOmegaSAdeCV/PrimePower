@@ -25,80 +25,78 @@
                 </div>
                 <div class="col-6 text-right">
                     <span>Fecha:</span>
-                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')" t-options="{'widget': 'date'}"/>
+                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"
+                          t-options="{'widget': 'date'}"/>
                 </div>
             </div>
             <br/>
             <div class="page" style="font-size:14px">
                 <div class="row">
-                        <div class="col-6">
-                            <span>
-                                <strong style="font-style: italic">Remitente:</strong>
-                            </span>
-<!--                            <div t-field="o.picking_type_id.warehouse_id.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>-->
-                            <div t-field="o.picking_type_id.warehouse_id.partner_id.name"/>
-                            <span t-field="o.picking_type_id.warehouse_id.partner_id.street_name"/>
-                            <span t-field="o.picking_type_id.warehouse_id.partner_id.l10n_mx_edi_colony"/> <br/>
-                            <span t-field="o.picking_type_id.warehouse_id.partner_id.city_id"/>
-                            <span t-field="o.picking_type_id.warehouse_id.partner_id.state_id"/>
-                            <span t-field="o.picking_type_id.warehouse_id.partner_id.zip"/>
-                            <span t-field="o.picking_type_id.warehouse_id.partner_id.country_id"/>
-                            <div class="row">
-                                <div class="col-6">Contacto</div>
-                                <div class="col-6" t-field="o.picking_type_id.contact_id.name"/>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">Teléfono</div>
-                                <div class="col-6" t-field="o.picking_type_id.contact_id.phone"/>
-                            </div>
+                    <div class="col-6">
+                        <span>
+                            <strong style="font-style: italic">Remitente:</strong>
+                        </span>
+                        <!--<div t-field="o.picking_type_id.warehouse_id.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name'], 'no_marker': True}"/>-->
+                        <div t-field="o.picking_type_id.warehouse_id.partner_id.name"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.street_name"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.l10n_mx_edi_colony"/>
+                        <br/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.city_id"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.state_id"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.zip"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.country_id"/>
+                        <div class="row">
+                            <strong class="col-3">Contacto:</strong>
+                            <div class="col-9" t-field="o.picking_type_id.contact_id.name"/>
                         </div>
-                        <div class="col-6">
-                            <span>
-                                <strong style="font-style: italic">Destinatario:</strong>
-                            </span>
-<!--                            <div t-field="o.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone'], 'no_marker': True}"/>-->
-                            <div t-field="o.partner_id.name"/>
-                            <span t-field="o.partner_id.street_name"/>
-                            <span t-field="o.partner_id.l10n_mx_edi_colony"/> <br/>
-                            <span t-field="o.partner_id.city_id"/>
-                            <span t-field="o.partner_id.state_id"/>
-                            <span t-field="o.partner_id.zip"/>
-                            <span t-field="o.partner_id.country_id"/>
-                            <div class="row">
-
-                                <div class="col-6">Contacto</div>
-                                <t t-if="o.sale_id">
-
-                                    <div class="col-6" t-field="o.sale_id.contact_partner_id.name"/>
-
-                                </t>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-6">Teléfono</div>
-                                 <t t-if="o.sale_id">
-
-                                    <div class="col-6" t-field="o.sale_id.contact_partner_id.phone"/>
-
-                                </t>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">Notas</div>
-                                <div class="col-6" t-field="o.sale_id.contact_partner_id.comment"/>
-                            </div>
+                        <div class="row">
+                            <strong class="col-3">Teléfono:</strong>
+                            <div class="col-9" t-field="o.picking_type_id.contact_id.phone"/>
                         </div>
                     </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-6 ">
-                            <strong>Referencia de Seguimiento</strong>
+                    <div class="col-6">
+                        <span>
+                            <strong style="font-style: italic">Destinatario:</strong>
+                        </span>
+                        <br/>
+                        <!--<div t-field="o.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name'], 'no_marker': True}"/>-->
+                        <div t-field="o.partner_id.name"/>
+                        <span t-field="o.partner_id.street_name"/>
+                        <span t-field="o.partner_id.l10n_mx_edi_colony"/>
+                        <br/>
+                        <span t-field="o.partner_id.city_id"/>
+                        <span t-field="o.partner_id.state_id"/>
+                        <span t-field="o.partner_id.zip"/>
+                        <span t-field="o.partner_id.country_id"/>
+                        <div class="row">
+                            <strong class="col-3">Contacto:</strong>
+                            <t t-if="o.sale_id">
+                                <div class="col-9" t-field="o.sale_id.contact_partner_id.name"/>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <strong class="col-3">Teléfono:</strong>
+                            <t t-if="o.sale_id">
+                                <div class="col-9" t-field="o.sale_id.contact_partner_id.phone"/>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <strong class="col-3">Notas:</strong>
+                            <div class="col-9" t-field="o.partner_id.comment"/>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <span t-field="o.carrier_tracking_ref"/>
-                        </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-6 ">
+                        <strong>Referencia de Seguimiento</strong>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <span t-field="o.carrier_tracking_ref"/>
+                    </div>
+                </div>
                 <br/>
                 <div class="row">
                     <div class="col-6">
@@ -118,11 +116,7 @@
                         </p>
                     </div>
                     <div class="col-6" style="font-size:11px">
-                        <span>
-                            ESTE MATERIAL SE ENVIA PARA EL PROCESO EXTERNO DE RECUBRIMIENTO EPOXICO
-                            DANDO RESISTENCIA AL MATERIAL CONTRA AGENTES QUIMICOS COMO ACIDOS Y
-                            QUE FORMARAN LA ESTRUCTURA PARA LA FORMACION DE BATERIAS DE MONTACARGA ELECTRICO.
-                        </span>
+                        <span t-field="o.pp_wh_text"/>
                     </div>
                 </div>
                 <br/>
@@ -133,31 +127,31 @@
                 </style>
                 <table style="width:100%" class="text-center bor">
                     <thead class="bor">
-                            <tr>
-                                <th>Partida</th>
-                                <th>Producto</th>
-                                <th>Lote/Número de serie</th>
-                                <th>Cantidad</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <t t-set="partida" t-value="0"/>
-                            <tr t-foreach="o.move_line_ids" t-as="line">
-                                <t t-set="partida" t-value="partida+1"/>
-                                <td>
-                                    <span t-esc="partida"/>
-                                </td>
-                                <td>
-                                    <span t-field="line.product_id.display_name"/>
-                                </td>
-                                <td>
-                                    <span t-field="line.lot_id.name"/>
-                                </td>
-                                <td>
-                                    <span t-field="line.qty_done"/>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tr>
+                            <th>Partida</th>
+                            <th>Producto</th>
+                            <th>Lote/Número de serie</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="partida" t-value="0"/>
+                        <tr t-foreach="o.move_line_ids" t-as="line">
+                            <t t-set="partida" t-value="partida+1"/>
+                            <td>
+                                <span t-esc="partida"/>
+                            </td>
+                            <td>
+                                <span t-field="line.product_id.display_name"/>
+                            </td>
+                            <td>
+                                <span t-field="line.lot_id.name"/>
+                            </td>
+                            <td>
+                                <span t-field="line.qty_done"/>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <br/>
                 <div class="row">
@@ -168,49 +162,50 @@
                     </div>
                 </div>
                 <br/>
-                <div class="row">
-                    <div class="col-4">
-                        <strong>Solicitante</strong>
-                        <br/>
-                        <span>Nombre:</span>
-                        <span/>
-                        <br/>
-                        <span>Departamento:</span>
-                        <span/>
+                <div style="page-break-inside: avoid">
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Solicitante</strong>
+                            <br/>
+                            <span>Nombre:</span>
+                            <span t-field="o.user_id"/>
+                            <br/>
+                            <span>Departamento:</span>
+                            <span t-field="o.user_id.department_id"/>
+                        </div>
+                        <div class="col-3">
+                            <strong>Firma</strong>
+                        </div>
+                        <div class="col-5">
+                            <strong>Recibe de confromidad (Cliente-Proveedor)</strong>
+                            <br/>
+                            <span>Nombre y firma</span>
+                        </div>
                     </div>
-                    <div class="col-3">
-                        <strong>Firma</strong>
-                    </div>
-                    <div class="col-5">
-                        <strong>Recibí de confromidad (Cliente-Proveedor)</strong>
-                        <br/>
-                        <span>Nombre y firma</span>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Autorizó</strong>
+                            <br/>
+                            <span>Nombre:</span>
+                            <span t-field="o.usuario_autoriza.name"/>
+                            <br/>
+                            <span>Departamento:</span>
+                            <span/>
+                        </div>
+                        <div class="col-3">
+                            <strong>Firma</strong>
+                        </div>
+                        <div class="col-5">
+                            <strong>Vo.Bo Vigilancia</strong>
+                            <br/>
+                            <span>Nombre y firma</span>
+                        </div>
                     </div>
                 </div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <div class="row">
-                    <div class="col-4">
-                        <strong>Autorizó</strong>
-                        <br/>
-                        <span>Nombre:</span>
-                        <span t-field="o.usuario_autoriza.name"/>
-                        <br/>
-                        <span>Departamento:</span>
-                        <span/>
-                    </div>
-                    <div class="col-3">
-                        <strong>Firma</strong>
-                    </div>
-                    <div class="col-5">
-                        <strong>Vo.Bo Vigilancia</strong>
-                        <br/>
-                        <span>Nombre y firma</span>
-                    </div>
-                </div>
-
             </div>
         </t>
     </template>
@@ -231,15 +226,18 @@
         </div>
         <div class="footer" style="font-size:10px">
             <div class="row">
-<!--                <div class="col-1">-->
-<!--                    &lt;!&ndash;                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 90px;" alt="Logo"/>&ndash;&gt;-->
-<!--                </div>-->
+                <!--                <div class="col-1">-->
+                <!--                    &lt;!&ndash;                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 90px;" alt="Logo"/>&ndash;&gt;-->
+                <!--                </div>-->
                 <div class="col-12" style="font-size:12px;">
                     <p class="text-center">
-                        <span>Telefono:</span><span t-field="company.partner_id.phone"/>
-                        <span>Correo electronico:</span> <span t-field="o.user_id.email"/>
+                        <span>Telefono:</span>
+                        <span t-field="company.partner_id.phone"/>
+                        <span>Correo electronico:</span>
+                        <span t-field="o.user_id.email"/>
                         <a t-field="company.website"/>
-                        <span>RFC:</span> <span t-field="company.partner_id.vat"/>
+                        <span>RFC:</span>
+                        <span t-field="company.partner_id.vat"/>
                     </p>
                 </div>
             </div>
