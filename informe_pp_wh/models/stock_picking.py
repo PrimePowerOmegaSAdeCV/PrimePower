@@ -8,6 +8,7 @@ class StockPicking(models.Model):
     fecha_regreso = fields.Date(string="Fecha de regreso", required=False, copy=False)
     motivo_salida_no_regresa = fields.Char(string="Motivo de Salida NO regresa", required=False, copy=False)
     usuario_autoriza = fields.Many2one(comodel_name="res.users", string="Usuario autoriza", required=False, copy=False)
+    pp_wh_text = fields.Text(string="Observaciones", required=False,)
     print_pp_wh = fields.Boolean(string="Permiso para Imprimir Orden de Salida", related="picking_type_id.print_pp_wh")
 
 

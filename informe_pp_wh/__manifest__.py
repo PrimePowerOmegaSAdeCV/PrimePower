@@ -9,7 +9,6 @@
     'data': [
         "report/pp_picking.xml",
         "views/stock_picking_view.xml",
-        "views/res_company_view.xml",
     ],
     'qweb': [
         ],
