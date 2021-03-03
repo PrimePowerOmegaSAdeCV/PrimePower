@@ -6,16 +6,12 @@
         <field name="arch" type="xml">
             <xpath expr="//notebook//page[@name='extra']//group[@name='other_infos']" position="after">
                 <group name="other_info" string="Informacion de Salida">
-                    <group name="right">
                         <field name="motivo_salida"/>
                         <field name="fecha_regreso"/>
                         <field name="print_pp_wh" invisible="1"/>
-                    </group>
-                    <group name="left">
                         <field name="motivo_salida_no_regresa"/>
                         <field name="usuario_autoriza"/>
                         <field name="pp_wh_text"/>
-                    </group>
                 </group>
             </xpath>
             <xpath expr="//form[1]/header[1]/button[@name='action_toggle_is_locked']" position="after">
