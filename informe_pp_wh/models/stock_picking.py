@@ -8,7 +8,7 @@ class StockPicking(models.Model):
     fecha_regreso = fields.Date(string="Fecha de regreso", required=False, copy=False)
     motivo_salida_no_regresa = fields.Char(string="Motivo de Salida NO regresa", required=False, copy=False)
     usuario_autoriza = fields.Many2one(comodel_name="res.users", string="Usuario autoriza", required=False, copy=False)
-    pp_wh_text = fields.Text(string="Observaciones", required=False,)
+    pp_wh_text = fields.Text(string="Observaciones", required=False, )
     print_pp_wh = fields.Boolean(string="Permiso para Imprimir Orden de Salida", related="picking_type_id.print_pp_wh")
 
 
@@ -16,3 +16,12 @@ class StockPickingType(models.Model):
     _inherit = 'stock.picking.type'
 
     print_pp_wh = fields.Boolean(string="Permiso para Imprimir Orden de Salida", copy=False)
+
+
+class StockMoveLine(models.Model):
+    _inherit = 'stock.move'
+
+    def get_wo_name_by_lot(self, product, lot):
+        for record in self:
+            wo = self.env['mrp.workorder'].search([('product_id', '=', product), ('finished_lot_id', '=', lot)])
+            return wo.name if wo else ''
