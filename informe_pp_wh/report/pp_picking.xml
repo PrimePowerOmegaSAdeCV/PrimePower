@@ -129,6 +129,7 @@
                     <thead class="bor">
                         <tr>
                             <th>Partida</th>
+                            <th>WorkOrder</th>
                             <th>Producto</th>
                             <th>Lote/Número de serie</th>
                             <th>Cantidad</th>
@@ -140,6 +141,11 @@
                             <t t-set="partida" t-value="partida+1"/>
                             <td>
                                 <span t-esc="partida"/>
+                            </td>
+                            <td>
+                                <t t-if="line.product_id and line.lot_id">
+                                    <span t-esc="line.get_wo_name_by_lot(line.product_id.id,line.lot_id.id)"/>
+                                </t>
                             </td>
                             <td>
                                 <span t-field="line.product_id.display_name"/>
