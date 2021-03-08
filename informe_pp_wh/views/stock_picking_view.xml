@@ -18,9 +18,9 @@
                 <button name="%(pp_picking_report)d" type="action" string="Imprimir Orden de Salida"
                         attrs="{'invisible' : [('print_pp_wh','=',False)]}"/>
             </xpath>
-            <xpath expr="//field[@name='move_line_ids_without_package']//tree//field[@name='product_id']" position="after">
-                <field name="pp_wh_notes"/>
-            </xpath>
+<!--            <xpath expr="//field[@name='move_line_ids_without_package']//tree//field[@name='product_id']" position="after">-->
+<!--                <field name="pp_wh_notes"/>-->
+<!--            </xpath>-->
         </field>
     </record>
 
