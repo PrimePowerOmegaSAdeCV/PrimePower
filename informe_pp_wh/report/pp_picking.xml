@@ -70,15 +70,11 @@
                         <span t-field="o.partner_id.country_id"/>
                         <div class="row">
                             <strong class="col-3">Contacto:</strong>
-                            <t t-if="o.sale_id">
-                                <div class="col-9" t-field="o.sale_id.contact_partner_id.name"/>
-                            </t>
+                            <div class="col-9" t-field="o.partner_id.name"/>
                         </div>
                         <div class="row">
                             <strong class="col-3">Teléfono:</strong>
-                            <t t-if="o.sale_id">
-                                <div class="col-9" t-field="o.sale_id.contact_partner_id.phone"/>
-                            </t>
+                                <div class="col-9" t-field="o.partner_id.phone"/>
                         </div>
                         <div class="row">
                             <strong class="col-3">Notas:</strong>
@@ -189,7 +185,7 @@
                             <strong>Firma</strong>
                         </div>
                         <div class="col-5">
-                            <strong>Recibe de confromidad (Cliente-Proveedor)</strong>
+                            <strong>Recibe de conformidad (Cliente-Proveedor)</strong>
                             <br/>
                             <span>Nombre y firma</span>
                         </div>
@@ -206,6 +202,7 @@
                             <span t-field="o.usuario_autoriza.name"/>
                             <br/>
                             <span>Departamento:</span>
+                            <span t-field="o.usuario_autoriza.department_id"/>
                             <span/>
                         </div>
                         <div class="col-3">
