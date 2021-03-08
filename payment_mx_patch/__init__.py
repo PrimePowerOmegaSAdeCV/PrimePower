@@ -12,9 +12,10 @@ def post_load():
     def _l10n_mx_edi_get_payment_write_off(self):
         self.ensure_one()
         res = {}
+        total_paid_amount = 0
         for invoice in self.invoice_ids:
             foreign_currency = invoice.currency_id if invoice.currency_id != invoice.company_id.currency_id else False
-
+            
             pay_term_line_ids = invoice.line_ids.filtered(lambda line: line.account_id.user_type_id.type in ('receivable', 'payable'))
             partials = pay_term_line_ids.mapped('matched_debit_ids') + pay_term_line_ids.mapped('matched_credit_ids')
             for partial in partials:
@@ -24,15 +25,17 @@ def post_load():
                     continue
 
                 if foreign_currency and partial.currency_id == foreign_currency:
-                    amount = partial.amount_currency
+                    amount = counterpart_line.amount_currency
                 else:
                     amount = partial.company_currency_id._convert(partial.amount, invoice.currency_id, invoice.company_id, invoice.date)
 
                 if float_is_zero(amount, precision_rounding=invoice.currency_id.rounding):
                     continue
-                if self.writeoff_account_id.is_perdida and not self.skip_payment_patch:
-                    amount = -amount
+              #  if self.writeoff_account_id.is_perdida and not self.skip_payment_patch:
+              #      amount = -amount
+                total_paid_amount += amount
                 res[invoice.id] = amount
+            res[self.id] = total_paid_amount
         return res
 
     if can_patch:
