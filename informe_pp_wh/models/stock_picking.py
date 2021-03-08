@@ -21,7 +21,5 @@ class StockPickingType(models.Model):
 class StockMoveLine(models.Model):
     _inherit = 'stock.move.line'
 
-    def get_wo_name_by_lot(self, product, lot):
-        wo = self.env['mrp.workorder'].search([('product_id', '=', product), ('finished_lot_id', '=', lot)],
-                                              limit=1)
-        return wo.name if wo else ''
+    pp_wh_notes = fields.Text(string="Nota", required=False,)
+

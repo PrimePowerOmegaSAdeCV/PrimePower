@@ -133,6 +133,7 @@
                             <th>Producto</th>
                             <th>Lote/Número de serie</th>
                             <th>Cantidad</th>
+                            <th>Nota</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,7 +145,9 @@
                             </td>
                             <td>
                                 <t t-if="line.product_id and line.lot_id">
-                                    <span t-esc="line.get_wo_name_by_lot(line.product_id.id,line.lot_id.id)"/>
+                                    <span t-esc="line.search([('product_id','=',line.product_id.id),
+                                    ('lot_id','=',line.lot_id.id),('production_id','!=',False)],
+                                    order='create_date desc',limit=1).production_id.name"/>
                                 </t>
                             </td>
                             <td>
@@ -155,6 +158,9 @@
                             </td>
                             <td>
                                 <span t-field="line.qty_done"/>
+                            </td>
+                            <td>
+                                <span t-field="line.pp_wh_notes"/>
                             </td>
                         </tr>
                     </tbody>
