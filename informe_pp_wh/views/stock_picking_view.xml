@@ -1,0 +1,35 @@
+<odoo>
+    <record id="picking_inherit_form" model="ir.ui.view">
+        <field name="name">picking task form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[@name='extra']//group[@name='other_infos']" position="after">
+                <group name="other_info" string="Informacion de Salida">
+                        <field name="motivo_salida"/>
+                        <field name="fecha_regreso"/>
+                        <field name="print_pp_wh" invisible="1"/>
+                        <field name="motivo_salida_no_regresa"/>
+                        <field name="usuario_autoriza"/>
+                        <field name="pp_wh_text"/>
+                </group>
+            </xpath>
+            <xpath expr="//form[1]/header[1]/button[@name='action_toggle_is_locked']" position="after">
+                <button name="%(pp_picking_report)d" type="action" string="Imprimir Orden de Salida"
+                        attrs="{'invisible' : [('print_pp_wh','=',False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="picking_type_form_inherit" model="ir.ui.view">
+        <field name="name">picking.type.form</field>
+        <field name="model">stock.picking.type</field>
+        <field name="inherit_id" ref="stock.view_picking_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='show_reserved']" position="after">
+                <field name="print_pp_wh"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

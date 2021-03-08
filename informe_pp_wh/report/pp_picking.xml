@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="informe_pp_picking">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="informe_pp_wh.informe_pp_picking_document" t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+    <template id="informe_pp_picking_document">
+        <t t-call="informe_pp_wh.external_layout_picking">
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+            <div class="row mb32">
+                <div class="col-12 text-center" style="font-size:16px">
+                    <strong>ORDEN DE SALIDA DE MATERIAL</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6" style="font-size:16px">
+                    <strong>No. Secuencia</strong>
+                    <p>
+                        <strong t-field="o.name"/>
+                    </p>
+                </div>
+                <div class="col-6 text-right">
+                    <span>Fecha:</span>
+                    <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"
+                          t-options="{'widget': 'date'}"/>
+                </div>
+            </div>
+            <br/>
+            <div class="page" style="font-size:14px">
+                <div class="row">
+                    <div class="col-6">
+                        <span>
+                            <strong style="font-style: italic">Remitente:</strong>
+                        </span>
+                        <!--<div t-field="o.picking_type_id.warehouse_id.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name'], 'no_marker': True}"/>-->
+                        <div t-field="o.picking_type_id.warehouse_id.partner_id.name"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.street_name"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.l10n_mx_edi_colony"/>
+                        <br/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.city_id"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.state_id"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.zip"/>
+                        <span t-field="o.picking_type_id.warehouse_id.partner_id.country_id"/>
+                        <div class="row">
+                            <strong class="col-3">Contacto:</strong>
+                            <div class="col-9" t-field="o.picking_type_id.contact_id.name"/>
+                        </div>
+                        <div class="row">
+                            <strong class="col-3">Teléfono:</strong>
+                            <div class="col-9" t-field="o.picking_type_id.contact_id.phone"/>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <span>
+                            <strong style="font-style: italic">Destinatario:</strong>
+                        </span>
+                        <br/>
+                        <!--<div t-field="o.partner_id" t-options="{'widget': 'contact', 'fields': ['address', 'name'], 'no_marker': True}"/>-->
+                        <div t-field="o.partner_id.name"/>
+                        <span t-field="o.partner_id.street_name"/>
+                        <span t-field="o.partner_id.l10n_mx_edi_colony"/>
+                        <br/>
+                        <span t-field="o.partner_id.city_id"/>
+                        <span t-field="o.partner_id.state_id"/>
+                        <span t-field="o.partner_id.zip"/>
+                        <span t-field="o.partner_id.country_id"/>
+                        <div class="row">
+                            <strong class="col-3">Contacto:</strong>
+                            <t t-if="o.sale_id">
+                                <div class="col-9" t-field="o.sale_id.contact_partner_id.name"/>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <strong class="col-3">Teléfono:</strong>
+                            <t t-if="o.sale_id">
+                                <div class="col-9" t-field="o.sale_id.contact_partner_id.phone"/>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <strong class="col-3">Notas:</strong>
+                            <div class="col-9" t-field="o.partner_id.comment"/>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-6 ">
+                        <strong>Referencia de Seguimiento</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <span t-field="o.carrier_tracking_ref"/>
+                    </div>
+                </div>
+                <br/>
+                <div class="row">
+                    <div class="col-6">
+                        <strong>Material que regresa</strong>
+                        <p>
+                            <span>Motivo de Salida:</span>
+                            <span t-field="o.motivo_salida"/>
+                            <br/>
+                            <span>Fecha de regreso:</span>
+                            <span t-field="o.fecha_regreso"/>
+                        </p>
+                        <br/>
+                        <strong>Material que NO regresa</strong>
+                        <p>
+                            <span>Motivo de Salida:</span>
+                            <span t-field="o.motivo_salida_no_regresa"/>
+                        </p>
+                    </div>
+                    <div class="col-6" style="font-size:11px">
+                        <span t-field="o.pp_wh_text"/>
+                    </div>
+                </div>
+                <br/>
+                <style>
+                    .bor{
+                    border:1px solid black
+                    }
+                </style>
+                <table style="width:100%" class="text-center bor">
+                    <thead class="bor">
+                        <tr>
+                            <th>Partida</th>
+                            <th>WorkOrder</th>
+                            <th>Producto</th>
+                            <th>Lote/Número de serie</th>
+                            <th>Cantidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="partida" t-value="0"/>
+                        <tr t-foreach="o.move_line_ids" t-as="line">
+                            <t t-set="partida" t-value="partida+1"/>
+                            <td>
+                                <span t-esc="partida"/>
+                            </td>
+                            <td>
+                                <t t-if="line.product_id and line.lot_id">
+                                    <span t-esc="line.get_wo_name_by_lot(line.product_id.id,line.lot_id.id)"/>
+                                </t>
+                            </td>
+                            <td>
+                                <span t-field="line.product_id.display_name"/>
+                            </td>
+                            <td>
+                                <span t-field="line.lot_id.name"/>
+                            </td>
+                            <td>
+                                <span t-field="line.qty_done"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <strong style="font-size:16px">
+                            FIRMAS DE AUTORIZACION – RECEPCION
+                        </strong>
+                    </div>
+                </div>
+                <br/>
+                <div style="page-break-inside: avoid">
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Solicitante</strong>
+                            <br/>
+                            <span>Nombre:</span>
+                            <span t-field="o.user_id"/>
+                            <br/>
+                            <span>Departamento:</span>
+                            <span t-field="o.user_id.department_id"/>
+                        </div>
+                        <div class="col-3">
+                            <strong>Firma</strong>
+                        </div>
+                        <div class="col-5">
+                            <strong>Recibe de confromidad (Cliente-Proveedor)</strong>
+                            <br/>
+                            <span>Nombre y firma</span>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="row">
+                        <div class="col-4">
+                            <strong>Autorizó</strong>
+                            <br/>
+                            <span>Nombre:</span>
+                            <span t-field="o.usuario_autoriza.name"/>
+                            <br/>
+                            <span>Departamento:</span>
+                            <span/>
+                        </div>
+                        <div class="col-3">
+                            <strong>Firma</strong>
+                        </div>
+                        <div class="col-5">
+                            <strong>Vo.Bo Vigilancia</strong>
+                            <br/>
+                            <span>Nombre y firma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="custom_external_layout_picking">
+        <div class="header">
+            <div class="row">
+                <div class="col-3">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 90px;"
+                         alt="Logo"/>
+                </div>
+            </div>
+        </div>
+        <div class="article " t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+             t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+        <div class="footer" style="font-size:10px">
+            <div class="row">
+                <!--                <div class="col-1">-->
+                <!--                    &lt;!&ndash;                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 90px;" alt="Logo"/>&ndash;&gt;-->
+                <!--                </div>-->
+                <div class="col-12" style="font-size:12px;">
+                    <p class="text-center">
+                        <span>Telefono:</span>
+                        <span t-field="company.partner_id.phone"/>
+                        <span>Correo electronico:</span>
+                        <span t-field="o.user_id.email"/>
+                        <a t-field="company.website"/>
+                        <span>RFC:</span>
+                        <span t-field="company.partner_id.vat"/>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="external_layout_picking">
+        <t t-if="not o" t-set="o" t-value="doc"/>
+        <t t-if="not company">
+            <!-- Multicompany -->
+            <t t-if="company_id">
+                <t t-set="company" t-value="company_id"/>
+            </t>
+            <t t-elif="o and 'company_id' in o">
+                <t t-set="company" t-value="o.company_id.sudo()"/>
+            </t>
+            <t t-else="else">
+                <t t-set="company" t-value="res_company"/>
+            </t>
+        </t>
+        <t t-call="informe_pp_wh.custom_external_layout_picking">
+            <t t-raw="0"/>
+        </t>
+    </template>
+
+    <report
+            id="pp_picking_report"
+            model="stock.picking"
+            string="Salida de Material"
+            name="informe_pp_wh.informe_pp_picking"
+            report_type="qweb-pdf"
+            print_report_name="'Salida Material - %s - %s' % (object.partner_id.name or '', object.name)"
+
+    />
+</odoo>
