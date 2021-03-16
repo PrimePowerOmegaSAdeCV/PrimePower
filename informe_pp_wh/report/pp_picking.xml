@@ -314,6 +314,6 @@
             name="informe_pp_wh.informe_pp_picking"
             report_type="qweb-pdf"
             print_report_name="'Salida Material - %s - %s' % (object.partner_id.name or '', object.name)"
-
+            menu="False"
     />
 </odoo>

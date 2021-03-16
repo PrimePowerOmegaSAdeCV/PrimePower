@@ -10,10 +10,16 @@ class StockPicking(models.Model):
     usuario_autoriza = fields.Many2one(comodel_name="res.users", string="Usuario autoriza", required=False, copy=False)
     pp_wh_text = fields.Text(string="Observaciones", required=False, )
     print_pp_wh = fields.Boolean(string="Permiso para Imprimir Orden de Salida", related="picking_type_id.print_pp_wh")
+    folio_salida = fields.Char(string="Folio de Salida", required=False, copy=False)
 
     def action_print_multi_wh_report(self):
-        self.sorted(key=lambda x: x.create_date)
-        return self.env.ref('informe_pp_wh.pp_picking_report').report_action(self, config=False)
+        moves = self.sorted(key=lambda x: x.create_date,)
+        origins = moves.mapped('name')
+        for move in moves:
+            move.write({
+                'folio_salida': origins[0]
+            })
+        return self.env.ref('informe_pp_wh.pp_picking_report').report_action(moves, config=False)
 
 
 class StockPickingType(models.Model):
