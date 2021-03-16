@@ -11,6 +11,10 @@ class StockPicking(models.Model):
     pp_wh_text = fields.Text(string="Observaciones", required=False, )
     print_pp_wh = fields.Boolean(string="Permiso para Imprimir Orden de Salida", related="picking_type_id.print_pp_wh")
 
+    def action_print_multi_wh_report(self):
+        self.sorted(key=lambda x: x.create_date)
+        return self.env.ref('informe_pp_wh.pp_picking_report').report_action(self, config=False)
+
 
 class StockPickingType(models.Model):
     _inherit = 'stock.picking.type'
