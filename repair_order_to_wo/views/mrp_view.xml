@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="repair_order_create_work_order" model="ir.ui.view">
+        <field name="name">repair_order_create_work_order</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="show_work_orders"
+                        icon="fa-wrench" type="object"
+                        attrs="{'invisible': [('work_order_count', '=', 0)]}">
+                    <field name="work_order_count" string="WorkOrder" widget="statinfo"/>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="create_work_order" type="object" string="Create Work Order"
+                        confirm="Seguro que deseas crear la Orden de Produccion?"
+                        effect="{'message':'Hecho correctamente!','fadeout':'fast'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
