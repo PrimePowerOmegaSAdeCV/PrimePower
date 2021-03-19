@@ -141,7 +141,7 @@
                                 <span t-esc="partida"/>
                             </td>
                             <td>
-                                <span t-field="o.origin"/>
+                                <span t-field="line.picking_id.origin"/>
                                 <!--<t t-if="line.product_id and line.lot_id">-->
                                 <!--    <span t-esc="line.search([('product_id','=',line.product_id.id),-->
                                 <!--    ('lot_id','=',line.lot_id.id),-->
@@ -171,7 +171,7 @@
                                         <span t-esc="partida"/>
                                     </td>
                                     <td>
-                                        <span t-field="o.origin"/>
+                                        <span t-field="line2.picking_id.origin"/>
                                         <!--<t t-if="line2.product_id and line2.lot_id">-->
                                         <!--    <span t-esc="line2.search([('product_id','=',line2.product_id.id),-->
                                         <!--    ('lot_id','=',line2.lot_id.id),-->
