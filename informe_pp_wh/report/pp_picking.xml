@@ -2,9 +2,9 @@
 <odoo>
     <template id="informe_pp_picking">
         <t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="informe_pp_wh.informe_pp_picking_document" t-lang="o.partner_id.lang"/>
-            </t>
+            <t t-set="first_report" t-value="docs[0]"/>
+            <t t-set="o" t-value="first_report"/>
+            <t t-call="informe_pp_wh.informe_pp_picking_document" t-lang="first_report.partner_id.lang"/>
         </t>
     </template>
 
@@ -14,6 +14,7 @@
             <div class="row mb32">
                 <div class="col-12 text-center" style="font-size:16px">
                     <strong>ORDEN DE SALIDA DE MATERIAL</strong>
+                    <t t-set="other_reports" t-value="docs - o"/>
                 </div>
             </div>
             <div class="row">
@@ -70,15 +71,11 @@
                         <span t-field="o.partner_id.country_id"/>
                         <div class="row">
                             <strong class="col-3">Contacto:</strong>
-                            <t t-if="o.sale_id">
-                                <div class="col-9" t-field="o.sale_id.contact_partner_id.name"/>
-                            </t>
+                            <div class="col-9" t-field="o.partner_id.name"/>
                         </div>
                         <div class="row">
                             <strong class="col-3">Teléfono:</strong>
-                            <t t-if="o.sale_id">
-                                <div class="col-9" t-field="o.sale_id.contact_partner_id.phone"/>
-                            </t>
+                            <div class="col-9" t-field="o.partner_id.phone"/>
                         </div>
                         <div class="row">
                             <strong class="col-3">Notas:</strong>
@@ -128,11 +125,12 @@
                 <table style="width:100%" class="text-center bor">
                     <thead class="bor">
                         <tr>
-                            <th>Partida</th>
-                            <th>WorkOrder</th>
-                            <th>Producto</th>
-                            <th>Lote/Número de serie</th>
-                            <th>Cantidad</th>
+                            <th style="width:5%;">#</th>
+                            <th style="width:15%;">WorkOrder</th>
+                            <th style="width:35%;">Producto</th>
+                            <th style="width:15%;">Lote/Número de serie</th>
+                            <th style="width:10%;">Cant.</th>
+                            <th style="width:20%;">Nota</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -143,9 +141,13 @@
                                 <span t-esc="partida"/>
                             </td>
                             <td>
-                                <t t-if="line.product_id and line.lot_id">
-                                    <span t-esc="line.get_wo_name_by_lot(line.product_id.id,line.lot_id.id)"/>
-                                </t>
+                                <span t-field="line.picking_id.origin"/>
+                                <!--<t t-if="line.product_id and line.lot_id">-->
+                                <!--    <span t-esc="line.search([('product_id','=',line.product_id.id),-->
+                                <!--    ('lot_id','=',line.lot_id.id),-->
+                                <!--    ('production_id','!=',False)],-->
+                                <!--    order='create_date desc',limit=1).production_id.name"/>-->
+                                <!--</t>-->
                             </td>
                             <td>
                                 <span t-field="line.product_id.display_name"/>
@@ -156,7 +158,42 @@
                             <td>
                                 <span t-field="line.qty_done"/>
                             </td>
+                            <td>
+                                <span t-field="line.pp_wh_notes"/>
+                            </td>
                         </tr>
+                        <t t-if="other_reports">
+                            <t t-foreach="other_reports" t-as="move">
+                                <tr t-foreach="move.move_line_ids" t-as="line2">
+                                    <t t-set="partida" t-value="partida+1"/>
+                                    <td>
+
+                                        <span t-esc="partida"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line2.picking_id.origin"/>
+                                        <!--<t t-if="line2.product_id and line2.lot_id">-->
+                                        <!--    <span t-esc="line2.search([('product_id','=',line2.product_id.id),-->
+                                        <!--    ('lot_id','=',line2.lot_id.id),-->
+                                        <!--    ('production_id','!=',False)],-->
+                                        <!--    order='create_date desc',limit=1).production_id.name"/>-->
+                                        <!--</t>-->
+                                    </td>
+                                    <td>
+                                        <span t-field="line2.product_id.display_name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line2.lot_id.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line2.qty_done"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line2.pp_wh_notes"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
                     </tbody>
                 </table>
                 <br/>
@@ -183,7 +220,7 @@
                             <strong>Firma</strong>
                         </div>
                         <div class="col-5">
-                            <strong>Recibe de confromidad (Cliente-Proveedor)</strong>
+                            <strong>Recibe de conformidad (Cliente-Proveedor)</strong>
                             <br/>
                             <span>Nombre y firma</span>
                         </div>
@@ -200,6 +237,7 @@
                             <span t-field="o.usuario_autoriza.name"/>
                             <br/>
                             <span>Departamento:</span>
+                            <span t-field="o.usuario_autoriza.department_id"/>
                             <span/>
                         </div>
                         <div class="col-3">
@@ -276,6 +314,6 @@
             name="informe_pp_wh.informe_pp_picking"
             report_type="qweb-pdf"
             print_report_name="'Salida Material - %s - %s' % (object.partner_id.name or '', object.name)"
-
+            menu="False"
     />
 </odoo>
