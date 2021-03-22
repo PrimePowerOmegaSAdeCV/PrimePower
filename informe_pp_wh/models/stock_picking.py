@@ -1,5 +1,5 @@
 from odoo import api, fields, models
-
+from odoo.exceptions import UserError
 
 class StockPicking(models.Model):
     _inherit = 'stock.picking'
@@ -15,6 +15,9 @@ class StockPicking(models.Model):
     def action_print_multi_wh_report(self):
         moves = self.sorted(key=lambda x: x.create_date,)
         origins = moves.mapped('name')
+        errors = moves.filtered(lambda y: y.folio_salida).mapped('name')
+        if errors:
+            raise UserError('Ya existe un Folio de Salida Para la siguiente Transferencia %s' % ','.join(errors))
         for move in moves:
             move.write({
                 'folio_salida': origins[0]
