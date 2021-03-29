@@ -17,13 +17,17 @@ class RepairOrder(models.Model):
 
     def create_work_order(self):
         unit = self.env.ref('uom.product_uom_unit')
-        self.env["mrp.production"].create({
+        bom_id = self.product_id.bom_ids[0].id if self.product_id.bom_ids else False
+        work_order = self.env["mrp.production"].create({
             'repair_ord_id': self.id,
+            'bom_id': bom_id,
             'product_id': self.product_id.id,
             'product_qty': self.product_qty,
             'origin': self.name,
             'product_uom_id': unit.id
         })
+        work_order.onchange_product_id()
+        work_order._onchange_move_raw()
 
     def show_work_orders(self):
 
