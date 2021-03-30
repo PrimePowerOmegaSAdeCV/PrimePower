@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <record id="payment_account_account_form_inherit" model="ir.ui.view">
+            <field name="name">payment_mx_patch.account_account.form.inherit</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='deprecated']" position="after">
+                    <field name="is_perdida"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
