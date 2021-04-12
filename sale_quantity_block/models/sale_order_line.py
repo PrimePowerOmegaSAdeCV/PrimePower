@@ -10,7 +10,6 @@ class SaleOrderLine(models.Model):
     def _get_qty_editable_user(self):
         # IF TRUE The User can Edit the qty, let the view handle the state
         for record in self:
-            res =  self.user_has_groups('sale_quantity_block.sale_qty_modify')
-            record.has_qty_edit_group = res
+            record.has_qty_edit_group = self.user_has_groups('sale_quantity_block.sale_qty_modify')
 
     has_qty_edit_group = fields.Boolean(string="Can Edit on Sale", compute="_get_qty_editable_user")

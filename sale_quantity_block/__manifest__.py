@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Sale Quantity Extended",
-    'summary': """Adds to group qty""",
+    'name': "Sale Quantity Block",
+    'summary': """Adds group to modify qty in sale""",
 
     'category': 'sale',
     'version': '13.1',
