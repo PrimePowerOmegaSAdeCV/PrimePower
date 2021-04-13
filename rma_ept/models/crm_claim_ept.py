@@ -178,7 +178,7 @@ class CRMClaim(models.Model):
                                 default="1")
     state = fields.Selection(
             [('draft', 'Borrador'), ('approve', 'Por confirmar'), ('process', 'Evaluación'),
-             ('close', 'Aprobado'), ('reject', 'Rechazado')], default='draft', copy=False,
+             ('close', 'Aprobado'), ('reject', 'Rechazado'), ('done', 'Cerrado')], default='draft', copy=False,
             track_visibility="onchange")
 
     type_action = fields.Selection(
@@ -245,6 +245,11 @@ class CRMClaim(models.Model):
         mapped_data = dict([(r['claim_id'][0], r['claim_id_count']) for r in repair_data])
         for claim in self:
             claim.repairs_count = mapped_data.get(claim.id, 0)
+
+    def mark_as_done(self):
+        for record in self:
+            record.date_closed = fields.Datetime.now()
+            record.state = 'done'
 
     def action_view_repair_orders(self):
         """ This action used to redirect repair orders from the RMA..

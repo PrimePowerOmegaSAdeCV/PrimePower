@@ -42,6 +42,8 @@
                                 attrs="{'invisible':[('rma_send','=',False)]}"/>
                         <button type="object" name="approve_claim" states="draft" string="Approve"
                                 class="oe_highlight"/>
+                        <button type="object" name="mark_as_done" states="close" string="Cerrar"
+                                class="oe_highlight"/>
                         <button type="object" name="reject_claim" states="draft" string="Reject"
                                 class="oe_highlight"/>
                         <button type="object" name="set_to_draft"
@@ -229,7 +231,7 @@
                                     <group colspan="2" col="2" groups="base.group_no_one">
                                         <separator colspan="2" string="Dates"/>
                                         <field name="create_date"/>
-                                        <field name="date_closed" invisible="1"/>
+                                        <field name="date_closed"/>
                                         <field name="write_date"/>
                                     </group>
                                     <group colspan="2" col="2">
