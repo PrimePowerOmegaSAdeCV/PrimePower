@@ -156,6 +156,7 @@ class CRMClaim(models.Model):
 
     code = fields.Char(string='# de RMA', default="New", readonly=True, copy=False)
     name = fields.Char(string='Asunto', required=True)
+    website_product_id = fields.Many2one('product.product', string="Website Product", copy=False)
     action_next = fields.Char(string='Siguiente Acción', copy=False)
     user_fault = fields.Char(string='Trouble Responsible')
     email_from = fields.Char(string='Email', size=128, help="Destination email for email gateway.")
@@ -176,8 +177,8 @@ class CRMClaim(models.Model):
     priority = fields.Selection([('0', 'Baja'), ('1', 'Normal'), ('2', 'Alta')], string='Prioridad',
                                 default="1")
     state = fields.Selection(
-            [('draft', 'Borrador'), ('approve', 'Aprobado'), ('process', 'En Proceso'),
-             ('close', 'Cerrado'), ('reject', 'Rechazado')], default='draft', copy=False,
+            [('draft', 'Borrador'), ('approve', 'Por confirmar'), ('process', 'Evaluación'),
+             ('close', 'Aprobado'), ('reject', 'Rechazado')], default='draft', copy=False,
             track_visibility="onchange")
 
     type_action = fields.Selection(
@@ -193,6 +194,9 @@ class CRMClaim(models.Model):
                                  default=_get_default_company)
     partner_id = fields.Many2one('res.partner', string='Cliente')
     invoice_id = fields.Many2one("account.move", string="Factura", copy=False)
+
+    website_product_id = fields.Many2one('product.product', string="Website Product", copy=False)
+
 
     sale_id = fields.Many2one('sale.order', string="Pedido de Venta", compute=get_so)
     reject_message_id = fields.Many2one("claim.reject.message", string="Motivo de Rechazo", copy=False)

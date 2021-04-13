@@ -124,6 +124,7 @@
                                    attrs="{'readonly':[('state','!=','draft')]}"
                                    options="{'no_quick_create':True,'no_create_edit':True, 'no_create': True,'no_open': True}"
                                    domain="[('parent_id', '=', partner_id)]"/>
+                            <field name="website_product_id"/>
                             <button name="create_contact_partner" type="object"
                                     string="Add Contact Person "
                                     attrs="{'invisible':[('state','=','close')]}"/>

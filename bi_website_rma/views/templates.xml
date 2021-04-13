@@ -5,8 +5,167 @@
 		name="RMA Portal Frontend">
 		<xpath expr="." position="inside">
 			<script type="text/javascript" src="/bi_website_rma/static/src/js/bi_website_rma.js"></script>
+			<link rel="stylesheet" href="/bi_website_rma/static/src/scss/custom_style.scss" />
 		</xpath>
 	</template>
+
+	 <template
+        id="sale_order_portal_template"
+        name="Request RMA"
+        inherit_id="sale.sale_order_portal_template"
+    >
+        <xpath
+            expr="//div[hasclass('o_portal_sale_sidebar')]//div[hasclass('o_download_pdf')]/.."
+            position="after"
+        >
+			<t t-set="show_rma" t-value="sale_order.picking_ids.filtered(lambda x: x.state =='done' and x.picking_type_code == 'outgoing')"/>
+            <li
+                t-if="sale_order.state in ['sale', 'done'] and show_rma"
+                class="list-group-item flex-grow-1"
+                id="li-request-rma"
+            >
+                <a
+                    role="button"
+                    class="btn btn-secondary btn-block mb8"
+                    data-toggle="modal"
+                    data-target="#modal-request-rma"
+                    href="#"
+                >
+                    <i class="fa fa-reply" /> Request RMAs
+                </a>
+            </li>
+        </xpath>
+        <xpath expr="//div[@id='modaldecline']" position="after">
+        <div role="dialog" class="modal fade" id="modal-request-rma">
+            <div class="modal-dialog" style="max-width: 1200px;">
+                <form id="form-request-rma" action="/rma/thankyou" method="POST" autocomplete="off" class="modal-content js_website_submit_form ">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <header class="modal-header">
+                        <h4 class="modal-title">Request RMAs</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                    </header>
+                    <main class="modal-body" id="modal-body-request-rma">
+                        <div class="alert alert-info mb-2 mb-sm-1" role="alert">
+                            <span>
+                                You're about to perform an RMA request. Our team will process it an will reach you once it's validated. Keep in mind that:
+
+                                <ul>
+                                    <li>Select the product quantity and the requested operation</li>
+                                    <li>Use the comment button to add relevant information regarding the RMA, like returned serial numbers or a description of the issue</li>
+                                    <li>If no requested operation is set, the RMA won't be correctly fulfilled</li>
+                                    <li>You can only return as much product units as you received for this order</li>
+                                    <li>The limit will decrease when the units in other RMAs are confirmed</li>
+                                    <li>You can send a message in every RMA sent</li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div class="alert alert-danger mb-2 mb-sm-1 o_hidden" id="qty_error" role="alert">
+                            <span>
+                                There was an error creating your order:
+                                <ul id="lista">
+                                    <li name="qty_error">You can only return as much product units as you received for this order</li>
+                                </ul>
+                            </span>
+                        </div>
+                        <div class="alert alert-danger mb-2 mb-sm-1 o_hidden" id="motive_error" role="alert">
+                            <span>
+                                There was an error creating your order:
+                                <ul id="lista">
+                                    <li name="motive_error">Select the motive of the RMA</li>
+                                </ul>
+                            </span>
+                        </div>
+                        <style>
+                              .new-form {
+                              	display: inline;
+                              	/* width: 100%; */
+                              	height: calc(1.5em + 0.75rem + 2px);
+                              	padding: 0.375rem 0.35rem;
+                              	font-size: 0.875rem;
+                              	font-weight: 400;
+                              	line-height: 1.5;
+                              	color: #495057;
+                              	background-color: #FFFFFF;
+                              	background-clip: padding-box;
+                              	border: 1px solid #ced4da;
+                              	border-radius: 0.25rem;
+                              	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+                              }
+                              .request-rma-tbody td {
+                                vertical-align: middle;
+                              }
+                            </style>
+                        <div>
+                            <div class="mt32 mb32">
+                                <b>Motive:</b>
+                                <div class="col-md-4">
+                                    <t t-set="get_rma_motivo" t-value="website.get_rma_motivo()"/>
+                                    <select name="rma_motivo" id="rma_motivo" class="form-control required">
+                                        <option value=""></option>
+                                        <t t-foreach="get_rma_motivo" t-as="motivo">
+                                            <option t-att-value="motivo[0]">
+                                                <t t-esc="motivo[1]"/>
+                                            </option>
+                                        </t>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <table class="table table-sm" id="request-rma-table">
+                            <thead class="bg-100">
+                                <tr>
+                                    <th class="text-left">Product</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Return Quantity</th>
+                                    <th class="text-center">Delivery</th>
+                                    <th class="text-center">Return Reason</th>
+                                    <th name="portal_rma_button_desc"/>
+                                </tr>
+                            </thead>
+                            <tbody class="request-rma-tbody" >
+                                <t t-set="pickings" t-value="sale_order.picking_ids.filtered(lambda x: x.state =='done' and x.picking_type_code == 'outgoing')"/>
+                                <t t-foreach="pickings.move_ids_without_package" t-as="stock_move">
+                                    <tr t-att-line_id="stock_move.id" t-att-max_qty="stock_move.product_uom_qty" t-att-product="stock_move.product_id.id" t-att-so="sale_order.id" t-att-picking="stock_move.picking_id.id" >
+                                        <td>
+                                            <span t-esc="stock_move.product_id.name"/>
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="stock_move.product_uom_qty"/>
+                                        </td>
+                                        <td class="text-center" style="width:150px;">
+                                            <input type="number" pattern="^\d*(\.\d{0,3})?$" min="0" autocomplete="off" value="0" t-att-max="stock_move.product_uom_qty" name="quantity" id="return_quantity" style="width:80px;" class="form-control new-form o_website_form_input" />
+                                        </td>
+                                        <td class="text-center">
+                                            <span t-esc="stock_move.picking_id.name"/>
+                                        </td>
+                                        <td style="width:275px;">
+                                            <t t-set="get_rma_reason" t-value="website.get_rma_reason()"/>
+                                            <select name="rma_reason_id" class="form-control">
+                                                <t t-foreach="get_rma_reason" t-as="reason">
+                                                    <option t-att-value="reason.id">
+                                                        <t t-esc="reason.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </main>
+                    <footer class="modal-footer">
+                        <button type="button" id="submit_sale_rma" class="btn btn-primary">
+                            <i class="fa fa-check"/> Request RMAs
+                        </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            <i class="fa fa-times"/> Cancel
+                        </button>
+                    </footer>
+                </form>
+            </div>
+        </div>
+    </xpath>
+    </template>
 
 
 	<template id="portal_order_page_rma" name="Orders RMA" inherit_id="sale.sale_order_portal_content">
@@ -15,7 +174,7 @@
 		</xpath>
 		<xpath expr="//t[@t-if='sale_order.picking_ids']/div/t/div" position="inside">
 			<t t-if="sale_order.picking_ids">
-				<t t-if="i.state == 'done'">
+				<t t-if="i.state == 'done' and i.picking_type_code == 'outgoing'">
 					<a id="return_rma" class="badge badge-info label-text-align" title="Website RMA" href="#" data-toggle="modal" t-att-data-target="'#websiteextendrma' + str(i.id)" t-att-picking='i.id'>
 						<i class="fa fa-cloud-upload"></i> Return 
 					</a>
@@ -199,27 +358,40 @@
 		<t t-call="website.layout">
 			<div id="wrap">
 				
-				<div class="oe_structure" />
+				<div class="oe_structure"/>
 				<div class="container mt16">
 					<h1>Thank you!</h1>
 					<div class="row">
 						<div class="col-md-12">
 							<div class="alert alert-success rma_success">
 								Your return order request is
-								<t t-if="request.session['rma_id']">
-									<t t-set="rma_id" t-value="request.session['rma_id']"/>
-									<t t-set="rma_name" t-value="request.session['rma_name']"/>
-									<a t-if="rma_name" t-attf-href="/rma/view/detail/#{rma_id}">
-										<span t-esc="rma_name"/>
-									</a>
-								</t>..!!! Our Sales Team Will Get Back to you soon...!!!
+								<t t-if="request.session['multi']">
+								    <t t-set="index" t-value="0"/>
+								    <t t-set="names" t-value="request.session['rma_name']"/>
+								    <t t-foreach="request.session['rma_id']" t-as="rma_id">
+								        <a t-attf-href="/rma/view/detail/#{rma_id}">
+    										<span t-esc="names[index]"/>
+    									</a>
+    									<t t-set="index" t-value="index + 1"/>
+								    </t>
+								</t>
+								<t t-else="">
+    								<t t-if="request.session['rma_id']">
+    									<t t-set="rma_id" t-value="request.session['rma_id']"/>
+    									<t t-set="rma_name" t-value="request.session['rma_name']"/>
+    									<a t-if="rma_name" t-attf-href="/rma/view/detail/#{rma_id}">
+    										<span t-esc="rma_name"/>
+    									</a>
+    								</t>
+								</t>
+								..!!! Our Sales Team Will Get Back to you soon...!!!
 								<button type="button" class="close" data-dismiss="alert">&amp;times;
 								</button>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="oe_structure" />
+				<div class="oe_structure"/>
 			</div>
 		</t>
 	</template>	
@@ -247,11 +419,30 @@
 
 	<template id="portal_my_home_rma" name="Portal My Home : rma entries" inherit_id="portal.portal_my_home" priority="30">
 		<xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-			<a t-if="rma_count" href="/my/rma" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+			<a  href="/my/rma" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
 				Your RMA Orders
 				<span class="badge badge-secondary badge-pill" t-esc="rma_count"/>
 			</a>
 		</xpath>
+		<xpath expr="//div[hasclass('o_portal_docs')]" position="after">
+            <div class="oe_structure">
+                <section class="s_text_block mt16">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 bg-300">
+                                <p style="margin-top: 1rem;">
+                                    You can request an RMA <strong>
+                                        <a href="/requestrma">here</a>
+                                    </strong> if you do not
+                                    know the sales order from which it was made. If you know
+                                    the sales order, go to it and click on the corresponding button.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
 	</template>
 
 	<template id="rma_orders" name="RMA Orders" inherit_id="portal.portal_breadcrumbs" priority="30">
@@ -265,8 +456,12 @@
 
 	<template id="portal_my_rma" name="My RMA Orders">
 	  <t t-call="portal.portal_layout">
+		  <t t-call="portal.portal_searchbar">
+                <t t-set="title">RMA</t>
+            </t>
 	  	<div class="card mt32">
 			<h3 class="card-header">Your RMA Orders</h3>
+
 			<t t-if="not rma">
 				<p>There are currently no RMA Orders for your account.</p>
 			</t>
@@ -401,5 +596,95 @@
 		</t>
 	</template>
 
-
+	<template id="request_rma" name="Request RMA">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure mt-2" id="oe_structure_website_rma_form_request_0"/>
+                <section class="pt8 pb8">
+                    <div class="container">
+                        <div class="row s_nb_column_fixed">
+                            <div class="col-lg-12 s_title pt16 pb16">
+                                <h1>Request RMA</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="container mt-2">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="oe_structure mt-2" id="oe_structure_website_rma_form_request_1"/>
+                            <section class="s_text_block">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <p>
+                                                Our team will process it an will reach you once it's validated.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="request_rma_container">
+                                <form action="/my/website/requestrma" method="post"  data-success_page="/requestrma-thank-you" class="container-fluid mt32" enctype="multipart/form-data" data-editable-form="false" id="rma_request_form">
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <div class="form-group row o_website_form_required">
+                                        <label class="col-lg-3 col-md-4 col-form-label" for="product_id">
+                                            Product
+                                        </label>
+                                        <div class="col-lg-7 col-md-8">
+                                            <input type="hidden" name="product_id"  class="form-control o_website_form_input" required=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_required">
+                                        <label class="col-lg-3 col-md-4 col-form-label" for="product_uom_qty">
+                                            Quantity
+                                        </label>
+                                        <div class="col-lg-4 col-md-5">
+                                            <input class="form-control o_website_form_input" pattern="^\d*(\.\d{0,3})?$" name="product_uom_qty" required="" t-att-value="request.params.get('product_uom_qty', '1.000')"/>
+                                        </div>
+                                        <div class="col-lg-3 col-md-3">
+                                            <input type="hidden" name="product_uom"/>
+                                            <input type="text" class="form-control o_website_form_input" name="product_uom_name" disabled="true" required=""/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_required">
+                                        <label class="col-lg-3 col-md-4 col-form-label" for="operation_id">Operation</label>
+                                        <div class="col-lg-7 col-md-8">
+                                            <select name="rma_motivo" class="form-control custom-select o_website_form_input" required="">
+                                                <t
+                                                    t-foreach="website.get_rma_motivo()"
+                                                    t-as="o"
+                                                >
+                                                    <option t-att-value="o[0]">
+                                                        <t t-esc="o[1]" />
+                                                    </option>
+                                                </t>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row form-field o_website_form_required_custom">
+                                        <label class="col-lg-3 col-md-4 col-form-label" for="description">Description</label>
+                                        <div class="col-lg-7 col-md-8">
+                                            <textarea class="form-control o_website_form_input" name="description" required=""><t t-esc="request.params.get('description', '')"/></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-lg-3 offset-md-4 col-md-8 col-lg-7">
+                                            <button  role="submit" class="btn btn-primary btn-lg">Request</button>
+                                            <span id="o_website_form_result"/>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="oe_structure mt-2" id="oe_structure_website_rma_form_request_2"/>
+                        </div>
+                        <div class="col-lg-4">
+                            <t t-call="website.company_description"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="oe_structure mt-2" id="oe_structure_website_rma_form_request_3"/>
+            </div>
+        </t>
+    </template>
 </odoo>
