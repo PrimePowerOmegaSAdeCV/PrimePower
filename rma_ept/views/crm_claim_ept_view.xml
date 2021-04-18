@@ -232,6 +232,7 @@
                                         <separator colspan="2" string="Dates"/>
                                         <field name="create_date"/>
                                         <field name="date_closed"/>
+                                        <field name="total_days" readonly="1"/>
                                         <field name="write_date"/>
                                     </group>
                                     <group colspan="2" col="2">

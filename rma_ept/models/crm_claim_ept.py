@@ -2,6 +2,7 @@ from odoo import fields, models, api, _
 from odoo.tools.translate import _
 from odoo.tools import html2plaintext
 from odoo.exceptions import Warning, AccessError
+from datetime import datetime,timedelta
 
 class CRMClaim(models.Model):
     _name = "crm.claim.ept"
@@ -113,6 +114,8 @@ class CRMClaim(models.Model):
         for record in self:
             if record.picking_id:
                 record.sale_id = record.picking_id.sale_id.id
+            else:
+                record.sale_id = False
 
     def get_is_visible(self):
         """
@@ -147,6 +150,7 @@ class CRMClaim(models.Model):
 
     approved_by = fields.Char('Aprobado por')
     write_by_report = fields.Char('Escrito por')
+    total_days = fields.Integer(string="Total de Dias", copy=False)
     active = fields.Boolean(string='Activo', default=1)
     motivo = fields.Selection([('0', 'Garantía'), ('1', 'Devolución')], string='Motivo')
     is_visible = fields.Boolean(string='Is Visible', compute=get_is_visible, default=False)
@@ -248,6 +252,10 @@ class CRMClaim(models.Model):
 
     def mark_as_done(self):
         for record in self:
+            days = 0
+            if record.create_date:
+                days = (fields.Datetime.now() - record.create_date).days
+            record.total_days = days
             record.date_closed = fields.Datetime.now()
             record.state = 'done'
 
