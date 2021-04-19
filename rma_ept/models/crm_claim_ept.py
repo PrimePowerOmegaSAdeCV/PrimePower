@@ -171,7 +171,7 @@ class CRMClaim(models.Model):
     description = fields.Text(string='Descripción')
     resolution = fields.Text(string='Solución', copy=False)
     cause = fields.Many2many('claim.causes',string='Causa Raíz')
-
+    single_cause = fields.Many2one('claim.causes', string='Causa Raíz')
     date_deadline = fields.Date(string='Fecha Limite', copy=False)
     date_action_next = fields.Datetime(string='Fecha de siguiente acción', copy=False)
     create_date = fields.Datetime(string='Fecha de Creación', readonly=True, copy=False)

@@ -236,6 +236,7 @@
                                         <field name="write_date"/>
                                     </group>
                                     <group colspan="2" col="2">
+                                        <field name="single_cause" colspan="2"/>
                                         <separator colspan="2" string="Root Causes"/>
                                         <field name="cause" colspan="2" nolabel="1"/>
                                     </group>
