@@ -1,7 +1,7 @@
 from odoo import fields, models, api, _
 from odoo.tools.translate import _
 from odoo.tools import html2plaintext
-from odoo.exceptions import Warning, AccessError
+from odoo.exceptions import Warning, AccessError, UserError
 from datetime import datetime,timedelta
 
 class CRMClaim(models.Model):
@@ -157,7 +157,31 @@ class CRMClaim(models.Model):
     rma_send = fields.Boolean(string="Enviar RMA")
     is_rma_without_incoming = fields.Boolean(string="Is RMA Without Incoming", default=False)
     is_return_internal_transfer = fields.Boolean(string="Is Return Internal Trnafer", default=False)
-
+    # bateria
+    nivel_electrolito = fields.Selection(string="Nivel Electrolito", selection=[('0', 'Correcto'), ('1', 'Bajo'),('2', 'Alto') ] , copy=False)
+    tipo_carga = fields.Selection(string="Tipo de carga", selection=[('0', 'Convencional'), ('1', 'Oportunidad'),('2', 'Carga rapida') ] , copy=False )
+    frecuencia_hidratacion = fields.Selection(string="Frecuencia Hidratación", selection=[('0', 'Nula'), ('1', 'Semanal'),('2', 'Mensual') ] , copy=False )
+    voltaje_celda = fields.Char(string="Voltaje diferente en alguna celda (Valor)", required=False, copy=False )
+    voltaje_finalizar = fields.Char(string="Voltaje al finalizar la carga", required=False, copy=False )
+    celda = fields.Char(string="Celda", required=False, copy=False )
+    voltaje = fields.Char(string="Voltaje", required=False, copy=False)
+    bateria_no_trabaja = fields.Boolean(string="Después de que la batería se encuentre bien cargada, la batería no trabaja 6 horas o más", copy=False )
+    mal_olor = fields.Boolean(string="Genera un Mal olor", copy=False  )
+    bateria_caliente = fields.Boolean(string="La bateria se siente muy caliente", copy=False)
+    fuga_bateria = fields.Boolean(string="Existe una fuga de electrolito que sale de la bateria", copy=False )
+    otro_bateria = fields.Boolean(string="Otro (Descripción completa a detalle)", copy=False )
+    otro_bateria_desc = fields.Text(string="Descripcion", required=False, copy=False)
+    # cargador
+    parametro_carga = fields.Char(string="Parametro de carga", required=False, copy=False)
+    no_celdas = fields.Boolean(string="No. Celdas", copy=False )
+    amp = fields.Boolean(string="AMP", copy=False)
+    curva = fields.Boolean(string="Curvas", copy=False)
+    alimentacion_correcta = fields.Boolean(string="Alimentación correcta vs. Valores Cargador" ,copy=False )
+    codigo_falla = fields.Char(string="Código de falla", required=False,copy=False )
+    leyenda_falla = fields.Char(string="Leyenda falla", required=False, copy=False)
+    no_enciende = fields.Boolean(string="No enciende",  copy=False)
+    otro_cargador = fields.Boolean(string="Otro", copy=False)
+    otro_cargador_desc = fields.Text(string="Descripcion", required=False, copy=False)
     code = fields.Char(string='# de RMA', default="New", readonly=True, copy=False)
     name = fields.Char(string='Asunto', required=True)
     website_product_id = fields.Many2one('product.product', string="Website Product", copy=False)
@@ -237,6 +261,13 @@ class CRMClaim(models.Model):
         for record in self:
             motivo = dict(self._fields['motivo'].selection).get(record.motivo)
             record.name = motivo
+
+    def check_required_fields(self):
+        # odoo radio widget required not working so we add this function to make sure it validates
+        for record in self:
+            if record.tipo_productos == 'bateria' \
+                    and not(record.nivel_electrolito  and record.tipo_carga and record.frecuencia_hidratacion):
+                raise UserError("Se requiere llenar todos los campos en el apartado de Formato")
 
     @api.depends('repair_order_ids')
     def _compute_repairs_count_for_crm_claim(self):
@@ -441,6 +472,7 @@ class CRMClaim(models.Model):
         """
         crm_calim_line_obj = self.env['claim.line.ept']
         processed_product_list = []
+        self.check_required_fields()
         if len(self.claim_line_ids) <= 0:
             raise Warning(_("Selecciona productos en devolución."))
         repair_line = []
