@@ -114,7 +114,7 @@
                                    context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'base.group_sale_salesman_all_leads']}"/>
                             <field name="priority" attrs="{'readonly':[('state','!=','draft')]}"
                                    widget="priority"/>
-<!--                            <field name="section_id" attrs="{'readonly':[('state','!=','draft')]}"/>-->
+                            <!--                            <field name="section_id" attrs="{'readonly':[('state','!=','draft')]}"/>-->
                             <field name="ejecutivo_ventas"/>
 
                             <field name="date_deadline"
@@ -248,6 +248,60 @@
                                                placeholder="Action Description..."/>
                                     </group>
                                 </page>
+                                <page string="Formato" name="formato">
+                                    <group name="campos_bateria" string="Bateria - Condiciones y problematica"
+                                           attrs="{'invisible':[('tipo_productos','!=','bateria')]}">
+                                        <group name="campos_left">
+                                            <field name="nivel_electrolito" widget="radio"/>
+                                            <field name="tipo_carga" widget="radio"/>
+                                            <field name="frecuencia_hidratacion" widget="radio"/>
+                                        </group>
+                                        <group name="campos_right">
+                                            <field name="voltaje_finalizar"/>
+                                            <field name="voltaje_celda"/>
+                                            <field name="celda"/>
+                                            <field name="voltaje"/>
+                                        </group>
+
+                                    </group>
+                                    <group col="6"
+                                           string="Problema reportado ( Deseable Incluir fotografías o reportes realizados por cliente )"
+                                           attrs="{'invisible':[('tipo_productos','!=','bateria')]}"/>
+                                    <group col="6" attrs="{'invisible':[('tipo_productos','!=','bateria')]}">
+                                        <field name="bateria_no_trabaja" colspan="4"/>
+                                        <field name="mal_olor" colspan="4"/>
+                                        <field name="bateria_caliente" colspan="4"/>
+                                        <field name="fuga_bateria" colspan="4"/>
+                                        <field name="otro_bateria" colspan="4"/>
+                                        <field name="otro_bateria_desc" colspan="4"/>
+                                    </group>
+
+                                    <group name="campos_cargador" string="Cargador - Condiciones y problematica"
+                                           attrs="{'invisible':[('tipo_productos','!=','cargador')]}">
+                                        <group name="campos_left">
+                                            <field name="parametro_carga"/>
+                                            <field name="no_celdas"/>
+                                            <field name="amp"/>
+                                            <field name="curva"/>
+                                        </group>
+                                        <group name="campos_right">
+                                            <field name="alimentacion_correcta"/>
+
+                                        </group>
+                                    </group>
+                                    <group col="6"
+                                           string="Problema reportado ( Deseable Incluir fotografías o reportes realizados por cliente )"
+                                           attrs="{'invisible':[('tipo_productos','!=','cargador')]}"/>
+                                    <group col="6" attrs="{'invisible':[('tipo_productos','!=','cargador')]}">
+                                        <field name="codigo_falla"/>
+                                        <field name="leyenda_falla"/>
+                                        <field name="no_enciende" colspan="4"/>
+                                        <field name="otro_cargador" colspan="4"/>
+                                        <field name="otro_cargador_desc" colspan="4"/>
+                                    </group>
+
+                                </page>
+
                             </notebook>
                         </group>
                     </sheet>
