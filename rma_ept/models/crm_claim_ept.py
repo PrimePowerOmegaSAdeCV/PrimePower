@@ -1,7 +1,7 @@
 from odoo import fields, models, api, _
 from odoo.tools.translate import _
 from odoo.tools import html2plaintext
-from odoo.exceptions import Warning, AccessError
+from odoo.exceptions import Warning, AccessError, UserError
 from datetime import datetime,timedelta
 
 class CRMClaim(models.Model):
@@ -262,6 +262,13 @@ class CRMClaim(models.Model):
             motivo = dict(self._fields['motivo'].selection).get(record.motivo)
             record.name = motivo
 
+    def check_required_fields(self):
+        # odoo radio widget required not working so we add this function to make sure it validates
+        for record in self:
+            if record.tipo_productos == 'bateria' \
+                    and not(record.nivel_electrolito  and record.tipo_carga and record.frecuencia_hidratacion):
+                raise UserError("Se requiere llenar todos los campos en el apartado de Formato")
+
     @api.depends('repair_order_ids')
     def _compute_repairs_count_for_crm_claim(self):
         """This method used to display the repair orders on the RMA.
@@ -465,6 +472,7 @@ class CRMClaim(models.Model):
         """
         crm_calim_line_obj = self.env['claim.line.ept']
         processed_product_list = []
+        self.check_required_fields()
         if len(self.claim_line_ids) <= 0:
             raise Warning(_("Selecciona productos en devolución."))
         repair_line = []
