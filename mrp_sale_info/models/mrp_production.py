@@ -32,4 +32,6 @@ class MrpProduction(models.Model):
     def action_print_workorder_report(self):
         sale_orders = self.mapped('sale_id')
         if sale_orders:
-            return self.env.ref('pp_work_order.action_report_workorder_attributes').report_action(sale_orders, config=False)
+            report = self.env.ref('pp_work_order.action_report_workorder_attributes')
+            if report:
+                return report.report_action(sale_orders, config=False)
