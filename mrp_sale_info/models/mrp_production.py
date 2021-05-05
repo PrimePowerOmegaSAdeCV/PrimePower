@@ -35,3 +35,7 @@ class MrpProduction(models.Model):
             report = self.env.ref('pp_work_order.action_report_workorder_attributes')
             if report:
                 return report.report_action(sale_orders, config=False)
+        else:
+            report = self.env.ref('pp_work_order.action_report_workorder_attributes')
+            if report:
+                return report.report_action(self, config=False)

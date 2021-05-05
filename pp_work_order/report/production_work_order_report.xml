@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="production_report_workorder_attributes_document">
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="doc">
+            <t t-call="web.external_layout">
+                <t t-set="doc" t-value="doc.with_context({'lang':doc.user_id.lang})"/>
+                 <div class="page">
+                    <style>
+                        .attribute th, .attribute td {
+                        padding: 0.2rem;
+                        vertical-align: top;
+                        border-top: 1px solid #dee2e6;
+                    }
+                    .attribute thead{
+                        border-bottom: 3px solid #a7a7a7;}
+                    </style>
+                    <p>
+                        <strong>HC Work Order</strong>
+                    </p>
+                    <div class="oe_structure"/>
+                    <div class="mb32 row" id="wo_information">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>No. Pedido:</strong>
+                                </div>
+                                <div class="col-6" t-field="doc.name"/></div>
+                        </div>
+                    </div>
+                     <div class="row">
+                        <div class="col-3">
+                            <strong>Produtos:</strong>
+                        </div>
+                        <div class="col-9" t-field="doc.product_id.name"/>
+                    </div>
+                    <br/>
+                    <br/>
+                    <t t-set="attributes" t-value="doc.get_product_attributes_table()"/>
+                    <t t-foreach="attributes.items()" t-as="categoria">
+                        <t t-set="values" t-value="categoria[1]"/>
+                        <t t-set="show_table" t-value="True"/>
+                        <!--<t t-if="values">-->
+                        <!--    <t t-set="show_table" t-value="any(list(values.values()))"/>-->
+                        <!--</t>-->
+                        <table class="attribute" style="width:100%" t-if="values">
+                            <thead>
+                                <th style="width:45%">
+                                    <span t-esc="categoria[0]"/>
+                                </th>
+                                <th style="width:55%">Valores</th>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="values.items()" t-as="line">
+                                    <tr>
+                                        <td >
+                                            <span t-esc="line[0]"/>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line[1]"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <br/>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </t>
+    </template>
+
+    <report
+            id="production_action_report_workorder_attributes"
+            string="Orden de Trabajo (Nuevo)"
+            model="mrp.production"
+            report_type="qweb-pdf"
+            file="pp_work_order.production_report_workorder_attributes_document"
+            name="pp_work_order.production_report_workorder_attributes_document"
+            print_report_name="'Work Order - %s' % (object.name)"
+    />
+</odoo>
