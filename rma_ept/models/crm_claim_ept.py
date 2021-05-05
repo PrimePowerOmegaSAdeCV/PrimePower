@@ -1,7 +1,8 @@
 from odoo import fields, models, api, _
 from odoo.tools.translate import _
 from odoo.tools import html2plaintext
-from odoo.exceptions import Warning, AccessError
+from odoo.exceptions import Warning, AccessError, UserError
+from datetime import datetime,timedelta
 
 class CRMClaim(models.Model):
     _name = "crm.claim.ept"
@@ -113,6 +114,8 @@ class CRMClaim(models.Model):
         for record in self:
             if record.picking_id:
                 record.sale_id = record.picking_id.sale_id.id
+            else:
+                record.sale_id = False
 
     def get_is_visible(self):
         """
@@ -147,15 +150,41 @@ class CRMClaim(models.Model):
 
     approved_by = fields.Char('Aprobado por')
     write_by_report = fields.Char('Escrito por')
+    total_days = fields.Integer(string="Total de Dias", copy=False)
     active = fields.Boolean(string='Activo', default=1)
     motivo = fields.Selection([('0', 'Garantía'), ('1', 'Devolución')], string='Motivo')
     is_visible = fields.Boolean(string='Is Visible', compute=get_is_visible, default=False)
     rma_send = fields.Boolean(string="Enviar RMA")
     is_rma_without_incoming = fields.Boolean(string="Is RMA Without Incoming", default=False)
     is_return_internal_transfer = fields.Boolean(string="Is Return Internal Trnafer", default=False)
-
+    # bateria
+    nivel_electrolito = fields.Selection(string="Nivel Electrolito", selection=[('0', 'Correcto'), ('1', 'Bajo'),('2', 'Alto') ] , copy=False)
+    tipo_carga = fields.Selection(string="Tipo de carga", selection=[('0', 'Convencional'), ('1', 'Oportunidad'),('2', 'Carga rapida') ] , copy=False )
+    frecuencia_hidratacion = fields.Selection(string="Frecuencia Hidratación", selection=[('0', 'Nula'), ('1', 'Semanal'),('2', 'Mensual') ] , copy=False )
+    voltaje_celda = fields.Char(string="Voltaje diferente en alguna celda (Valor)", required=False, copy=False )
+    voltaje_finalizar = fields.Char(string="Voltaje al finalizar la carga", required=False, copy=False )
+    celda = fields.Char(string="Celda", required=False, copy=False )
+    voltaje = fields.Char(string="Voltaje", required=False, copy=False)
+    bateria_no_trabaja = fields.Boolean(string="Después de que la batería se encuentre bien cargada, la batería no trabaja 6 horas o más", copy=False )
+    mal_olor = fields.Boolean(string="Genera un Mal olor", copy=False  )
+    bateria_caliente = fields.Boolean(string="La bateria se siente muy caliente", copy=False)
+    fuga_bateria = fields.Boolean(string="Existe una fuga de electrolito que sale de la bateria", copy=False )
+    otro_bateria = fields.Boolean(string="Otro (Descripción completa a detalle)", copy=False )
+    otro_bateria_desc = fields.Text(string="Descripcion", required=False, copy=False)
+    # cargador
+    parametro_carga = fields.Char(string="Parametro de carga", required=False, copy=False)
+    no_celdas = fields.Boolean(string="No. Celdas", copy=False )
+    amp = fields.Boolean(string="AMP", copy=False)
+    curva = fields.Boolean(string="Curvas", copy=False)
+    alimentacion_correcta = fields.Boolean(string="Alimentación correcta vs. Valores Cargador" ,copy=False )
+    codigo_falla = fields.Char(string="Código de falla", required=False,copy=False )
+    leyenda_falla = fields.Char(string="Leyenda falla", required=False, copy=False)
+    no_enciende = fields.Boolean(string="No enciende",  copy=False)
+    otro_cargador = fields.Boolean(string="Otro", copy=False)
+    otro_cargador_desc = fields.Text(string="Descripcion", required=False, copy=False)
     code = fields.Char(string='# de RMA', default="New", readonly=True, copy=False)
     name = fields.Char(string='Asunto', required=True)
+    website_product_id = fields.Many2one('product.product', string="Website Product", copy=False)
     action_next = fields.Char(string='Siguiente Acción', copy=False)
     user_fault = fields.Char(string='Trouble Responsible')
     email_from = fields.Char(string='Email', size=128, help="Destination email for email gateway.")
@@ -166,7 +195,7 @@ class CRMClaim(models.Model):
     description = fields.Text(string='Descripción')
     resolution = fields.Text(string='Solución', copy=False)
     cause = fields.Many2many('claim.causes',string='Causa Raíz')
-
+    single_cause = fields.Many2one('claim.causes', string='Causa Raíz')
     date_deadline = fields.Date(string='Fecha Limite', copy=False)
     date_action_next = fields.Datetime(string='Fecha de siguiente acción', copy=False)
     create_date = fields.Datetime(string='Fecha de Creación', readonly=True, copy=False)
@@ -176,8 +205,8 @@ class CRMClaim(models.Model):
     priority = fields.Selection([('0', 'Baja'), ('1', 'Normal'), ('2', 'Alta')], string='Prioridad',
                                 default="1")
     state = fields.Selection(
-            [('draft', 'Borrador'), ('approve', 'Aprobado'), ('process', 'En Proceso'),
-             ('close', 'Cerrado'), ('reject', 'Rechazado')], default='draft', copy=False,
+            [('draft', 'Borrador'), ('approve', 'Por confirmar'), ('process', 'Evaluación'),
+             ('close', 'Aprobado'), ('reject', 'Rechazado'), ('done', 'Cerrado')], default='draft', copy=False,
             track_visibility="onchange")
 
     type_action = fields.Selection(
@@ -193,6 +222,9 @@ class CRMClaim(models.Model):
                                  default=_get_default_company)
     partner_id = fields.Many2one('res.partner', string='Cliente')
     invoice_id = fields.Many2one("account.move", string="Factura", copy=False)
+
+    website_product_id = fields.Many2one('product.product', string="Website Product", copy=False)
+
 
     sale_id = fields.Many2one('sale.order', string="Pedido de Venta", compute=get_so)
     reject_message_id = fields.Many2one("claim.reject.message", string="Motivo de Rechazo", copy=False)
@@ -230,6 +262,13 @@ class CRMClaim(models.Model):
             motivo = dict(self._fields['motivo'].selection).get(record.motivo)
             record.name = motivo
 
+    def check_required_fields(self):
+        # odoo radio widget required not working so we add this function to make sure it validates
+        for record in self:
+            if record.tipo_productos == 'bateria' \
+                    and not(record.nivel_electrolito  and record.tipo_carga and record.frecuencia_hidratacion):
+                raise UserError("Se requiere llenar todos los campos en el apartado de Formato")
+
     @api.depends('repair_order_ids')
     def _compute_repairs_count_for_crm_claim(self):
         """This method used to display the repair orders on the RMA.
@@ -241,6 +280,15 @@ class CRMClaim(models.Model):
         mapped_data = dict([(r['claim_id'][0], r['claim_id_count']) for r in repair_data])
         for claim in self:
             claim.repairs_count = mapped_data.get(claim.id, 0)
+
+    def mark_as_done(self):
+        for record in self:
+            days = 0
+            if record.create_date:
+                days = (fields.Datetime.now() - record.create_date).days
+            record.total_days = days
+            record.date_closed = fields.Datetime.now()
+            record.state = 'done'
 
     def action_view_repair_orders(self):
         """ This action used to redirect repair orders from the RMA..
@@ -424,6 +472,7 @@ class CRMClaim(models.Model):
         """
         crm_calim_line_obj = self.env['claim.line.ept']
         processed_product_list = []
+        self.check_required_fields()
         if len(self.claim_line_ids) <= 0:
             raise Warning(_("Selecciona productos en devolución."))
         repair_line = []

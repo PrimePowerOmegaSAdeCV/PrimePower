@@ -15,9 +15,12 @@ class StockPicking(models.Model):
     def action_print_multi_wh_report(self):
         moves = self.sorted(key=lambda x: x.create_date,)
         origins = moves.mapped('name')
-        errors = moves.filtered(lambda y: y.folio_salida).mapped('name')
-        if errors:
-            raise UserError('Ya existe un Folio de Salida Para la siguiente Transferencia %s' % ','.join(errors))
+        current_folio = origins[0]
+        move_folios = any(moves.mapped('folio_salida'))
+        if move_folios:
+            errors = [mv.name for mv in moves.filtered(lambda y: y.folio_salida != current_folio)]
+            if errors:
+                raise UserError('La Transferencia %s tiene un folio diferente a las otras salidas' % ','.join(errors))
         for move in moves:
             move.write({
                 'folio_salida': origins[0]

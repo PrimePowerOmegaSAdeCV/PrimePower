@@ -25,6 +25,7 @@ hide follower on sales order hide follower on purchase order hide follower in in
     'installable' : True,
     'auto_install' : False,
     'price': 15,
+    "post_load": "post_load",
     'currency': "EUR",
     'category' : 'Extra Tools',
 }

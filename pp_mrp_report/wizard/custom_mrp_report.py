@@ -17,7 +17,7 @@ class CustomMrpReport(models.TransientModel):
     product_ids = fields.Many2many('product.product', string="Products")
 
     def get_domain(self):
-        domain = [('date_deadline', '>=', self.start_date), ('date_deadline', '<=', self.end_date),
+        domain = [('create_date', '>=', self.start_date), ('create_date', '<=', self.end_date),
                   ('state', 'in', ('confirmed', 'planned', 'progress'))]
         if self.product_ids:
             domain += [('product_id', 'in', self.product_ids.ids)]

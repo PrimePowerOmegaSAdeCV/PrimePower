@@ -61,15 +61,16 @@ class followers_disable_invoice_apps(models.Model):
         return res
 
 
-class followers_disable_mail_composer(models.TransientModel):
-    _inherit = 'mail.compose.message'
+class MailComposeMessage(models.TransientModel):
+    _inherit = "mail.compose.message"
 
-    def get_mail_values(self, res_ids):
-        # Generate the values that will be used by send_mail to create mail_messages or mail_mails.
-
-        res = super(followers_disable_mail_composer, self).get_mail_values(res_ids)
-        follow_so = self.env['ir.config_parameter'].sudo().get_param('followers_disable_app.disable_follower_sm')
-        if follow_so:
-            for key, value in res.items():
-                del value['partner_ids']
-        return res
+    def send_mail(self, auto_commit=False):
+        context = self._context.copy()
+        for wizard in self:
+            if wizard.model == 'sale.order':
+                context.update({'sale_disable_followers': wizard.env['ir.config_parameter'].sudo().get_param(
+                    'followers_disable_app.disable_follower_so'),
+                                # 'mail_create_nosubscribe': True,
+                                # 'from_composer': True
+                                })
+        return super(MailComposeMessage, self.with_context(context)).send_mail(auto_commit=auto_commit)

@@ -236,49 +236,49 @@
                             </t>
                         </td>
                     </tr>
-                    <tr class="text-center bg ">
-                        <td colspan="14">
-                            <b>Detalle de Partes,Material o instalación involucrados</b>
-                        </td>
-                        <td colspan="3">
-                            <b>Costos ($) USD aprox</b>
-                        </td>
-                    </tr>
-                    <t t-set="has_lines" t-value="False"/>
-                    <t t-foreach="doc.repair_order_ids" t-as="repair_order">
-                        <t t-foreach="repair_order.fees_lines" t-as="fees_lines">
-                            <t t-set="has_lines" t-value="True"/>
-                            <tr class="text-center">
-                                <td colspan="14">
-                                    <span t-field="fees_lines.product_id"/>
-                                </td>
-                                <td colspan="3">
-                                    <span t-field="fees_lines.price_subtotal"/>
-                                </td>
-                            </tr>
-                        </t>
-                        <t t-foreach="repair_order.operations" t-as="operations">
-                            <tr class="text-center ">
-                                <t t-set="has_lines" t-value="True"/>
-                                <td colspan="14">
-                                    <span t-field="operations.product_id"/>
-                                </td>
-                                <td colspan="3">
-                                    <span t-field="operations.price_subtotal"/>
-                                </td>
-                            </tr>
-                        </t>
-                    </t>
-                    <t t-if="not has_lines">
-                        <tr class="text-center">
-                                <td colspan="14">
-                                   <span t-esc="'.'" style="visibility:hidden;"/>
-                                </td>
-                                <td colspan="3">
-                                   <span/>
-                                </td>
-                            </tr>
-                    </t>
+<!--                    <tr class="text-center bg ">-->
+<!--                        <td colspan="14">-->
+<!--                            <b>Detalle de Partes,Material o instalación involucrados</b>-->
+<!--                        </td>-->
+<!--                        <td colspan="3">-->
+<!--                            <b>Costos ($) USD aprox</b>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+<!--                    <t t-set="has_lines" t-value="False"/>-->
+<!--                    <t t-foreach="doc.repair_order_ids" t-as="repair_order">-->
+<!--                        <t t-foreach="repair_order.fees_lines" t-as="fees_lines">-->
+<!--                            <t t-set="has_lines" t-value="True"/>-->
+<!--                            <tr class="text-center">-->
+<!--                                <td colspan="14">-->
+<!--                                    <span t-field="fees_lines.product_id"/>-->
+<!--                                </td>-->
+<!--                                <td colspan="3">-->
+<!--                                    <span t-field="fees_lines.price_subtotal"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </t>-->
+<!--                        <t t-foreach="repair_order.operations" t-as="operations">-->
+<!--                            <tr class="text-center ">-->
+<!--                                <t t-set="has_lines" t-value="True"/>-->
+<!--                                <td colspan="14">-->
+<!--                                    <span t-field="operations.product_id"/>-->
+<!--                                </td>-->
+<!--                                <td colspan="3">-->
+<!--                                    <span t-field="operations.price_subtotal"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </t>-->
+<!--                    </t>-->
+<!--                    <t t-if="not has_lines">-->
+<!--                        <tr class="text-center">-->
+<!--                                <td colspan="14">-->
+<!--                                   <span t-esc="'.'" style="visibility:hidden;"/>-->
+<!--                                </td>-->
+<!--                                <td colspan="3">-->
+<!--                                   <span/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                    </t>-->
 
                     <tr class="text-center bg ">
                         <td colspan="10">

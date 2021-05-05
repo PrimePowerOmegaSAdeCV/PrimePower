@@ -42,6 +42,8 @@
                                 attrs="{'invisible':[('rma_send','=',False)]}"/>
                         <button type="object" name="approve_claim" states="draft" string="Approve"
                                 class="oe_highlight"/>
+                        <button type="object" name="mark_as_done" states="close" string="Cerrar"
+                                class="oe_highlight"/>
                         <button type="object" name="reject_claim" states="draft" string="Reject"
                                 class="oe_highlight"/>
                         <button type="object" name="set_to_draft"
@@ -58,7 +60,7 @@
                         <!--                                attrs="{'invisible':['|',('state','not in',['close']),('repairs_count', '=', 0)]}"-->
                         <!--                                />-->
                         <field name="state" widget="statusbar"
-                               statusbar_visible="draft,approve,process,close"/>
+                               statusbar_visible="draft,approve,process,close,done"/>
                     </header>
                     <sheet string="Claims">
                         <div class="oe_button_box" name="button_box">
@@ -112,7 +114,7 @@
                                    context="{'default_groups_ref': ['base.group_user', 'base.group_partner_manager', 'base.group_sale_salesman_all_leads']}"/>
                             <field name="priority" attrs="{'readonly':[('state','!=','draft')]}"
                                    widget="priority"/>
-<!--                            <field name="section_id" attrs="{'readonly':[('state','!=','draft')]}"/>-->
+                            <!--                            <field name="section_id" attrs="{'readonly':[('state','!=','draft')]}"/>-->
                             <field name="ejecutivo_ventas"/>
 
                             <field name="date_deadline"
@@ -124,6 +126,7 @@
                                    attrs="{'readonly':[('state','!=','draft')]}"
                                    options="{'no_quick_create':True,'no_create_edit':True, 'no_create': True,'no_open': True}"
                                    domain="[('parent_id', '=', partner_id)]"/>
+                            <field name="website_product_id"/>
                             <button name="create_contact_partner" type="object"
                                     string="Add Contact Person "
                                     attrs="{'invisible':[('state','=','close')]}"/>
@@ -228,10 +231,12 @@
                                     <group colspan="2" col="2" groups="base.group_no_one">
                                         <separator colspan="2" string="Dates"/>
                                         <field name="create_date"/>
-                                        <field name="date_closed" invisible="1"/>
+                                        <field name="date_closed"/>
+                                        <field name="total_days" readonly="1"/>
                                         <field name="write_date"/>
                                     </group>
                                     <group colspan="2" col="2">
+                                        <field name="single_cause" colspan="2"/>
                                         <separator colspan="2" string="Root Causes"/>
                                         <field name="cause" colspan="2" nolabel="1"/>
                                     </group>
@@ -243,6 +248,83 @@
                                                placeholder="Action Description..."/>
                                     </group>
                                 </page>
+                                <page string="Formato" name="formato">
+                                    <group name="campos_bateria" string="Bateria - Condiciones y problematica"
+                                           attrs="{'invisible':[('tipo_productos','!=','bateria')]}">
+                                        <group name="campos_left">
+                                            <field name="nivel_electrolito" widget="radio"
+                                                   attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                            <field name="tipo_carga" widget="radio"
+                                                   attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                            <field name="frecuencia_hidratacion" widget="radio"
+                                                   attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                        </group>
+                                        <group name="campos_right">
+                                            <field name="voltaje_finalizar"
+                                                   attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                            <field name="voltaje_celda"
+                                                   attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                            <field name="celda"
+                                                   attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                            <field name="voltaje"
+                                                   attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                        </group>
+
+                                    </group>
+                                    <group col="6"
+                                           string="Problema reportado ( Deseable Incluir fotografías o reportes realizados por cliente )"
+                                           attrs="{'invisible':[('tipo_productos','!=','bateria')]}"/>
+                                    <group col="6" attrs="{'invisible':[('tipo_productos','!=','bateria')]}">
+                                        <field name="bateria_no_trabaja" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                        <field name="mal_olor" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                        <field name="bateria_caliente" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                        <field name="fuga_bateria" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                        <field name="otro_bateria" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                        <field name="otro_bateria_desc" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'bateria')]}"/>
+                                    </group>
+
+                                    <group name="campos_cargador" string="Cargador - Condiciones y problematica"
+                                           attrs="{'invisible':[('tipo_productos','!=','cargador')]}">
+                                        <group name="campos_left">
+                                            <field name="parametro_carga"
+                                                   attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                            <field name="no_celdas"
+                                                   attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                            <field name="amp"
+                                                   attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                            <field name="curva"/>
+                                        </group>
+                                        <group name="campos_right">
+                                            <field name="alimentacion_correcta"
+                                                   attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+
+                                        </group>
+                                    </group>
+                                    <group col="6"
+                                           string="Problema reportado ( Deseable Incluir fotografías o reportes realizados por cliente )"
+                                           attrs="{'invisible':[('tipo_productos','!=','cargador')]}"/>
+                                    <group col="6" attrs="{'invisible':[('tipo_productos','!=','cargador')]}">
+                                        <field name="codigo_falla"
+                                               attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                        <field name="leyenda_falla"
+                                               attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                        <field name="no_enciende" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                        <field name="otro_cargador" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                        <field name="otro_cargador_desc" colspan="4"
+                                               attrs="{'required':[('tipo_productos', '=', 'cargador')]}"/>
+                                    </group>
+
+                                </page>
+
+
                             </notebook>
                         </group>
                     </sheet>
